@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#070608">
+<title>Photo Cutout Frame prompt | marcelgrau</title>
+<meta name="description" content="Turn any travel photo into a luxury magazine collage where you and the ground break out of the frame. One photo, one prompt, straight in ChatGPT.">
+<meta property="og:title" content="Photo Cutout Frame">
+<meta property="og:image" content="assets/ex0-after.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@1&family=Inter+Tight:wght@200;400;500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#070608;--ink:#f4f2ee;--mute:#8f8b95;--dim:#5d5a63;--y:#FFE500;
+  --hair:rgba(255,255,255,.07);--hair2:rgba(255,255,255,.12);--shell:rgba(255,255,255,.028);
+  --ease:cubic-bezier(.32,.72,0,1);
+  --sans:"Helvetica Neue","Inter Tight",Helvetica,system-ui,sans-serif;
+  --serif:"EB Garamond",Garamond,"Apple Garamond",Georgia,serif;
+}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:500;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:3;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.mesh{position:fixed;inset:-20%;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(38% 30% at 18% 8%,rgba(255,229,0,.13),transparent 70%),
+    radial-gradient(30% 28% at 88% 30%,rgba(122,92,255,.12),transparent 70%),
+    radial-gradient(34% 30% at 50% 100%,rgba(255,120,40,.08),transparent 70%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 28px}
+
+/* nav isla */
+.nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:4;display:flex;align-items:center;gap:18px;
+  padding:8px 8px 8px 20px;border-radius:999px;background:rgba(14,13,16,.62);border:1px solid var(--hair2);
+  backdrop-filter:blur(22px) saturate(140%);-webkit-backdrop-filter:blur(22px) saturate(140%);white-space:nowrap}
+.logo{font-weight:800;letter-spacing:-.035em;font-size:16px}
+.logo i{font-family:var(--serif);font-weight:400;font-style:italic;color:var(--y);letter-spacing:0;font-size:18px}
+.nav a{color:var(--mute);text-decoration:none;font-size:13px;transition:color .5s var(--ease)}
+.nav a:hover{color:var(--ink)}
+.nav .kw{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:999px;background:var(--y);color:#111;font-weight:700;font-size:12px}
+
+/* hero */
+.hero{min-height:100dvh;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:130px 0 90px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;border:1px solid var(--hair2);
+  font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.eyebrow b{width:6px;height:6px;border-radius:50%;background:var(--y);box-shadow:0 0 12px var(--y)}
+h1{font-size:clamp(46px,7.4vw,104px);line-height:.92;letter-spacing:-.055em;font-weight:800;margin:26px 0 26px}
+h1 .thin{font-weight:200;letter-spacing:-.04em}
+h1 i,h2 i{font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:-.02em;color:var(--y)}
+.lede{color:var(--mute);font-size:18px;line-height:1.55;max-width:42ch;margin:0 0 34px;font-weight:400}
+.cta{display:inline-flex;align-items:center;gap:14px;padding:7px 7px 7px 24px;border-radius:999px;background:var(--y);color:#111;
+  font-weight:700;font-size:15px;text-decoration:none;border:0;cursor:pointer;box-shadow:0 14px 50px rgba(255,229,0,.22);
+  transition:transform .6s var(--ease)}
+.cta .ic{width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.1);display:grid;place-items:center;transition:transform .6s var(--ease)}
+.cta:hover .ic{transform:translate(2px,-2px) scale(1.06)}
+.cta:active{transform:scale(.97)}
+.ghost{display:inline-flex;align-items:center;gap:10px;color:var(--mute);text-decoration:none;font-size:14px;margin-left:18px;transition:color .5s var(--ease)}
+.ghost:hover{color:var(--ink)}
+svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+.stage{position:relative;justify-self:center;width:min(330px,80vw)}
+.device{padding:9px;border-radius:46px;background:linear-gradient(160deg,rgba(255,255,255,.14),rgba(255,255,255,.03));
+  border:1px solid var(--hair2);box-shadow:0 60px 120px -30px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.6) inset}
+.device video{width:100%;border-radius:38px;display:block;background:#000}
+.composer{position:absolute;left:-58px;bottom:70px;display:flex;align-items:center;gap:10px;padding:9px 10px 9px 9px;
+  border-radius:999px;background:rgba(22,21,25,.86);border:1px solid var(--hair2);box-shadow:0 30px 60px rgba(0,0,0,.6);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transform:rotate(-3deg);min-width:230px}
+.composer img{width:34px;height:34px;border-radius:10px;object-fit:cover}
+.composer .typed{font-size:15px;font-weight:500;flex:1;white-space:nowrap}
+.composer .caret{display:inline-block;width:2px;height:17px;background:#0a84ff;vertical-align:-3px;margin-left:1px;animation:blink 1s steps(1) infinite}
+.composer .send{width:30px;height:30px;border-radius:50%;background:#0a84ff;display:grid;place-items:center;color:#fff}
+@keyframes blink{50%{opacity:0}}
+
+/* marquee */
+.marquee{border-block:1px solid var(--hair);overflow:hidden;padding:18px 0;margin:0 -28px 120px;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.track{display:flex;gap:44px;width:max-content;animation:slide 38s linear infinite}
+.track span{font-size:clamp(22px,3vw,34px);font-weight:200;letter-spacing:-.03em;color:var(--dim)}
+.track span:nth-child(3n){font-family:var(--serif);font-style:italic;font-weight:400;color:var(--mute)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* seccions */
+.sec{padding:0 0 130px}
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:40px;flex-wrap:wrap}
+h2{font-size:clamp(36px,5vw,64px);line-height:.96;letter-spacing:-.05em;font-weight:800;margin:18px 0 0}
+.sec-head p{color:var(--mute);max-width:36ch;line-height:1.55;margin:0;font-weight:400}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.step{padding:6px;border-radius:28px;background:var(--shell);border:1px solid var(--hair)}
+.step>div{height:100%;border-radius:22px;padding:26px 22px 24px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.step .n{font-family:var(--serif);font-style:italic;font-size:30px;color:var(--y);line-height:1}
+.step h4{margin:30px 0 8px;font-size:17px;letter-spacing:-.025em;font-weight:700}
+.step p{margin:0;color:var(--mute);font-size:14px;line-height:1.55;font-weight:400}
+
+/* biblioteca */
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:26px}
+.chip{padding:10px 17px;border-radius:999px;border:1px solid var(--hair2);background:transparent;color:var(--mute);font-size:13.5px;cursor:pointer;
+  transition:all .5s var(--ease)}
+.chip.on{background:var(--ink);color:#111;border-color:var(--ink)}
+.search{margin-left:auto;display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px solid var(--hair2);color:var(--mute)}
+.search input{background:none;border:0;outline:0;color:var(--ink);font:inherit;font-size:14px;width:150px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{all:unset;cursor:pointer;display:block}
+.card.hide{display:none}
+.shell{display:block;padding:6px;border-radius:30px;background:var(--shell);border:1px solid var(--hair);transition:transform .8s var(--ease),border-color .8s var(--ease)}
+.core{position:relative;display:block;border-radius:24px;overflow:hidden;aspect-ratio:4/5;background:#111;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.core .after{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.core .before{position:absolute;right:12px;top:12px;width:27%;aspect-ratio:2/3;object-fit:cover;border-radius:12px;
+  border:2px solid rgba(255,255,255,.85);box-shadow:0 12px 30px rgba(0,0,0,.5);transform:rotate(3deg);transition:transform .9s var(--ease)}
+.core::after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(180deg,transparent,rgba(5,5,7,.92))}
+.meta{position:absolute;left:18px;right:60px;bottom:16px;z-index:1;display:flex;flex-direction:column;gap:5px}
+.meta .cat{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--y)}
+.meta .name{font-size:23px;font-weight:700;letter-spacing:-.035em;word-break:break-word}
+.meta .note{font-size:13px;color:#bdb9c2;line-height:1.4;font-weight:400}
+.open{position:absolute;right:14px;bottom:16px;z-index:1;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;transition:all .7s var(--ease)}
+.card:hover .shell{transform:translateY(-4px);border-color:var(--hair2)}
+.card:hover .after{transform:scale(1.04)}
+.card:hover .before{transform:rotate(0deg) scale(1.04)}
+.card:hover .open{background:var(--y);color:#111;transform:translate(2px,-2px)}
+
+/* setup */
+.setup{padding:8px;border-radius:40px;background:linear-gradient(140deg,rgba(255,229,0,.2),rgba(255,255,255,.04) 40%,rgba(122,92,255,.14));}
+.setup>div{border-radius:32px;background:#0c0b0e;padding:56px;display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
+.setup ol{margin:26px 0 30px;padding:0;list-style:none;counter-reset:s;display:grid;gap:14px}
+.setup li{counter-increment:s;display:flex;gap:14px;color:var(--mute);line-height:1.5;font-weight:400}
+.setup li::before{content:counter(s);flex:none;width:26px;height:26px;border-radius:50%;border:1px solid var(--hair2);display:grid;place-items:center;
+  font-size:12px;color:var(--ink)}
+pre{margin:0;white-space:pre-wrap;word-wrap:break-word;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;
+  line-height:1.65;color:#cfcbd4;background:rgba(255,255,255,.025);border:1px solid var(--hair);border-radius:20px;padding:20px;overflow:auto}
+.setup pre{max-height:420px}
+
+.fall{margin-top:18px;border-top:1px solid var(--hair);padding-top:14px}
+.fall summary{cursor:pointer;color:var(--mute);font-size:14px;list-style:none}
+.fall summary::before{content:'+ ';color:var(--y)}
+.fall[open] summary::before{content:'2  '}
+.fall p{color:var(--dim);font-size:13px;margin:10px 0 8px}
+.fall pre{max-height:220px;margin:0 0 12px}
+
+/* outro */
+.outro{text-align:center;padding:40px 0 150px}
+.outro h2{font-size:clamp(40px,6vw,84px)}
+.outro p{color:var(--mute);margin:22px auto 34px;max-width:46ch;line-height:1.55;font-weight:400}
+footer{border-top:1px solid var(--hair);padding:30px 0 50px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--dim);font-size:13px}
+
+/* modal */
+.sheet{position:fixed;inset:0;z-index:5;display:grid;place-items:center;padding:24px;background:rgba(5,5,7,.72);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);opacity:0;pointer-events:none;transition:opacity .6s var(--ease)}
+.sheet.on{opacity:1;pointer-events:auto}
+.panel{width:min(1000px,100%);max-height:calc(100dvh - 48px);overflow:auto;padding:7px;border-radius:36px;background:rgba(255,255,255,.04);
+  border:1px solid var(--hair2);transform:translateY(40px) scale(.98);transition:transform .8s var(--ease)}
+.sheet.on .panel{transform:none}
+.panel>div{border-radius:30px;background:#0d0c0f;display:grid;grid-template-columns:.95fr 1.05fr;gap:34px;padding:22px;box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
+.compare{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:2/3;background:#111;touch-action:none;cursor:ew-resize;user-select:none}
+.compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.compare .b{clip-path:inset(0 calc(100% - var(--p,50%)) 0 0)}
+.compare .bar{position:absolute;top:0;bottom:0;left:var(--p,50%);width:2px;background:#fff;transform:translateX(-1px)}
+.compare .knob{position:absolute;top:50%;left:var(--p,50%);width:44px;height:44px;border-radius:50%;background:#fff;color:#111;
+  transform:translate(-50%,-50%);display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.compare .tag{position:absolute;bottom:12px;font-size:11px;font-weight:700;padding:5px 10px;border-radius:999px}
+.compare .tl{left:12px;background:rgba(0,0,0,.6)}
+.compare .tr{right:12px;background:var(--y);color:#111}
+.pbody{padding:14px 10px 10px 0;display:flex;flex-direction:column}
+.pbody .cat{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--y)}
+.pbody h3{font-size:clamp(30px,4vw,44px);letter-spacing:-.05em;margin:10px 0 10px;font-weight:800;word-break:break-word}
+.pbody .note{color:var(--mute);line-height:1.55;margin:0 0 8px;font-weight:400}
+.pbody .tip{color:var(--y);font-size:13.5px;margin:0 0 14px}
+
+.prow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.x{position:absolute;top:30px;right:30px;width:44px;height:44px;border-radius:50%;border:1px solid var(--hair2);background:rgba(20,19,23,.8);
+  cursor:pointer;display:grid;place-items:center;z-index:6}
+.toast{position:fixed;left:50%;bottom:28px;z-index:7;transform:translate(-50%,24px);opacity:0;background:var(--y);color:#111;font-weight:700;
+  padding:13px 22px;border-radius:999px;transition:all .6s var(--ease);pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* entrada */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:var(--d,0ms)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.track{animation:none}}
+
+@media(max-width:900px){
+  .wrap{padding:0 16px}
+  .nav{top:12px;gap:12px;padding:7px 7px 7px 16px}
+  .nav a.lk{display:none}
+  .hero{grid-template-columns:1fr;min-height:auto;padding:96px 0 70px;gap:44px}
+  .stage{order:-1;width:min(290px,76vw)}
+  .composer{left:50%;bottom:-24px;transform:translateX(-50%);min-width:240px}
+  .ghost{margin:18px 0 0;display:flex}
+  .marquee{margin:0 -16px 90px}
+  .sec{padding-bottom:96px}
+  .steps{grid-template-columns:1fr 1fr}
+  .grid{grid-template-columns:1fr}
+  .search{margin-left:0;width:100%}
+  .search input{width:100%}
+  .setup>div{grid-template-columns:1fr;padding:28px 20px;gap:10px}
+  .panel>div{grid-template-columns:1fr;padding:12px;gap:16px}
+  .pbody{padding:6px}
+  .sheet{padding:0;place-items:end center}
+  .panel{border-radius:30px 30px 0 0;max-height:94dvh}
+  .x{top:auto;bottom:calc(94dvh - 58px);right:16px}
+}
+@media(max-width:480px){.steps{grid-template-columns:1fr}}
+</style>
+<style>
+.exgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.exgrid .shell{padding:6px;border-radius:30px}
+.exgrid .compare{border-radius:24px}
+.promptcard pre{max-height:none;font-size:14px}
+@media(max-width:900px){.exgrid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="mesh"></div><div class="grain"></div>
+<nav class="nav">
+  <span class="logo">marcel<i>grau</i></span>
+  <a class="lk" href="#prompt">Prompt</a>
+  <a class="lk" href="#examples">Examples</a>
+  <span class="kw">You commented CUTOUT</span>
+</nav>
+<main class="wrap">
+  <section class="hero">
+    <div class="reveal">
+      <span class="eyebrow"><b></b>Photo Cutout Frame</span>
+      <h1>Step out of <i>the frame.</i></h1>
+      <p class="lede">Turn any travel photo into a luxury magazine collage where you and the ground break out of the frame. One photo, one prompt, straight in ChatGPT.</p>
+      <button class="cta" onclick="copyText(document.getElementById('prompt').innerText)">Copy the prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      <a class="ghost" href="#examples">See more examples <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="stage reveal" style="--d:150ms">
+      <div class="device"><video src="assets/hero.mp4" poster="assets/poster.jpg" autoplay muted loop playsinline></video></div>
+    </div>
+  </section>
+
+  <section class="sec" id="prompt">
+    <div class="setup reveal promptcard"><div>
+      <div>
+        <span class="eyebrow"><b></b>How to use it</span>
+        <h2>Photo, prompt, <i>send.</i></h2>
+        <ol>
+          <li>Open ChatGPT and attach one photo of yourself.</li>
+          <li>Copy the prompt and paste it in the same message.</li>
+          <li>Send it. If you want another version, just send it again.</li>
+        </ol>
+        <button class="cta" onclick="copyText(document.getElementById('prompt').innerText)">Copy the prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div>
+      <pre id="prompt">Turn this photo into a minimalist editorial collage for a luxury travel magazine. Warm ivory paper background with lots of empty space. Place a large vertical rectangle in the centre, slightly above the middle, with a clean crop of my photo inside. Let me and the ground at the bottom break out of the bottom edge of the frame and spill into the ivory space with a soft natural cutout edge. Keep my face, outfit and pose exactly the same.</pre>
+    </div></div>
+  </section>
+
+  <section class="sec" id="examples">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow"><b></b>Drag to compare</span><h2>Before and <i>after.</i></h2></div>
+      <p>Same prompt on four different photos. Drag the handle to see the original.</p>
+    </div>
+    <div class="exgrid">
+      <div class="shell reveal" style="--d:0ms"><div class="compare ex" data-i="0">
+        <img src="assets/ex0-after.jpg" alt="After" decoding="async"><img class="b" src="assets/ex0-before.jpg" alt="Before" decoding="async">
+        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
+        <span class="tag tl">Before</span><span class="tag tr">After</span>
+      </div></div>
+      <div class="shell reveal" style="--d:90ms"><div class="compare ex" data-i="1">
+        <img src="assets/ex1-after.jpg" alt="After" decoding="async"><img class="b" src="assets/ex1-before.jpg" alt="Before" decoding="async">
+        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
+        <span class="tag tl">Before</span><span class="tag tr">After</span>
+      </div></div>
+      <div class="shell reveal" style="--d:0ms"><div class="compare ex" data-i="2">
+        <img src="assets/ex2-after.jpg" alt="After" decoding="async"><img class="b" src="assets/ex2-before.jpg" alt="Before" decoding="async">
+        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
+        <span class="tag tl">Before</span><span class="tag tr">After</span>
+      </div></div>
+      <div class="shell reveal" style="--d:90ms"><div class="compare ex" data-i="3">
+        <img src="assets/ex3-after.jpg" alt="After" decoding="async"><img class="b" src="assets/ex3-before.jpg" alt="Before" decoding="async">
+        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
+        <span class="tag tl">Before</span><span class="tag tr">After</span>
+      </div></div></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>Tips</span><h2>Get a <i>better</i> one.</h2></div></div>
+    <div class="setup reveal"><div><ol><li>Full body photos work best: the feet and the ground are what break out of the frame.</li><li>Pick a photo with something on the ground: rocks, grass, sand, water.</li><li>If the cutout looks too clean, ask: make the bottom edge more organic.</li></ol></div></div>
+  </section>
+
+  <section class="outro reveal">
+    <span class="eyebrow"><b></b>New prompts every week</span>
+    <h2>Made one?<br>Tag <i>@marcelgrauu</i></h2>
+    <p>I share a new effect almost every day. Follow so you don't miss the next one.</p>
+    <a class="cta" href="https://instagram.com/marcelgrauu" target="_blank" rel="noopener">Follow @marcelgrauu <span class="ic"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
+  </section>
+  <footer><span class="logo">marcel<i>grau</i></span><span>Prompt free to use. Results depend on the model and your photo.</span></footer>
+</main>
+<div class="toast" id="toast">Copied</div>
+<script>
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold: .12});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+function copyText(text) {
+  const done = () => { const t = document.getElementById('toast'); t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 1700); };
+  const fallback = () => { const ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); done(); } catch (e) {} document.body.removeChild(ta); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+}
+document.querySelectorAll('.compare.ex').forEach(cmp => {
+  const setP = x => { const r = cmp.getBoundingClientRect(); cmp.style.setProperty('--p', Math.max(0, Math.min(100, (x - r.left) / r.width * 100)) + '%'); };
+  cmp.addEventListener('pointerdown', e => { cmp.setPointerCapture(e.pointerId); setP(e.clientX); });
+  cmp.addEventListener('pointermove', e => { if (cmp.hasPointerCapture(e.pointerId)) setP(e.clientX); });
+});
+</script>
+</body>
+</html>
