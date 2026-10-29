@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F2F2F0">
+<title>Direct your own film set | marcelgrau</title>
+<meta name="description" content="How I built a Roman forum in Cinemap, directed it like a real shoot and turned it into a real video in TapNow. Every step, every prompt and the project files.">
+<meta property="og:title" content="Direct your own film set">
+<meta property="og:image" content="assets/keyframe-real.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;500;700;900&family=EB+Garamond:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F2F2F0;--ink:#0B0B0C;--grey:#E1E1DE;--mute:#6E6E73;--blue:#0000FF;--hair:rgba(0,0,0,.09);
+--sans:"Helvetica Neue","Inter Tight",Helvetica,Arial,sans-serif;--serif:"Apple Garamond","EB Garamond",Garamond,Georgia,serif;
+--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html,body{overflow-x:hidden;overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:90;opacity:.11;mix-blend-mode:multiply;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+animation:grain .9s steps(4) infinite}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-1%)}100%{transform:translate(0,0)}}
+.glass{background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(18px) saturate(1.6);backdrop-filter:blur(18px) saturate(1.6);
+border:1px solid rgba(255,255,255,.9);box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 10px 30px rgba(0,0,0,.07)}
+i.serif,h1 i,h2 i,.big i{font-family:var(--serif);font-weight:400;font-style:italic;color:var(--blue);letter-spacing:-.01em}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+/* nav */
+.nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:50;display:flex;gap:8px;align-items:center;padding:6px 6px 6px 18px;border-radius:999px;white-space:nowrap}
+.logo{font-weight:900;letter-spacing:-.04em;font-size:17px;text-decoration:none}.logo i{font-size:19px}
+.pill{background:var(--blue);color:#fff;font-weight:700;font-size:13px;padding:9px 14px;border-radius:999px}
+
+/* hero */
+.hero{position:relative;padding:96px 0 40px;overflow:hidden}
+.giant{position:absolute;left:0;top:0;white-space:nowrap;font-weight:900;letter-spacing:-.06em;line-height:.8;color:var(--grey);
+font-size:clamp(150px,30vw,420px);pointer-events:none;z-index:0;will-change:transform}
+.hero .giant{top:70px}
+.hero .wrap{position:relative;z-index:1}
+h1{font-size:clamp(46px,8.4vw,112px);line-height:.92;letter-spacing:-.055em;font-weight:900;margin:34px 0 18px}
+h1 i{font-size:1.08em}
+.lede{font-size:clamp(17px,2vw,21px);line-height:1.5;color:var(--mute);max-width:560px;margin:0 0 26px;font-weight:500}
+.lede b{color:var(--ink)}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 20px;border-radius:999px;font-weight:700;font-size:15px;text-decoration:none;border:0;cursor:pointer;transition:transform .25s cubic-bezier(.2,.9,.3,1.3)}
+.btn:active{transform:scale(.96)}
+.btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.2}
+.b-blue{background:var(--blue);color:#fff;box-shadow:0 10px 30px rgba(0,0,255,.28)}
+.b-ink{background:var(--ink);color:#fff}
+.b-glass{background:rgba(255,255,255,.6);border:1px solid #fff;color:var(--ink)}
+.soon{opacity:.45;pointer-events:none}.soon em{font-style:normal;font-weight:500;font-size:12px;opacity:.8}
+
+/* viewfinder */
+.vf{position:relative;margin:0;border-radius:22px;overflow:hidden;background:#d8d8d4;box-shadow:0 30px 60px -30px rgba(0,0,0,.35)}
+.vf video,.vf img{display:block;width:100%;height:auto}
+.vf .c{position:absolute;width:22px;height:22px;border:2px solid #fff;opacity:.9;z-index:3;pointer-events:none}
+.vf .tl{top:14px;left:14px;border-right:0;border-bottom:0}.vf .tr{top:14px;right:14px;border-left:0;border-bottom:0}
+.vf .bl{bottom:14px;left:14px;border-right:0;border-top:0}.vf .br{bottom:14px;right:14px;border-left:0;border-top:0}
+.rec,.tc,.vf-tag{position:absolute;z-index:3;font:600 11px/1 var(--mono);color:#fff;letter-spacing:.08em;text-shadow:0 1px 4px rgba(0,0,0,.4);pointer-events:none}
+.rec{top:21px;left:46px;display:flex;align-items:center;gap:6px}.rec b{width:8px;height:8px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 2px #fff;animation:blink 1.2s steps(2) infinite}
+.tc{top:21px;right:46px}.vf-tag{bottom:21px;left:46px;opacity:.85}
+@keyframes blink{50%{opacity:.2}}
+.hero .vf{margin-top:8px}
+.hero-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:end}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.chip{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:8px 14px;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.chip b{color:var(--blue);font-weight:900}.chip em{font-style:normal;color:var(--mute);font-weight:600}
+
+/* files */
+.files{position:relative;padding:70px 0 20px}
+.files h2,.slate h2,.tips h2,.outro .big{font-size:clamp(38px,6vw,76px);line-height:.95;letter-spacing:-.05em;font-weight:900;margin:16px 0 14px}
+.files .sub{color:var(--mute);font-size:17px;line-height:1.55;max-width:520px;margin:0 0 30px;font-weight:500}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.card{border-radius:26px;padding:24px;display:flex;flex-direction:column;gap:12px;min-height:250px}
+.card .k{font:700 11px/1 var(--mono);letter-spacing:.12em;color:var(--blue)}
+.card h3{margin:0;font-size:30px;letter-spacing:-.04em;font-weight:900;line-height:1}
+.card p{margin:0;color:var(--mute);font-size:15px;line-height:1.5;flex:1;font-weight:500}
+.card .btn{align-self:flex-start;padding:12px 16px;font-size:14px}
+
+/* scenes */
+.scene,.tips,.files{overflow-x:clip}
+.scene{position:relative;max-width:1120px;margin:0 auto;padding:110px 20px 40px;display:grid;grid-template-columns:1fr 1.15fr;gap:20px 48px;align-items:start}
+.scene .giant{top:40px;left:-2vw}
+.slate{position:relative;z-index:1;grid-column:1;grid-row:1}
+.slate p{color:var(--mute);font-size:17px;line-height:1.6;margin:0;font-weight:500;max-width:480px}
+.smedia{position:relative;z-index:1;grid-column:2;grid-row:1 / span 2;display:grid;gap:14px}
+.sprompts{position:relative;z-index:1;grid-column:1;grid-row:2}
+.sheet{margin:0;border-radius:22px;overflow:hidden;background:#fff;box-shadow:0 30px 60px -34px rgba(0,0,0,.3)}
+.sheet img{width:100%;display:block}
+.refs{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:8px}
+.refs li{display:flex;align-items:center;gap:12px;font-weight:700;font-size:15px}
+.refs li span{width:28px;height:28px;border-radius:9px;background:var(--blue);color:#fff;display:grid;place-items:center;font:700 12px var(--mono);flex-shrink:0}
+.pr{border-radius:20px;margin-bottom:10px;overflow:hidden}
+.pr summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 12px 12px 18px;font-weight:700;font-size:15px;letter-spacing:-.01em}
+.pr summary::-webkit-details-marker{display:none}
+.pl::before{content:"+";display:inline-block;width:18px;color:var(--blue);font-weight:900;transition:transform .3s}
+.pr[open] .pl::before{transform:rotate(45deg)}
+.copy{border:0;border-radius:999px;background:var(--ink);color:#fff;font:700 13px var(--sans);padding:9px 14px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;flex-shrink:0}
+.copy svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2}
+.pr pre{margin:0;padding:4px 18px 18px;white-space:pre-wrap;word-break:break-word;font:13px/1.6 var(--mono);color:#2a2a2e;max-height:400px;overflow:auto}
+
+/* compare */
+.compare{position:relative;touch-action:pan-y;cursor:ew-resize;user-select:none;--p:50%}
+.compare img{display:block;width:100%;pointer-events:none}
+.compare .b{position:absolute;inset:0;height:100%;object-fit:cover;clip-path:inset(0 calc(100% - var(--p)) 0 0)}
+.compare .bar{position:absolute;top:0;bottom:0;left:var(--p);width:2px;background:#fff;transform:translateX(-1px);z-index:2}
+.compare .knob{position:absolute;top:50%;left:var(--p);transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:var(--blue);display:grid;place-items:center;z-index:2;box-shadow:0 6px 20px rgba(0,0,255,.4)}
+.compare .knob svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:2.2}
+
+/* tips */
+.tips{position:relative;padding:110px 0 40px}
+.tips ol{list-style:none;margin:28px 0 0;padding:0;border-top:2px solid var(--ink)}
+.tips li{display:grid;grid-template-columns:90px 1fr;gap:20px;padding:22px 0;border-bottom:1px solid var(--hair);align-items:baseline}
+.tn{font-family:var(--serif);font-style:italic;color:var(--blue);font-size:44px;line-height:1}
+.tips li p{margin:0;font-size:clamp(19px,2.4vw,26px);line-height:1.3;letter-spacing:-.025em;font-weight:700}
+
+/* outro */
+.outro{position:relative;padding:120px 0 150px;text-align:center;overflow:hidden}
+.outro .giant{left:50%;top:60px;transform:translateX(-50%)}
+.outro .wrap{position:relative;z-index:1}
+.outro p{color:var(--mute);font-size:17px;font-weight:500;margin:0 auto 26px;max-width:420px;line-height:1.5}
+.outro .row{justify-content:center}
+footer{padding:0 0 120px;text-align:center;color:var(--mute);font-size:13px;font-weight:500}
+
+/* keyframe timeline */
+.tl-bar{position:fixed;left:50%;bottom:14px;transform:translate(-50%,140%);z-index:60;border-radius:999px;padding:10px 16px;display:flex;align-items:center;gap:0;transition:transform .5s cubic-bezier(.2,.9,.3,1)}
+.tl-bar.on{transform:translate(-50%,0)}
+.track{position:relative;display:flex;align-items:center;gap:clamp(22px,6vw,46px)}
+.track::before,.track .fill{content:"";position:absolute;left:7px;right:7px;top:7px;height:2px;background:rgba(0,0,0,.12);border-radius:2px}
+.track .fill{right:auto;width:0;background:var(--blue);transition:width .2s linear}
+.key{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none}
+.key i{width:14px;height:14px;transform:rotate(45deg);border-radius:3px;background:#fff;border:2px solid rgba(0,0,0,.25);transition:all .3s}
+.key span{font:700 9px/1 var(--mono);letter-spacing:.1em;color:var(--mute)}
+.key.done i{background:var(--blue);border-color:var(--blue)}
+.key.now i{box-shadow:0 0 0 5px rgba(0,0,255,.18)}.key.now span{color:var(--blue)}
+
+.toast{position:fixed;left:50%;bottom:90px;transform:translate(-50%,20px);opacity:0;background:var(--ink);color:#fff;padding:12px 18px;border-radius:999px;font-weight:700;font-size:14px;z-index:99;transition:all .35s;pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.rv{opacity:0;transform:translateY(28px);filter:blur(8px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1),filter .9s}
+.rv.in{opacity:1;transform:none;filter:none}
+@media(max-width:900px){
+.hero{padding-top:84px}
+.hero-grid{grid-template-columns:1fr;gap:6px}
+.cards{grid-template-columns:1fr}.card{min-height:0}
+.scene{grid-template-columns:1fr;padding:84px 20px 20px;gap:22px}
+.slate,.smedia,.sprompts{grid-column:1;grid-row:auto}
+.tips li{grid-template-columns:54px 1fr;gap:12px}.tn{font-size:34px}
+}
+@media(prefers-reduced-motion:reduce){body::after{animation:none}.rv{opacity:1;transform:none;filter:none}}
+</style>
+</head>
+<body>
+<nav class="nav glass"><a class="logo" href="#top">marcel<i>grau</i></a><span class="pill">You commented WORLD</span></nav>
+
+<header class="hero" id="top">
+  <div class="giant" data-par="-0.25" aria-hidden="true">WORLD</div>
+  <div class="wrap">
+    <figure class="vf "><video src="assets/hero43.mp4" poster="assets/poster43.jpg" autoplay muted loop playsinline></video><i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+      <span class="rec"><b></b>REC</span><span class="tc">00:00:00:00</span><span class="vf-tag">cinemap / take 1</span></figure>
+    <div class="hero-grid">
+      <div>
+        <h1 class="rv">Direct your own <i>film set.</i></h1>
+      </div>
+      <div class="rv">
+        <p class="lede">My Roman forum, the 5 steps and every prompt. <b>Open it and remix it.</b></p>
+        <div class="row"><span class="btn b-blue soon">Open my Cinemap world <em>soon</em></span><a class="btn b-glass" href="#s1">How I made it</a></div>
+      </div>
+    </div>
+    <div class="meta rv"><span class="chip glass"><b>01</b><em>Cinemap</em></span><span class="chip glass"><b>02</b><em>GPT Image 2</em></span><span class="chip glass"><b>03</b><em>Seedance</em></span><span class="chip glass"><b>&#9679;</b><em>all inside TapNow</em></span></div>
+  </div>
+</header>
+
+<section class="files" id="files">
+  <div class="wrap">
+    <span class="chip glass rv"><b>THE FILES</b><em>open and remix</em></span>
+    <h2 class="rv">Same world. <i>Your story.</i></h2>
+    <p class="sub rv">Open my project and change whatever you want.</p>
+    <div class="cards">
+      <div class="card glass rv"><span class="k">CINEMAP / WORLD</span><h3>The Roman forum</h3><p>The set and the cameras.</p><span class="btn b-blue soon">Open the world <em>soon</em></span></div>
+      <div class="card glass rv"><span class="k">TAPNOW / WORKFLOW</span><h3>The canvas</h3><p>Every step on one canvas.</p><a class="btn b-blue" href="https://app.tapnow.ai/tapflow/view/a85755e5" target="_blank" rel="noopener">Open the workflow <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+      <div class="card glass rv"><span class="k">START / FREE</span><h3>Try Cinemap</h3><p>Start your own world.</p><a class="btn b-ink" href="https://cinemap.tapnow.ai/" target="_blank" rel="noopener">Go to Cinemap <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+      <div class="card glass rv"><span class="k">TAPNOW / STUDIO</span><h3>TapNow</h3><p>Images and video.</p><a class="btn b-ink" href="https://www.tapnow.ai/" target="_blank" rel="noopener">Go to TapNow <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+    </div>
+  </div>
+</section>
+
+  <section class="scene" id="s1" data-i="0">
+    <div class="giant" aria-hidden="true">BUILD</div>
+    <header class="slate">
+      <span class="chip glass"><b>SCENE 01</b><em>Cinemap</em></span>
+      <h2>Build the world by <i>describing it.</i></h2>
+      <p>Describe the set to the Agent and it builds it. Ask for stills first.</p>
+    </header>
+    <div class="smedia"><figure class="vf "><video src="assets/step1-build.mp4" autoplay muted loop playsinline preload="metadata"></video><i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+      <span class="rec"><b></b>REC</span><span class="tc">00:00:00:00</span></figure></div>
+    <div class="sprompts"><details class="pr glass"><summary><span class="pl">The prompt for the set and the five still shots</span><button class="copy" onclick="event.preventDefault();copyText(document.getElementById('p1').innerText)">Copy <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></button></summary>
+              <pre id="p1">I want you to rebuild and check a scene from scratch following EXACTLY this description. Do ALL of it before you answer me, check every item yourself against the checklist at the end, fix anything that is wrong, and only then reply to me. Do NOT animate anything. I only need five STILL shot cards, each one a single frozen moment. Everything stays in white-box blockout style: flat untextured light gray volumes, no colors except where I say.
+
+SCALE: real world meters. A person is 1.75 m tall. Eye height 1.5 m.
+
+WORLD (keep it as it is now, it is good):
+An ancient Roman Forum. A straight stone road runs down the middle, 12 m wide and 60 m long, flat. At the far end of the road there is a large white-box triumphal arch. Both sides of the road are lined by white-box temples with rows of tall cylinder columns, a broken wall, a few standalone columns, low stone benches and broken column drums. One soft sun light from the upper left, 35 degrees above the horizon, soft long shadows. Clean white-box sky.
+
+CROWD (keep the amount it has now, it is good, I like it):
+About 120 gray mannequins lining both sides of the road, 4 to 5 rows deep, filling the space between the road and the buildings, and some standing on the temple steps. Keep one gladiator mannequin (red) and one friend of his (green) on the right side, taking a selfie together. Many mannequins hold a flat rectangular box (a stone tablet) up in front of their chests or above their heads. In STILLS 1, 2 and 3 the crowd cheers, arms raised, tablets held up, heads turned toward Caesar. In STILLS 4 and 5 the crowd is frozen mid pose and every head is turned toward the road. There must be NO extra mannequin walking beside the camera and NO gold or orange mannequin. The only colored figures are Caesar (blue), the gladiator (red) and his friend (green).
+
+CAESAR: one blue mannequin, the hero, kept as a separate object. A man shape wearing a toga with a stripe and a laurel wreath ring on his head (the wreath is a separate small object). He rides a low resolution electric kick scooter: handlebar, stem, deck, two small wheels, flat light gray, chunky polygons, with a small cylinder light on the stem. Caesar and the scooter are two separate objects but in the stills where he rides, the scooter is exactly under his feet with both feet on the deck and the wheels touching the ground. Never leave the scooter next to him or behind him while he rides.
+
+THE FIVE STILL SHOT CARDS (create 5 separate shot cards, each with its own camera, named &quot;Still 1 Ride&quot;, &quot;Still 2 Crash&quot;, &quot;Still 3 Impact&quot;, &quot;Still 4 Wake up&quot;, &quot;Still 5 Drone&quot;):
+
+STILL 1, &quot;Ride&quot;: camera ON the road, 4.5 m in front of Caesar, 1.5 m high, 35 mm equivalent lens, level horizon, aimed at him, facing him. Caesar is on the road center, riding toward the camera, standing upright on the scooter deck with both feet on it, his left hand on the handlebar, his right arm raised at shoulder height in a slow royal wave. The scooter is under his feet, wheels on the ground. The crowd cheers on both sides. The arch is visible far behind him. Caesar's front must face the camera.
+
+STILL 2, &quot;Crash&quot;: same camera as Still 1 (on the road, 1.5 m high, 35 mm, facing the same direction). The scooter has just stopped dead on the ground with its front wheel locked. Caesar is in the air, thrown forward over the handlebar in a low arc, 3 m from the camera, flying straight toward the camera, arms stretched out in front of him, body almost horizontal, his laurel wreath flying off his head behind him. The crowd freezes with open arms. Caesar's front faces the camera.
+
+STILL 3, &quot;Impact&quot;: camera at ground level, 0.4 m high, 85 mm equivalent lens. Caesar lies on his back on the road, his head 0.6 m from the lens and his face filling most of the frame, his body going away from the camera. The scooter lies on its side on the road 4 m behind him. The wreath lies on the ground 1 m to the left of his head. The gray world is visible behind him, blurred.
+
+STILL 4, &quot;Wake up&quot;: camera at 1.5 m height, 3 m in front of Caesar, 35 mm equivalent, facing him. Caesar stands on the road FACING THE CAMERA (his front toward us), arms slightly open, head turned a little to the left as if he is looking around, the frozen crowd lining both sides of the road behind and around him, the scooter lying on its side on the ground 3 m behind him. The arch is behind him in the distance.
+
+STILL 5, &quot;Drone&quot;: camera at 120 m height, tilted down 60 degrees, a very wide view. We see the whole length of the road, the white-box buildings and temples on both sides, the arch at the far end and the frozen crowd lining the road as tiny gray dots. Caesar, the only blue figure, stands alone on the road in the lower third of the frame, small but still clearly visible.
+
+CHECKLIST, verify before replying and fix anything that fails:
+1. There are exactly 5 still shot cards with those names, no animation, no old animated clips used.
+2. The crowd is about 120 mannequins and is the same density as now. No extra mannequin next to the camera, no gold figure.
+3. In Still 1 Caesar is standing ON the scooter deck, scooter under his feet, wheels on the ground, right arm raised, facing the camera.
+4. In Still 2 Caesar is in the air flying toward the camera, the scooter on the ground behind him, the wreath flying.
+5. In Still 3 the camera is on the ground and his face is close to the lens.
+6. In Still 4 Caesar faces the camera, standing, the crowd is frozen and facing the road.
+7. In Still 5 the camera is at 120 m, very wide, Caesar is small in the lower third and still visible.
+8. Everything is white-box except Caesar (blue), the gladiator (red) and his friend (green).
+
+When everything is finished and verified, reply with a short list of what you did and anything that you could not do exactly as described.</pre></details></div>
+  </section>
+  <section class="scene" id="s2" data-i="1">
+    <div class="giant" aria-hidden="true">DIRECT</div>
+    <header class="slate">
+      <span class="chip glass"><b>SCENE 02</b><em>Cinemap</em></span>
+      <h2>Direct it like a <i>real shoot.</i></h2>
+      <p>Place the camera and set a few keyframes. That's your drone shot.</p>
+    </header>
+    <div class="smedia"><figure class="vf "><video src="assets/step2-camera.mp4" autoplay muted loop playsinline preload="metadata"></video><i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+      <span class="rec"><b></b>REC</span><span class="tc">00:00:00:00</span></figure></div>
+    <div class="sprompts"><details class="pr glass"><summary><span class="pl">The prompt for the camera move</span><button class="copy" onclick="event.preventDefault();copyText(document.getElementById('p2').innerText)">Copy <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></button></summary>
+              <pre id="p2">Keep the 5 still shot cards exactly as they are. Now I need ONE new animated shot card, called &quot;Shot 2 Wake up v2&quot;, 9 seconds long, one continuous camera, no cuts. It starts exactly at the pose and camera of STILL 3 and ends exactly at the pose and camera of STILL 5. The world and the crowd are the same as in the stills: the crowd is frozen mid pose and facing the road, nothing moves except Caesar and the camera. The scooter lies on its side and does not move. There is NO scooter animation in this shot.
+
+CAESAR'S ANIMATION:
+0.0 to 1.8 s: Caesar lies on his back on the road, head 0.6 m from the camera, completely still, only a slow breathing movement.
+1.8 to 3.0 s: he turns his head slightly and opens his eyes (a small head movement is enough, the face has no details).
+3.0 to 5.0 s: he props himself up on one elbow and sits up.
+5.0 to 6.5 s: he stands up and turns around so that his FRONT faces the camera, standing at the pose of STILL 4, arms slightly open, head turning a little left and right.
+6.5 to 9.0 s: he stays standing still in that pose.
+
+CAMERA ANIMATION, use only 3 keyframes and smooth interpolation (ease in and ease out), no jitter, no step movement, no sudden changes of direction, the movement must look fluid like a real dolly and a real crane:
+Keyframe 0 (0.0 s): the camera of STILL 3, ground level 0.4 m high, 85 mm, 0.6 m from Caesar's face.
+Keyframe 1 (5.0 s): the camera of STILL 4, 1.5 m high, 3 m from Caesar, 35 mm. From 0 to 5 s the camera moves backward along the road in one smooth dolly out, and rises smoothly from 0.4 m to 1.5 m, while the lens opens smoothly from 85 mm to 35 mm.
+Keyframe 2 (9.0 s): the camera of STILL 5, 120 m high, tilted 60 degrees down. From 5 to 9 s the camera moves backward and straight up in one smooth crane, tilting down gradually from level to 60 degrees. Keep Caesar in the frame all the time, ending in the lower third of the frame.
+
+Please check that the camera really moves smoothly through the 3 keyframes, that Caesar's animation happens at the times above and that nothing else in the world moves. Then tell me when it is ready.</pre></details></div>
+  </section>
+  <section class="scene" id="s3" data-i="2">
+    <div class="giant" aria-hidden="true">CAST</div>
+    <header class="slate">
+      <span class="chip glass"><b>SCENE 03</b><em>GPT Image 2 in TapNow</em></span>
+      <h2>Character sheets <i>first.</i></h2>
+      <p>One sheet for your character, one for the mannequins. Faces stay the same.</p>
+    </header>
+    <div class="smedia"><figure class="sheet"><img src="assets/caesar-sheet.jpg" alt="" loading="lazy" decoding="async"></figure><figure class="sheet"><img src="assets/mannequin-sheet.jpg" alt="" loading="lazy" decoding="async"></figure></div>
+    <div class="sprompts"><details class="pr glass"><summary><span class="pl">The mannequin sheet (attach one frame of your blockout)</span><button class="copy" onclick="event.preventDefault();copyText(document.getElementById('p3').innerText)">Copy <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></button></summary>
+              <pre id="p3">Image 1 is a frame from a 3D blockout set. Use it ONLY as the reference for the shape, proportions, colour and material of the GREY crowd mannequins. Ignore the blue mannequin in the centre, ignore the set, the columns and the floor.
+
+Character reference sheet of that grey crowd mannequin, exactly as it looks in Image 1: a matte, smooth, uniform medium grey (#7A7A78) 3D dummy, about 1.75 m tall, with no face, no eyes, no hair, no clothes, no hands and no arms. A small round head sitting on a short neck, a rounded capsule shaped torso with soft rounded shoulders, and a single thick rounded cylinder for the legs, slightly narrower than the torso. Same proportions as in Image 1. All edges soft and rounded, simple low poly shapes with smooth shading. The surface is slightly satin, catching a soft highlight on the top of the head and the shoulders.
+
+Clean light grey studio background, even soft light, no shadows on the background.
+
+Layout, all at the same scale and aligned on one floor line: front view, left side view, back view, three quarter view, and a close up of the head and shoulders on the right. Small grey labels under each view: FRONT, SIDE, BACK, 3/4.
+
+The mannequin is grey in every view, never blue. Identical shape and colour in every view. No textures, no seams, no logos, no text other than the labels. 16:9.</pre></details></div>
+  </section>
+  <section class="scene" id="s4" data-i="3">
+    <div class="giant" aria-hidden="true">SWAP</div>
+    <header class="slate">
+      <span class="chip glass"><b>SCENE 04</b><em>GPT Image 2 in TapNow</em></span>
+      <h2>Keyframes into <i>real images.</i></h2>
+      <p>Swap the dummy for your character. Everything else stays in place.</p>
+    </header>
+    <div class="smedia"><figure class="vf cmp"><div class="compare"><img src="assets/keyframe-real.jpg" alt="Real image" decoding="async"><img class="b" src="assets/keyframe-dummy.jpg" alt="Cinemap keyframe" decoding="async">
+              <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span></div><i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+      <span class="rec"><b></b>REC</span><span class="tc">00:00:00:00</span><span class="vf-tag">drag</span></figure></div>
+    <div class="sprompts"><details class="pr glass"><summary><span class="pl">Swap the dummy for your character</span><button class="copy" onclick="event.preventDefault();copyText(document.getElementById('p4').innerText)">Copy <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></button></summary>
+              <pre id="p4">Image 1 is the exact scene to keep. Image 2 is the character.
+
+Recreate Image 1 exactly: the same camera position, lens, framing and perspective, the same white-box 3D blockout set (flat untextured light grey columns and walls, pale grey floor with a faint green tint in the middle), the same soft studio light coming from the back left, and every grey mannequin in exactly the same place with its soft shadow on the floor.
+
+Change only one thing: replace the blue mannequin in the centre with the man from Image 2, a photorealistic Julius Caesar. Same face, grey curly hair, grey beard, white wool toga with a wide purple sash over the left shoulder, brown leather sandals. He stands exactly where the blue mannequin stands, at the same scale (his head at the same height as the blue mannequin's head), seen from behind in a slight three quarter view, turning his head a little to the right to look at the grey mannequins around him, his arms relaxed, a little puzzled.
+
+He is the only realistic element in the image: real skin, real cloth folds, real hair. He casts a soft shadow on the floor in the same direction as the mannequins' shadows, and the light on him matches the scene: soft, even, slightly cool, from the back left.
+
+Keep the blockout look untouched: no textures, no colour on the set, no faces on the mannequins, no extra people. 16:9, no text, no watermark.</pre></details><details class="pr glass"><summary><span class="pl">Edit the first frame of the video</span><button class="copy" onclick="event.preventDefault();copyText(document.getElementById('p5').innerText)">Copy <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></button></summary>
+              <pre id="p5">Edit Image 1. Keep everything exactly the same: camera position, framing, lens, light, the white-box set, Caesar's face, wreath, toga, sash and sandals, and every mannequin in the background.
+
+Change only this: one grey mannequin from Image 2 now stands right in front of Caesar, very close, about 40 cm from him, slightly to the right of the frame centre, facing him, at the same scale as the other mannequins. Caesar has turned toward it in a three quarter back view and is touching the side of its round blank head with the fingertips of his right hand, carefully, as if checking what it is. His head is tilted slightly, puzzled. His left arm hangs relaxed.
+
+The new mannequin is identical to the others: matte grey, no face, no arms, capsule torso, single rounded cylinder for the legs, with a soft shadow on the floor in the same direction as the other shadows. No text, no watermark. 4:3.</pre></details></div>
+  </section>
+  <section class="scene" id="s5" data-i="4">
+    <div class="giant" aria-hidden="true">ROLL</div>
+    <header class="slate">
+      <span class="chip glass"><b>SCENE 05</b><em>Seedance in TapNow</em></span>
+      <h2>Then go <i>to video.</i></h2>
+      <p>Real image as the start frame plus both sheets. 5 s, 4:3.</p>
+    </header>
+    <div class="smedia"><figure class="vf "><video src="assets/step5-seedance.mp4" autoplay muted loop playsinline preload="metadata"></video><i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+      <span class="rec"><b></b>REC</span><span class="tc">00:00:00:00</span></figure><figure class="vf "><video src="assets/step4-tapnow.mp4" autoplay muted loop playsinline preload="metadata"></video><i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+      <span class="rec"><b></b>REC</span><span class="tc">00:00:00:00</span></figure></div>
+    <div class="sprompts"><ol class="refs"><li><span>1</span>the edited keyframe (start frame)</li><li><span>2</span>Caesar's character sheet</li><li><span>3</span>the mannequin sheet</li></ol><details class="pr glass"><summary><span class="pl">The Seedance prompt</span><button class="copy" onclick="event.preventDefault();copyText(document.getElementById('p6').innerText)">Copy <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></button></summary>
+              <pre id="p6">IMAGE REFERENCE MAP
+Image 1 (start frame) → the exact set, camera position, Caesar and the mannequin he is touching in the first frame. Frame 0 is already mid action: the fingertips of his right hand are already on the side of the mannequin's head.
+Image 2 (character sheet) → Caesar: same face, grey curly hair, grey beard, gold laurel wreath, white toga with a wide purple border, brown sandals. Identical for the whole clip.
+Image 3 (character sheet) → every mannequin: smooth matte grey dummy with a small round head, no face, no arms, a capsule torso and a single rounded cylinder for the legs. They never grow arms, faces or legs.
+The set stays 100% white-box blockout for the whole clip: flat grey and white volumes, no textures. Only Caesar is photorealistic.
+Super realistic, like real footage filmed by a real person standing in a real 3D previs set. Caesar never looks at the camera.
+
+SHOT: one continuous handheld take, 0.0s to 5.0s, real time, no slow motion, no cuts.
+
+CAMERA: a real camera operator filming by hand, standing behind and slightly to the left of Caesar at chest height, about 2.5 m away, 35mm. Handheld baseline for the whole clip: constant small jitter, slow breathing sway, the horizon drifting 1 to 2 degrees, framing always slightly late. The camera never freezes, not even when Caesar stands still. Depth of field: sharp from Caesar's hand to the mannequin's head, the far mannequins melt into soft grey shapes and the columns at the back are softer still. The only in-lens events in this clip are the two focus breaths of the stepped zoom and one autofocus hunt at 2.4s. No flares, no exposure changes, no other focus changes.
+
+LIGHT: one soft constant studio light from the back left, high and wide, on continuously from the first frame to the last, never changing. It reaches the top of Caesar's head and wreath (the gold leaves catch a small soft glint), the left side of his face and the wool of his toga, and the rounded tops and left sides of every mannequin. Whatever it does not reach (his right cheek, the folds under his arms, the right sides of the mannequins) stays a soft cool grey. Soft contact shadows on the pale grey floor, all pointing toward the front right. Two small catchlights in Caesar's eyes from that light, moving as he turns his head. A natural sheen on his forehead and nose where the light hits.
+
+0.0s to 0.9s. Caesar runs the fingertips of his right hand down the side of the mannequin's blank head and taps its shoulder twice, frowning, not understanding what it is. His left hand hangs relaxed at his side, the fingers twitching once. Effect: stepped zoom in. The operator zooms toward his hand and the mannequin's head in two small uneven steps, overshoots a little and pulls back, the focus goes soft for a moment after each step and snaps back on his hand.
+
+0.9s to 1.9s. Caesar knocks lightly on the mannequin's chest with the knuckles of his right hand and leans in to look at its face, head tilted, his left hand coming up to rest on his own chest. Effect: the camera moves. The operator walks quickly around to the right, about 60 degrees, to a three quarter front angle where we see Caesar's face; the frame bobs with each step, short real motion blur during the move, and it settles a beat late, slightly crooked.
+
+1.9s to 3.6s. The other mannequins slowly start to come closer, as if curious. They glide forward upright and calmly, without walking, each one at its own pace, their round heads turning a little toward Caesar. Caesar notices them over his shoulder, his right hand slowly leaves the mannequin, he takes half a step back and looks from one to another, his left hand still on his chest. Effect: the operator pans late to follow his look, the framing lags and drifts; at about 2.4s the autofocus hunts once between Caesar and the nearest mannequins and locks on Caesar.
+
+3.6s to 5.0s. The mannequins stop close around him, a little too close. Caesar shrinks slightly, shoulders up, eyes moving quickly between them, uneasy and overwhelmed, his right hand raised a little in front of his chest, palm out, his left hand still on his chest. Effect: the operator takes one small step back to fit everyone in, a slow breathing sway, no settle, not even on the last frame.
+
+PERFORMANCE: natural, believable body language, small movements, never cartoonish. No jumping, no shouting, no big arm gestures. His toga moves naturally with every step and turn.
+
+LOOK: clean 3D previs set (flat grey and white volumes, soft contact shadows on a pale grey floor) with a fully photorealistic Caesar: visible skin pores, fine texture, real cloth weave and folds, natural motion. Neutral true to life colours, no colour grade, no teal and orange, no orange tint, no cinematic LUT, no beauty smoothing, slight lens softness toward the edges.
+
+Audio: soft footsteps on a hard floor, a light tap and a hollow knock on the mannequin, a faint smooth sliding sound as the mannequins come closer, quiet room tone. No music, no dialogue.
+
+Avoid: textures or colour on the set, mannequins with faces, arms or walking legs, mannequins touching or attacking him, Caesar changing face or costume, Caesar looking at the camera, exaggerated reactions, slow motion, cuts, a gimbal or drone smooth camera, the camera freezing, light changing or flickering, text, logos, watermarks.</pre></details></div>
+  </section>
+
+<section class="tips">
+  <div class="giant" data-par="-0.2" aria-hidden="true">NOTES</div>
+  <div class="wrap" style="position:relative;z-index:1">
+    <span class="chip glass rv"><b>DIRECTOR'S NOTES</b><em>what made the difference</em></span>
+    <ol><li><span class="tn">01</span><p>Stills first, animation later.</p></li><li><span class="tn">02</span><p>Character sheet before anything else.</p></li><li><span class="tn">03</span><p>Low quality test, then the final render.</p></li></ol>
+  </div>
+</section>
+
+<section class="outro">
+  <div class="giant" aria-hidden="true">CUT</div>
+  <div class="wrap">
+    <div class="big rv">That's a wrap. <i>Your turn.</i></div>
+    <p class="rv">Made one? Tag me.</p>
+    <div class="row rv"><a class="btn b-blue" href="https://www.instagram.com/marcelgrauu/" target="_blank" rel="noopener">Follow @marcelgrauu <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+  </div>
+</section>
+<footer>Made with Cinemap and TapNow. Paid partnership with TapNow.</footer>
+
+<nav class="tl-bar glass" aria-label="Steps"><div class="track"><span class="fill"></span><a class="key" href="#s1" data-k="0"><i></i><span>BUILD</span></a><a class="key" href="#s2" data-k="1"><i></i><span>DIRECT</span></a><a class="key" href="#s3" data-k="2"><i></i><span>CAST</span></a><a class="key" href="#s4" data-k="3"><i></i><span>SWAP</span></a><a class="key" href="#s5" data-k="4"><i></i><span>ROLL</span></a></div></nav>
+<div class="toast" id="toast">Prompt copied</div>
+
+<script>
+function copyText(text) {
+  const done = () => { const t = document.getElementById('toast'); t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 1700); };
+  const fallback = () => { const ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); done(); } catch (e) {} document.body.removeChild(ta); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+}
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold: .15});
+document.querySelectorAll('.rv,.slate,.smedia > *,.sprompts').forEach(el => { el.classList.add('rv'); io.observe(el); });
+
+// running timecode on every viewfinder (24 fps, like a camera)
+const t0 = performance.now();
+const tcs = [...document.querySelectorAll('.tc')];
+(function tick() {
+  const f = Math.floor((performance.now() - t0) / 1000 * 24), p = n => String(n).padStart(2, '0');
+  const s = p(Math.floor(f / 24) % 60), m = p(Math.floor(f / 1440) % 60), fr = p(f % 24);
+  tcs.forEach(t => t.textContent = '00:' + m + ':' + s + ':' + fr);
+  requestAnimationFrame(tick);
+})();
+
+// giant words drift sideways, the keyframe timeline fills with the scroll
+const giants = [...document.querySelectorAll('.giant')];
+const scenes = [...document.querySelectorAll('.scene')];
+const keys = [...document.querySelectorAll('.key')];
+const bar = document.querySelector('.tl-bar'), fill = document.querySelector('.track .fill');
+function onScroll() {
+  const vh = innerHeight;
+  giants.forEach(g => {
+    const r = g.parentElement.getBoundingClientRect();
+    const k = (r.top + r.height / 2 - vh / 2) / vh;
+    const base = g.closest('.outro') ? 'translateX(-50%) ' : '';
+    g.style.transform = base + 'translateX(' + (k * 18) + 'vw)';
+  });
+  let cur = -1, frac = 0;
+  scenes.forEach((s, i) => { const r = s.getBoundingClientRect(); if (r.top < vh * .55) { cur = i; frac = Math.min(1, Math.max(0, (vh * .55 - r.top) / r.height)); } });
+  bar.classList.toggle('on', cur >= 0 && scenes[scenes.length - 1].getBoundingClientRect().bottom > vh * .3);
+  keys.forEach((k, i) => { k.classList.toggle('done', i <= cur); k.classList.toggle('now', i === cur); });
+  if (keys.length > 1 && cur >= 0) {
+    const a = keys[0].offsetLeft + 7, b = keys[keys.length - 1].offsetLeft + 7;
+    const c0 = keys[cur].offsetLeft + 7, c1 = keys[Math.min(cur + 1, keys.length - 1)].offsetLeft + 7;
+    fill.style.width = (c0 + (c1 - c0) * frac - a) + 'px';
+  }
+}
+addEventListener('scroll', onScroll, {passive: true}); addEventListener('resize', onScroll); onScroll();
+
+document.querySelectorAll('.compare').forEach(cmp => {
+  const setP = x => { const r = cmp.getBoundingClientRect(); cmp.style.setProperty('--p', Math.max(0, Math.min(100, (x - r.left) / r.width * 100)) + '%'); };
+  cmp.addEventListener('pointerdown', e => { cmp.setPointerCapture(e.pointerId); setP(e.clientX); });
+  cmp.addEventListener('pointermove', e => { if (cmp.hasPointerCapture(e.pointerId)) setP(e.clientX); });
+});
+</script>
+</body>
+</html>
