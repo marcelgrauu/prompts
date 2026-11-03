@@ -220,7 +220,7 @@ footer{border-top:1px solid var(--hair);padding:30px 0 50px;display:flex;justify
       <span class="eyebrow"><b></b>Claude Opus Edit, coming soon</span>
       <h1>Claude edited this. <i>Almost yours.</i></h1>
       <p class="lede">This edit was made by Claude Opus with a skill I'm building to edit podcast and talking head clips. I'm still polishing the last details and I'll share it very soon.</p>
-      <a class="cta" href="#list">You're on the list <span class="ic"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></a>
+      <a class="cta" href="#list">Get it first <span class="ic"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
     </div>
     <div class="stage reveal" style="--d:150ms">
       <div class="device"><video src="assets/hero.mp4" poster="assets/poster.jpg" autoplay muted loop playsinline></video></div>
@@ -233,9 +233,16 @@ footer{border-top:1px solid var(--hair);padding:30px 0 50px;display:flex;justify
   </section>
 
   <section class="sec" id="list">
-    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>Almost ready</span><h2>You're <i>in.</i></h2></div>
-      <p>You commented OPUS, so you're on the list. As soon as the skill is ready I'll send it to you right here, by DM. Keep my messages on so you don't miss it.</p>
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>Almost ready</span><h2>Get it <i>first.</i></h2></div>
+      <p>Leave your email and I'll send you the skill the day it's out. No spam, just that one email.</p>
     </div>
+    <div class="setup reveal"><div>
+      <form id="wl" class="wl">
+        <input id="wlmail" type="email" required placeholder="your@email.com" autocomplete="email">
+        <button class="cta" type="submit">Join the list <span class="ic"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button>
+      </form>
+      <p id="wlok" class="wlok" hidden>You're in. I'll email you the day it's ready.</p>
+    </div></div>
   </section>
 
   <section class="outro reveal">
@@ -249,6 +256,21 @@ footer{border-top:1px solid var(--hair);padding:30px 0 50px;display:flex;justify
 <script>
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold: .12});
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+// els emails van a un Google Form del compte de Marcel (respostes al formulari)
+document.getElementById('wl').addEventListener('submit', e => {
+  e.preventDefault();
+  const body = new URLSearchParams({'entry.592478873': document.getElementById('wlmail').value});
+  fetch('https://docs.google.com/forms/d/e/1FAIpQLSdNvxHR4uIGgCfTM_XjNbitM-4fQFRDcRsxpem7q3FWb2rHYQ/formResponse', {method: 'POST', mode: 'no-cors', body}).finally(() => {
+    document.getElementById('wl').hidden = true; document.getElementById('wlok').hidden = false;
+  });
+});
 </script>
+<style>
+.wl{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.wl input{flex:1;min-width:220px;padding:18px 22px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:#fff;font:inherit;font-size:17px;outline:none}
+.wl input:focus{border-color:#FFE500}
+.wl .cta{border:0;cursor:pointer;font:inherit}
+.wlok{font-size:20px;color:#FFE500;margin:0}
+</style>
 </body>
 </html>
