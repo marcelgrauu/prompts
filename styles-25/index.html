@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#070608">
+<title>7 design style prompts | marcelgrau</title>
+<meta name="description" content="The 7 design styles of the reel, each with its reference library and a detailed prompt.">
+<meta property="og:title" content="7 design style prompts">
+<meta property="og:image" content="assets/poster.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@1&family=Inter+Tight:wght@200;400;500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#070608;--ink:#f4f2ee;--mute:#8f8b95;--dim:#5d5a63;--y:#FFE500;
+  --hair:rgba(255,255,255,.07);--hair2:rgba(255,255,255,.12);--shell:rgba(255,255,255,.028);
+  --ease:cubic-bezier(.32,.72,0,1);
+  --sans:"Helvetica Neue","Inter Tight",Helvetica,system-ui,sans-serif;
+  --serif:"EB Garamond",Garamond,"Apple Garamond",Georgia,serif;
+}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:500;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:3;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.mesh{position:fixed;inset:-20%;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(38% 30% at 18% 8%,rgba(255,229,0,.13),transparent 70%),
+    radial-gradient(30% 28% at 88% 30%,rgba(122,92,255,.12),transparent 70%),
+    radial-gradient(34% 30% at 50% 100%,rgba(255,120,40,.08),transparent 70%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 28px}
+
+/* nav isla */
+.nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:4;display:flex;align-items:center;gap:18px;
+  padding:8px 8px 8px 20px;border-radius:999px;background:rgba(14,13,16,.62);border:1px solid var(--hair2);
+  backdrop-filter:blur(22px) saturate(140%);-webkit-backdrop-filter:blur(22px) saturate(140%);white-space:nowrap}
+.logo{font-weight:800;letter-spacing:-.035em;font-size:16px}
+.logo i{font-family:var(--serif);font-weight:400;font-style:italic;color:var(--y);letter-spacing:0;font-size:18px}
+.nav a{color:var(--mute);text-decoration:none;font-size:13px;transition:color .5s var(--ease)}
+.nav a:hover{color:var(--ink)}
+.nav .kw{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:999px;background:var(--y);color:#111;font-weight:700;font-size:12px}
+
+/* hero */
+.hero{min-height:100dvh;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:130px 0 90px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;border:1px solid var(--hair2);
+  font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.eyebrow b{width:6px;height:6px;border-radius:50%;background:var(--y);box-shadow:0 0 12px var(--y)}
+h1{font-size:clamp(46px,7.4vw,104px);line-height:.92;letter-spacing:-.055em;font-weight:800;margin:26px 0 26px}
+h1 .thin{font-weight:200;letter-spacing:-.04em}
+h1 i,h2 i{font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:-.02em;color:var(--y)}
+.lede{color:var(--mute);font-size:18px;line-height:1.55;max-width:42ch;margin:0 0 34px;font-weight:400}
+.cta{display:inline-flex;align-items:center;gap:14px;padding:7px 7px 7px 24px;border-radius:999px;background:var(--y);color:#111;
+  font-weight:700;font-size:15px;text-decoration:none;border:0;cursor:pointer;box-shadow:0 14px 50px rgba(255,229,0,.22);
+  transition:transform .6s var(--ease)}
+.cta .ic{width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.1);display:grid;place-items:center;transition:transform .6s var(--ease)}
+.cta:hover .ic{transform:translate(2px,-2px) scale(1.06)}
+.cta:active{transform:scale(.97)}
+.ghost{display:inline-flex;align-items:center;gap:10px;color:var(--mute);text-decoration:none;font-size:14px;margin-left:18px;transition:color .5s var(--ease)}
+.ghost:hover{color:var(--ink)}
+svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+.stage{position:relative;justify-self:center;width:min(330px,80vw)}
+.device{padding:9px;border-radius:46px;background:linear-gradient(160deg,rgba(255,255,255,.14),rgba(255,255,255,.03));
+  border:1px solid var(--hair2);box-shadow:0 60px 120px -30px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.6) inset}
+.device video{width:100%;border-radius:38px;display:block;background:#000}
+.composer{position:absolute;left:-58px;bottom:70px;display:flex;align-items:center;gap:10px;padding:9px 10px 9px 9px;
+  border-radius:999px;background:rgba(22,21,25,.86);border:1px solid var(--hair2);box-shadow:0 30px 60px rgba(0,0,0,.6);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transform:rotate(-3deg);min-width:230px}
+.composer img{width:34px;height:34px;border-radius:10px;object-fit:cover}
+.composer .typed{font-size:15px;font-weight:500;flex:1;white-space:nowrap}
+.composer .caret{display:inline-block;width:2px;height:17px;background:#0a84ff;vertical-align:-3px;margin-left:1px;animation:blink 1s steps(1) infinite}
+.composer .send{width:30px;height:30px;border-radius:50%;background:#0a84ff;display:grid;place-items:center;color:#fff}
+@keyframes blink{50%{opacity:0}}
+
+/* marquee */
+.marquee{border-block:1px solid var(--hair);overflow:hidden;padding:18px 0;margin:0 -28px 120px;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.track{display:flex;gap:44px;width:max-content;animation:slide 38s linear infinite}
+.track span{font-size:clamp(22px,3vw,34px);font-weight:200;letter-spacing:-.03em;color:var(--dim)}
+.track span:nth-child(3n){font-family:var(--serif);font-style:italic;font-weight:400;color:var(--mute)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* seccions */
+.sec{padding:0 0 130px}
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:40px;flex-wrap:wrap}
+h2{font-size:clamp(36px,5vw,64px);line-height:.96;letter-spacing:-.05em;font-weight:800;margin:18px 0 0}
+.sec-head p{color:var(--mute);max-width:36ch;line-height:1.55;margin:0;font-weight:400}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.step{padding:6px;border-radius:28px;background:var(--shell);border:1px solid var(--hair)}
+.step>div{height:100%;border-radius:22px;padding:26px 22px 24px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.step .n{font-family:var(--serif);font-style:italic;font-size:30px;color:var(--y);line-height:1}
+.step h4{margin:30px 0 8px;font-size:17px;letter-spacing:-.025em;font-weight:700}
+.step p{margin:0;color:var(--mute);font-size:14px;line-height:1.55;font-weight:400}
+
+/* biblioteca */
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:26px}
+.chip{padding:10px 17px;border-radius:999px;border:1px solid var(--hair2);background:transparent;color:var(--mute);font-size:13.5px;cursor:pointer;
+  transition:all .5s var(--ease)}
+.chip.on{background:var(--ink);color:#111;border-color:var(--ink)}
+.search{margin-left:auto;display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px solid var(--hair2);color:var(--mute)}
+.search input{background:none;border:0;outline:0;color:var(--ink);font:inherit;font-size:14px;width:150px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{all:unset;cursor:pointer;display:block}
+.card.hide{display:none}
+.shell{display:block;padding:6px;border-radius:30px;background:var(--shell);border:1px solid var(--hair);transition:transform .8s var(--ease),border-color .8s var(--ease)}
+.core{position:relative;display:block;border-radius:24px;overflow:hidden;aspect-ratio:4/5;background:#111;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.core .after{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.core .before{position:absolute;right:12px;top:12px;width:27%;aspect-ratio:2/3;object-fit:cover;border-radius:12px;
+  border:2px solid rgba(255,255,255,.85);box-shadow:0 12px 30px rgba(0,0,0,.5);transform:rotate(3deg);transition:transform .9s var(--ease)}
+.core::after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(180deg,transparent,rgba(5,5,7,.92))}
+.meta{position:absolute;left:18px;right:60px;bottom:16px;z-index:1;display:flex;flex-direction:column;gap:5px}
+.meta .cat{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--y)}
+.meta .name{font-size:23px;font-weight:700;letter-spacing:-.035em;word-break:break-word}
+.meta .note{font-size:13px;color:#bdb9c2;line-height:1.4;font-weight:400}
+.open{position:absolute;right:14px;bottom:16px;z-index:1;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;transition:all .7s var(--ease)}
+.card:hover .shell{transform:translateY(-4px);border-color:var(--hair2)}
+.card:hover .after{transform:scale(1.04)}
+.card:hover .before{transform:rotate(0deg) scale(1.04)}
+.card:hover .open{background:var(--y);color:#111;transform:translate(2px,-2px)}
+
+/* setup */
+.setup{padding:8px;border-radius:40px;background:linear-gradient(140deg,rgba(255,229,0,.2),rgba(255,255,255,.04) 40%,rgba(122,92,255,.14));}
+.setup>div{border-radius:32px;background:#0c0b0e;padding:56px;display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
+.setup ol{margin:26px 0 30px;padding:0;list-style:none;counter-reset:s;display:grid;gap:14px}
+.setup li{counter-increment:s;display:flex;gap:14px;color:var(--mute);line-height:1.5;font-weight:400}
+.setup li::before{content:counter(s);flex:none;width:26px;height:26px;border-radius:50%;border:1px solid var(--hair2);display:grid;place-items:center;
+  font-size:12px;color:var(--ink)}
+pre{margin:0;white-space:pre-wrap;word-wrap:break-word;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;
+  line-height:1.65;color:#cfcbd4;background:rgba(255,255,255,.025);border:1px solid var(--hair);border-radius:20px;padding:20px;overflow:auto}
+.setup pre{max-height:420px}
+
+.fall{margin-top:18px;border-top:1px solid var(--hair);padding-top:14px}
+.fall summary{cursor:pointer;color:var(--mute);font-size:14px;list-style:none}
+.fall summary::before{content:'+ ';color:var(--y)}
+.fall[open] summary::before{content:'2  '}
+.fall p{color:var(--dim);font-size:13px;margin:10px 0 8px}
+.fall pre{max-height:220px;margin:0 0 12px}
+
+/* outro */
+.outro{text-align:center;padding:40px 0 150px}
+.outro h2{font-size:clamp(40px,6vw,84px)}
+.outro p{color:var(--mute);margin:22px auto 34px;max-width:46ch;line-height:1.55;font-weight:400}
+footer{border-top:1px solid var(--hair);padding:30px 0 50px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--dim);font-size:13px}
+
+/* modal */
+.sheet{position:fixed;inset:0;z-index:5;display:grid;place-items:center;padding:24px;background:rgba(5,5,7,.72);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);opacity:0;pointer-events:none;transition:opacity .6s var(--ease)}
+.sheet.on{opacity:1;pointer-events:auto}
+.panel{width:min(1000px,100%);max-height:calc(100dvh - 48px);overflow:auto;padding:7px;border-radius:36px;background:rgba(255,255,255,.04);
+  border:1px solid var(--hair2);transform:translateY(40px) scale(.98);transition:transform .8s var(--ease)}
+.sheet.on .panel{transform:none}
+.panel>div{border-radius:30px;background:#0d0c0f;display:grid;grid-template-columns:.95fr 1.05fr;gap:34px;padding:22px;box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
+.compare{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:2/3;background:#111;touch-action:none;cursor:ew-resize;user-select:none}
+.compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.compare .b{clip-path:inset(0 calc(100% - var(--p,50%)) 0 0)}
+.compare .bar{position:absolute;top:0;bottom:0;left:var(--p,50%);width:2px;background:#fff;transform:translateX(-1px)}
+.compare .knob{position:absolute;top:50%;left:var(--p,50%);width:44px;height:44px;border-radius:50%;background:#fff;color:#111;
+  transform:translate(-50%,-50%);display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.compare .tag{position:absolute;bottom:12px;font-size:11px;font-weight:700;padding:5px 10px;border-radius:999px}
+.compare .tl{left:12px;background:rgba(0,0,0,.6)}
+.compare .tr{right:12px;background:var(--y);color:#111}
+.pbody{padding:14px 10px 10px 0;display:flex;flex-direction:column}
+.pbody .cat{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--y)}
+.pbody h3{font-size:clamp(30px,4vw,44px);letter-spacing:-.05em;margin:10px 0 10px;font-weight:800;word-break:break-word}
+.pbody .note{color:var(--mute);line-height:1.55;margin:0 0 8px;font-weight:400}
+.pbody .tip{color:var(--y);font-size:13.5px;margin:0 0 14px}
+
+.prow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.x{position:absolute;top:30px;right:30px;width:44px;height:44px;border-radius:50%;border:1px solid var(--hair2);background:rgba(20,19,23,.8);
+  cursor:pointer;display:grid;place-items:center;z-index:6}
+.toast{position:fixed;left:50%;bottom:28px;z-index:7;transform:translate(-50%,24px);opacity:0;background:var(--y);color:#111;font-weight:700;
+  padding:13px 22px;border-radius:999px;transition:all .6s var(--ease);pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* entrada */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:var(--d,0ms)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.track{animation:none}}
+
+@media(max-width:900px){
+  .wrap{padding:0 16px}
+  .nav{top:12px;gap:12px;padding:7px 7px 7px 16px}
+  .nav a.lk{display:none}
+  .hero{grid-template-columns:1fr;min-height:auto;padding:96px 0 70px;gap:44px}
+  .stage{order:-1;width:min(290px,76vw)}
+  .composer{left:50%;bottom:-24px;transform:translateX(-50%);min-width:240px}
+  .ghost{margin:18px 0 0;display:flex}
+  .marquee{margin:0 -16px 90px}
+  .sec{padding-bottom:96px}
+  .steps{grid-template-columns:1fr 1fr}
+  .grid{grid-template-columns:1fr}
+  .search{margin-left:0;width:100%}
+  .search input{width:100%}
+  .setup>div{grid-template-columns:1fr;padding:28px 20px;gap:10px}
+  .panel>div{grid-template-columns:1fr;padding:12px;gap:16px}
+  .pbody{padding:6px}
+  .sheet{padding:0;place-items:end center}
+  .panel{border-radius:30px 30px 0 0;max-height:94dvh}
+  .x{top:auto;bottom:calc(94dvh - 58px);right:16px}
+}
+@media(max-width:480px){.steps{grid-template-columns:1fr}}
+</style>
+<style>
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 8px}
+.chip{padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);color:#fff;text-decoration:none;font-size:15px}
+.chip:hover{border-color:#FFE500;color:#FFE500}
+.lib{columns:3;column-gap:10px;margin:0 0 18px}
+.lib img{width:100%;display:block;margin:0 0 10px;border-radius:14px;break-inside:avoid;background:#111}
+@media(max-width:600px){.lib{columns:2}}
+.pair{display:grid;grid-template-columns:1fr;gap:18px;align-items:start}
+.pair .shell{padding:6px;border-radius:30px}
+.pair .compare{border-radius:24px;aspect-ratio:2/3}
+.pair .compare img{width:100%;height:100%;object-fit:cover}
+.promptcard pre{max-height:none;font-size:14px;white-space:pre-wrap;margin:0 0 18px}
+.style{scroll-margin-top:90px}
+@media(max-width:900px){.pair{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="mesh"></div><div class="grain"></div>
+<nav class="nav">
+  <span class="logo">marcel<i>grau</i></span>
+  <a class="lk" href="#liquify">Prompts</a>
+  <span class="kw">Design style prompts</span>
+</nav>
+<main class="wrap">
+  <section class="hero">
+    <div class="reveal">
+      <span class="eyebrow"><b></b>7 design styles</span>
+      <h1>Pick a style, <i>copy the prompt.</i></h1>
+      <p class="lede">Every style from the reel with its real prompt. Attach one photo of yourself in ChatGPT, paste the prompt and send it.</p>
+      <div class="chips"><a class="chip" href="#liquify">Liquify</a><a class="chip" href="#shattered">Shattered Glass</a><a class="chip" href="#smoke">Smoke</a><a class="chip" href="#fire">Fire</a><a class="chip" href="#fractal">Fractal</a><a class="chip" href="#inkwater">Ink in Water</a><a class="chip" href="#moire">Moire</a></div>
+    </div>
+    <div class="stage reveal" style="--d:150ms">
+      <div class="device"><video src="assets/hero.mp4" poster="assets/poster.jpg" autoplay muted loop playsinline></video></div>
+    </div>
+  </section>
+
+  <section class="sec style" id="liquify">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>01 / 07</span><h2>Liquify</h2></div></div>
+    <div class="lib reveal"><img src="assets/liquify-1.jpg" alt="Liquify reference 1" loading="lazy" decoding="async"><img src="assets/liquify-2.jpg" alt="Liquify reference 2" loading="lazy" decoding="async"><img src="assets/liquify-3.jpg" alt="Liquify reference 3" loading="lazy" decoding="async"><img src="assets/liquify-4.jpg" alt="Liquify reference 4" loading="lazy" decoding="async"><img src="assets/liquify-5.jpg" alt="Liquify reference 5" loading="lazy" decoding="async"><img src="assets/liquify-6.jpg" alt="Liquify reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-liquify">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a surreal liquify portrait, as if parts of the photo were pushed and smeared with a digital smudge tool until they turned into liquid.
+
+EFFECT: the face stays sharp and recognisable around the eyes and mouth, while chosen areas melt: hair stretches sideways in long smooth ribbons, one side of the face and shoulder drags out of the frame in parallel streaks, skin flows into glossy swirls like wet paint or molten metal. Optional: a horizontal band across the eyes slides sideways and stretches into thin lines.
+
+COLOUR: keep the photo's natural colours, or choose a variant: [IRIDESCENT CHROME] (rose gold and silver with black reflections) or [ACID] (mint green and cream on black).
+
+TEXTURE AND LIGHT: smooth continuous distortion with no pixel blocks, glossy highlights following the curves of the warped areas like poured liquid, soft studio light, a dark or plain grey background so the flowing shapes read clearly.
+
+COMPOSITION: head and shoulders portrait, the melt flowing in one direction towards one edge of the frame, with empty space for it to travel into.
+
+AVOID: random glitch blocks, pixel sorting, melting the whole face away, horror, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-liquify').innerText)">Copy the Liquify prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="shattered">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>02 / 07</span><h2>Shattered Glass</h2></div></div>
+    <div class="lib reveal"><img src="assets/shattered-1.jpg" alt="Shattered Glass reference 1" loading="lazy" decoding="async"><img src="assets/shattered-2.jpg" alt="Shattered Glass reference 2" loading="lazy" decoding="async"><img src="assets/shattered-3.jpg" alt="Shattered Glass reference 3" loading="lazy" decoding="async"><img src="assets/shattered-4.jpg" alt="Shattered Glass reference 4" loading="lazy" decoding="async"><img src="assets/shattered-5.jpg" alt="Shattered Glass reference 5" loading="lazy" decoding="async"><img src="assets/shattered-6.jpg" alt="Shattered Glass reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-shattered">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a portrait seen through shattered glass or a broken mirror, photographed for real.
+
+GLASS: one impact point near the face or chest sends sharp radial cracks out to the edges, crossed by rings of smaller cracks. The image is split into sharp shards, each slightly displaced, tilted or offset, so parts of the face do not line up perfectly. A few small fragments and splinters fly off and catch the light.
+
+LIGHT: hard light that makes the crack lines glint white and silver, a bright starburst of refraction at the impact point, reflections along the shard edges.
+
+COLOUR: [DRAMATIC BLACK AND WHITE] with deep blacks, or a sunny analog colour photo with saturated reds and a clear blue sky.
+
+TEXTURE: film grain, razor sharp glass edges, a little dust on the glass, some shards with grey backing showing through like pieces of a mirror lying on the ground.
+
+COMPOSITION: close up of the face partly crossed by cracks with one eye clear and sharp, or a half body shot behind a cracked pane. The shatter is the dominant shape of the image.
+
+AVOID: blood, cuts, violence, a flat crack overlay texture, a cartoon look, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-shattered').innerText)">Copy the Shattered Glass prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="smoke">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>03 / 07</span><h2>Smoke</h2></div></div>
+    <div class="lib reveal"><img src="assets/smoke-1.jpg" alt="Smoke reference 1" loading="lazy" decoding="async"><img src="assets/smoke-2.jpg" alt="Smoke reference 2" loading="lazy" decoding="async"><img src="assets/smoke-3.jpg" alt="Smoke reference 3" loading="lazy" decoding="async"><img src="assets/smoke-4.jpg" alt="Smoke reference 4" loading="lazy" decoding="async"><img src="assets/smoke-5.jpg" alt="Smoke reference 5" loading="lazy" decoding="async"><img src="assets/smoke-6.jpg" alt="Smoke reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-smoke">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a fine art smoke portrait, a black and white studio photo where the subject turns into smoke.
+
+COLOUR: pure black background, smoke in white and silver grey (or a warm cream sepia variant). Skin in deep monochrome.
+
+EFFECT: the face is sharp and real from the eyes down (nose, lips and chin), while the top of the head and the hair dissolve upward into curling plumes of smoke. The smoke rises in elegant swirling ribbons, wisps and soft curls, getting thinner and more transparent as it climbs. A thin stream of smoke rises from the lips.
+
+LIGHT: one low hard light from below or the side, deep shadows that melt into the black background, smoke glowing where the light hits it.
+
+TEXTURE: fine silky detail inside the smoke, high detail skin with a soft sheen, slight grain.
+
+COMPOSITION: vertical and symmetrical, face in the lower third, smoke filling the top two thirds of the frame.
+
+AVOID: cigarettes, fire, colour, a grey background, fog that hides the face completely, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-smoke').innerText)">Copy the Smoke prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="fire">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>04 / 07</span><h2>Fire</h2></div></div>
+    <div class="lib reveal"><img src="assets/fire-1.jpg" alt="Fire reference 1" loading="lazy" decoding="async"><img src="assets/fire-2.jpg" alt="Fire reference 2" loading="lazy" decoding="async"><img src="assets/fire-3.jpg" alt="Fire reference 3" loading="lazy" decoding="async"><img src="assets/fire-4.jpg" alt="Fire reference 4" loading="lazy" decoding="async"><img src="assets/fire-5.jpg" alt="Fire reference 5" loading="lazy" decoding="async"><img src="assets/fire-6.jpg" alt="Fire reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-fire">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a fire art portrait: real looking flames around and on the subject, shot like a cinematic analog photo.
+
+EFFECT: choose one: flames rising from the head and shoulders like a burning crown; the whole figure wrapped in one tall bright flame like a torch; fire textures projected over the face and chest like glowing patterns on the skin; or the subject standing in front of a huge bonfire as a dark silhouette. The face always stays recognisable.
+
+COLOUR: white and yellow in the hot core, orange and deep red at the edges, against a dark background or a flat saturated backdrop: [DEEP RED] or [PEACH]. Skin warm from the firelight.
+
+LIGHT: the fire is the main light source, warm glow on the skin, flickering highlights, embers and sparks floating in the air.
+
+TEXTURE: analog film grain, slight motion blur on the flame tips, heat haze rippling near the flames.
+
+COMPOSITION: subject centred, half body or three quarter shot, fire filling the upper part of the frame, dark space around.
+
+AVOID: injuries, smoke covering the face, cartoon flames, a flat fire filter, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-fire').innerText)">Copy the Fire prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="fractal">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>05 / 07</span><h2>Fractal</h2></div></div>
+    <div class="lib reveal"><img src="assets/fractal-1.jpg" alt="Fractal reference 1" loading="lazy" decoding="async"><img src="assets/fractal-2.jpg" alt="Fractal reference 2" loading="lazy" decoding="async"><img src="assets/fractal-3.jpg" alt="Fractal reference 3" loading="lazy" decoding="async"><img src="assets/fractal-4.jpg" alt="Fractal reference 4" loading="lazy" decoding="async"><img src="assets/fractal-5.jpg" alt="Fractal reference 5" loading="lazy" decoding="async"><img src="assets/fractal-6.jpg" alt="Fractal reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-fractal">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a fractal art portrait, the subject embedded in an infinite fractal pattern rendered as high detail digital art.
+
+PATTERN: the subject sits in the middle of a deep fractal spiral that keeps repeating smaller copies of itself: logarithmic spirals, curling seahorse tails, feathery fern branches, rims of tiny bead like spheres. The pattern wraps around the figure and flows into the hair and clothes, the edges of the body breaking into smaller and smaller swirls.
+
+COLOUR: vivid jewel tones: turquoise, magenta, violet, gold and orange, with glossy metallic gradients and a deep black or indigo void at the centre of the spiral. Variant: [GOLD AND SILVER] for a baroque look.
+
+TEXTURE AND LIGHT: glossy, almost metallic sheen on every curl, fine thread like lines like peacock feathers, inner glow, razor sharp detail at every scale.
+
+COMPOSITION: face sharp and fully recognisable in the centre, the spiral rotating around the subject, the pattern filling the frame edge to edge.
+
+AVOID: hiding the face, blurry or low detail areas, a simple mirrored kaleidoscope, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-fractal').innerText)">Copy the Fractal prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="inkwater">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>06 / 07</span><h2>Ink in Water</h2></div></div>
+    <div class="lib reveal"><img src="assets/inkwater-1.jpg" alt="Ink in Water reference 1" loading="lazy" decoding="async"><img src="assets/inkwater-2.jpg" alt="Ink in Water reference 2" loading="lazy" decoding="async"><img src="assets/inkwater-3.jpg" alt="Ink in Water reference 3" loading="lazy" decoding="async"><img src="assets/inkwater-4.jpg" alt="Ink in Water reference 4" loading="lazy" decoding="async"><img src="assets/inkwater-5.jpg" alt="Ink in Water reference 5" loading="lazy" decoding="async"><img src="assets/inkwater-6.jpg" alt="Ink in Water reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-inkwater">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: an ink in water photograph: clouds of ink poured into a clear water tank and frozen with high speed photography, forming the figure of the subject.
+
+EFFECT: the head and shoulders built from dense billowing ink: thick rolling cauliflower like clouds, curling plumes and fine threads trailing down. The face is readable in the folds of ink, with light and shadow modelling the features. A stream of ink falls from the top of the frame into the head, as if it was just poured in.
+
+COLOUR: one or two inks: [MAGENTA AND TEAL] (or deep black, coral pink, or cobalt blue with purple). Saturated where the ink is dense, transparent where it thins out.
+
+BACKGROUND: clean bright white or pale peach water, seamless, no visible tank edges.
+
+TEXTURE AND LIGHT: soft even studio light from behind, velvety smooth ink surfaces, fine wisps and tiny droplets, sharp focus.
+
+COMPOSITION: one vertical plume with the figure in the middle, the ink trail coming from the top and spreading out at the bottom.
+
+AVOID: smoke, paint splashes, hard outlines, a photo with an ink overlay, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-inkwater').innerText)">Copy the Ink in Water prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="moire">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>07 / 07</span><h2>Moire</h2></div></div>
+    <div class="lib reveal"><img src="assets/moire-1.jpg" alt="Moire reference 1" loading="lazy" decoding="async"><img src="assets/moire-2.jpg" alt="Moire reference 2" loading="lazy" decoding="async"><img src="assets/moire-3.jpg" alt="Moire reference 3" loading="lazy" decoding="async"><img src="assets/moire-4.jpg" alt="Moire reference 4" loading="lazy" decoding="async"><img src="assets/moire-5.jpg" alt="Moire reference 5" loading="lazy" decoding="async"><img src="assets/moire-6.jpg" alt="Moire reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-moire">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a moire pattern image: the subject built from overlapping fine line patterns that create shimmering interference waves, like op art and Swiss design posters.
+
+EFFECT: two layers of thin parallel lines, one straight and one bending with the shape of the face and body, overlap and interfere. Where they meet they make flowing ripples, contour rings and wavy bands that model the volumes of the face, hair and clothes like a topographic map. Line thickness and spacing change to create light and shadow.
+
+COLOUR: [BLACK AND WHITE] by default, or a two colour version: red and cobalt blue, pale teal on black, or magenta on bright orange.
+
+TEXTURE: crisp vector lines, a slight optical vibration, no gradients, no blur, a subtle printed paper feel.
+
+TYPE (optional): small Swiss style info text at the bottom in a clean grotesque sans, aligned to a grid: [FRIDAY 14 JANUARY], [THE BASEMENT], [LIVE ELECTRONICS].
+
+COMPOSITION: face and shoulders filling most of the frame, background made of straight lines so the interference is visible around the outline.
+
+AVOID: a photo with lines on top, solid colour areas, blurry gradients, brand logos, real names.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-moire').innerText)">Copy the Moire prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="outro reveal">
+    <span class="eyebrow"><b></b>New styles every week</span>
+    <h2>Made one?<br>Tag <i>@marcelgrauu</i></h2>
+    <p>I share new styles and prompts almost every day. Follow so you don't miss the next ones.</p>
+    <a class="cta" href="https://instagram.com/marcelgrauu" target="_blank" rel="noopener">Follow @marcelgrauu <span class="ic"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
+  </section>
+  <footer><span class="logo">marcel<i>grau</i></span><span>Prompts free to use. Results depend on the model and your photo.</span></footer>
+</main>
+<div class="toast" id="toast">Copied</div>
+<script>
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold: .12});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+function copyText(text) {
+  const done = () => { const t = document.getElementById('toast'); t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 1700); };
+  const fallback = () => { const ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); done(); } catch (e) {} document.body.removeChild(ta); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+}
+document.querySelectorAll('.compare.ex').forEach(cmp => {
+  const setP = x => { const r = cmp.getBoundingClientRect(); cmp.style.setProperty('--p', Math.max(0, Math.min(100, (x - r.left) / r.width * 100)) + '%'); };
+  cmp.addEventListener('pointerdown', e => { cmp.setPointerCapture(e.pointerId); setP(e.clientX); });
+  cmp.addEventListener('pointermove', e => { if (cmp.hasPointerCapture(e.pointerId)) setP(e.clientX); });
+});
+</script>
+</body>
+</html>
