@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#070608">
+<title>7 design style prompts | marcelgrau</title>
+<meta name="description" content="The 7 design styles of the reel, each with its reference library and a detailed prompt.">
+<meta property="og:title" content="7 design style prompts">
+<meta property="og:image" content="assets/poster.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@1&family=Inter+Tight:wght@200;400;500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#070608;--ink:#f4f2ee;--mute:#8f8b95;--dim:#5d5a63;--y:#FFE500;
+  --hair:rgba(255,255,255,.07);--hair2:rgba(255,255,255,.12);--shell:rgba(255,255,255,.028);
+  --ease:cubic-bezier(.32,.72,0,1);
+  --sans:"Helvetica Neue","Inter Tight",Helvetica,system-ui,sans-serif;
+  --serif:"EB Garamond",Garamond,"Apple Garamond",Georgia,serif;
+}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:500;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:3;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.mesh{position:fixed;inset:-20%;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(38% 30% at 18% 8%,rgba(255,229,0,.13),transparent 70%),
+    radial-gradient(30% 28% at 88% 30%,rgba(122,92,255,.12),transparent 70%),
+    radial-gradient(34% 30% at 50% 100%,rgba(255,120,40,.08),transparent 70%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 28px}
+
+/* nav isla */
+.nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:4;display:flex;align-items:center;gap:18px;
+  padding:8px 8px 8px 20px;border-radius:999px;background:rgba(14,13,16,.62);border:1px solid var(--hair2);
+  backdrop-filter:blur(22px) saturate(140%);-webkit-backdrop-filter:blur(22px) saturate(140%);white-space:nowrap}
+.logo{font-weight:800;letter-spacing:-.035em;font-size:16px}
+.logo i{font-family:var(--serif);font-weight:400;font-style:italic;color:var(--y);letter-spacing:0;font-size:18px}
+.nav a{color:var(--mute);text-decoration:none;font-size:13px;transition:color .5s var(--ease)}
+.nav a:hover{color:var(--ink)}
+.nav .kw{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:999px;background:var(--y);color:#111;font-weight:700;font-size:12px}
+
+/* hero */
+.hero{min-height:100dvh;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:130px 0 90px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;border:1px solid var(--hair2);
+  font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.eyebrow b{width:6px;height:6px;border-radius:50%;background:var(--y);box-shadow:0 0 12px var(--y)}
+h1{font-size:clamp(46px,7.4vw,104px);line-height:.92;letter-spacing:-.055em;font-weight:800;margin:26px 0 26px}
+h1 .thin{font-weight:200;letter-spacing:-.04em}
+h1 i,h2 i{font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:-.02em;color:var(--y)}
+.lede{color:var(--mute);font-size:18px;line-height:1.55;max-width:42ch;margin:0 0 34px;font-weight:400}
+.cta{display:inline-flex;align-items:center;gap:14px;padding:7px 7px 7px 24px;border-radius:999px;background:var(--y);color:#111;
+  font-weight:700;font-size:15px;text-decoration:none;border:0;cursor:pointer;box-shadow:0 14px 50px rgba(255,229,0,.22);
+  transition:transform .6s var(--ease)}
+.cta .ic{width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.1);display:grid;place-items:center;transition:transform .6s var(--ease)}
+.cta:hover .ic{transform:translate(2px,-2px) scale(1.06)}
+.cta:active{transform:scale(.97)}
+.ghost{display:inline-flex;align-items:center;gap:10px;color:var(--mute);text-decoration:none;font-size:14px;margin-left:18px;transition:color .5s var(--ease)}
+.ghost:hover{color:var(--ink)}
+svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+.stage{position:relative;justify-self:center;width:min(330px,80vw)}
+.device{padding:9px;border-radius:46px;background:linear-gradient(160deg,rgba(255,255,255,.14),rgba(255,255,255,.03));
+  border:1px solid var(--hair2);box-shadow:0 60px 120px -30px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.6) inset}
+.device video{width:100%;border-radius:38px;display:block;background:#000}
+.composer{position:absolute;left:-58px;bottom:70px;display:flex;align-items:center;gap:10px;padding:9px 10px 9px 9px;
+  border-radius:999px;background:rgba(22,21,25,.86);border:1px solid var(--hair2);box-shadow:0 30px 60px rgba(0,0,0,.6);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transform:rotate(-3deg);min-width:230px}
+.composer img{width:34px;height:34px;border-radius:10px;object-fit:cover}
+.composer .typed{font-size:15px;font-weight:500;flex:1;white-space:nowrap}
+.composer .caret{display:inline-block;width:2px;height:17px;background:#0a84ff;vertical-align:-3px;margin-left:1px;animation:blink 1s steps(1) infinite}
+.composer .send{width:30px;height:30px;border-radius:50%;background:#0a84ff;display:grid;place-items:center;color:#fff}
+@keyframes blink{50%{opacity:0}}
+
+/* marquee */
+.marquee{border-block:1px solid var(--hair);overflow:hidden;padding:18px 0;margin:0 -28px 120px;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.track{display:flex;gap:44px;width:max-content;animation:slide 38s linear infinite}
+.track span{font-size:clamp(22px,3vw,34px);font-weight:200;letter-spacing:-.03em;color:var(--dim)}
+.track span:nth-child(3n){font-family:var(--serif);font-style:italic;font-weight:400;color:var(--mute)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* seccions */
+.sec{padding:0 0 130px}
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:40px;flex-wrap:wrap}
+h2{font-size:clamp(36px,5vw,64px);line-height:.96;letter-spacing:-.05em;font-weight:800;margin:18px 0 0}
+.sec-head p{color:var(--mute);max-width:36ch;line-height:1.55;margin:0;font-weight:400}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.step{padding:6px;border-radius:28px;background:var(--shell);border:1px solid var(--hair)}
+.step>div{height:100%;border-radius:22px;padding:26px 22px 24px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.step .n{font-family:var(--serif);font-style:italic;font-size:30px;color:var(--y);line-height:1}
+.step h4{margin:30px 0 8px;font-size:17px;letter-spacing:-.025em;font-weight:700}
+.step p{margin:0;color:var(--mute);font-size:14px;line-height:1.55;font-weight:400}
+
+/* biblioteca */
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:26px}
+.chip{padding:10px 17px;border-radius:999px;border:1px solid var(--hair2);background:transparent;color:var(--mute);font-size:13.5px;cursor:pointer;
+  transition:all .5s var(--ease)}
+.chip.on{background:var(--ink);color:#111;border-color:var(--ink)}
+.search{margin-left:auto;display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px solid var(--hair2);color:var(--mute)}
+.search input{background:none;border:0;outline:0;color:var(--ink);font:inherit;font-size:14px;width:150px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{all:unset;cursor:pointer;display:block}
+.card.hide{display:none}
+.shell{display:block;padding:6px;border-radius:30px;background:var(--shell);border:1px solid var(--hair);transition:transform .8s var(--ease),border-color .8s var(--ease)}
+.core{position:relative;display:block;border-radius:24px;overflow:hidden;aspect-ratio:4/5;background:#111;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.core .after{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.core .before{position:absolute;right:12px;top:12px;width:27%;aspect-ratio:2/3;object-fit:cover;border-radius:12px;
+  border:2px solid rgba(255,255,255,.85);box-shadow:0 12px 30px rgba(0,0,0,.5);transform:rotate(3deg);transition:transform .9s var(--ease)}
+.core::after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(180deg,transparent,rgba(5,5,7,.92))}
+.meta{position:absolute;left:18px;right:60px;bottom:16px;z-index:1;display:flex;flex-direction:column;gap:5px}
+.meta .cat{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--y)}
+.meta .name{font-size:23px;font-weight:700;letter-spacing:-.035em;word-break:break-word}
+.meta .note{font-size:13px;color:#bdb9c2;line-height:1.4;font-weight:400}
+.open{position:absolute;right:14px;bottom:16px;z-index:1;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;transition:all .7s var(--ease)}
+.card:hover .shell{transform:translateY(-4px);border-color:var(--hair2)}
+.card:hover .after{transform:scale(1.04)}
+.card:hover .before{transform:rotate(0deg) scale(1.04)}
+.card:hover .open{background:var(--y);color:#111;transform:translate(2px,-2px)}
+
+/* setup */
+.setup{padding:8px;border-radius:40px;background:linear-gradient(140deg,rgba(255,229,0,.2),rgba(255,255,255,.04) 40%,rgba(122,92,255,.14));}
+.setup>div{border-radius:32px;background:#0c0b0e;padding:56px;display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
+.setup ol{margin:26px 0 30px;padding:0;list-style:none;counter-reset:s;display:grid;gap:14px}
+.setup li{counter-increment:s;display:flex;gap:14px;color:var(--mute);line-height:1.5;font-weight:400}
+.setup li::before{content:counter(s);flex:none;width:26px;height:26px;border-radius:50%;border:1px solid var(--hair2);display:grid;place-items:center;
+  font-size:12px;color:var(--ink)}
+pre{margin:0;white-space:pre-wrap;word-wrap:break-word;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;
+  line-height:1.65;color:#cfcbd4;background:rgba(255,255,255,.025);border:1px solid var(--hair);border-radius:20px;padding:20px;overflow:auto}
+.setup pre{max-height:420px}
+
+.fall{margin-top:18px;border-top:1px solid var(--hair);padding-top:14px}
+.fall summary{cursor:pointer;color:var(--mute);font-size:14px;list-style:none}
+.fall summary::before{content:'+ ';color:var(--y)}
+.fall[open] summary::before{content:'2  '}
+.fall p{color:var(--dim);font-size:13px;margin:10px 0 8px}
+.fall pre{max-height:220px;margin:0 0 12px}
+
+/* outro */
+.outro{text-align:center;padding:40px 0 150px}
+.outro h2{font-size:clamp(40px,6vw,84px)}
+.outro p{color:var(--mute);margin:22px auto 34px;max-width:46ch;line-height:1.55;font-weight:400}
+footer{border-top:1px solid var(--hair);padding:30px 0 50px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--dim);font-size:13px}
+
+/* modal */
+.sheet{position:fixed;inset:0;z-index:5;display:grid;place-items:center;padding:24px;background:rgba(5,5,7,.72);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);opacity:0;pointer-events:none;transition:opacity .6s var(--ease)}
+.sheet.on{opacity:1;pointer-events:auto}
+.panel{width:min(1000px,100%);max-height:calc(100dvh - 48px);overflow:auto;padding:7px;border-radius:36px;background:rgba(255,255,255,.04);
+  border:1px solid var(--hair2);transform:translateY(40px) scale(.98);transition:transform .8s var(--ease)}
+.sheet.on .panel{transform:none}
+.panel>div{border-radius:30px;background:#0d0c0f;display:grid;grid-template-columns:.95fr 1.05fr;gap:34px;padding:22px;box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
+.compare{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:2/3;background:#111;touch-action:none;cursor:ew-resize;user-select:none}
+.compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.compare .b{clip-path:inset(0 calc(100% - var(--p,50%)) 0 0)}
+.compare .bar{position:absolute;top:0;bottom:0;left:var(--p,50%);width:2px;background:#fff;transform:translateX(-1px)}
+.compare .knob{position:absolute;top:50%;left:var(--p,50%);width:44px;height:44px;border-radius:50%;background:#fff;color:#111;
+  transform:translate(-50%,-50%);display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.compare .tag{position:absolute;bottom:12px;font-size:11px;font-weight:700;padding:5px 10px;border-radius:999px}
+.compare .tl{left:12px;background:rgba(0,0,0,.6)}
+.compare .tr{right:12px;background:var(--y);color:#111}
+.pbody{padding:14px 10px 10px 0;display:flex;flex-direction:column}
+.pbody .cat{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--y)}
+.pbody h3{font-size:clamp(30px,4vw,44px);letter-spacing:-.05em;margin:10px 0 10px;font-weight:800;word-break:break-word}
+.pbody .note{color:var(--mute);line-height:1.55;margin:0 0 8px;font-weight:400}
+.pbody .tip{color:var(--y);font-size:13.5px;margin:0 0 14px}
+
+.prow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.x{position:absolute;top:30px;right:30px;width:44px;height:44px;border-radius:50%;border:1px solid var(--hair2);background:rgba(20,19,23,.8);
+  cursor:pointer;display:grid;place-items:center;z-index:6}
+.toast{position:fixed;left:50%;bottom:28px;z-index:7;transform:translate(-50%,24px);opacity:0;background:var(--y);color:#111;font-weight:700;
+  padding:13px 22px;border-radius:999px;transition:all .6s var(--ease);pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* entrada */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:var(--d,0ms)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.track{animation:none}}
+
+@media(max-width:900px){
+  .wrap{padding:0 16px}
+  .nav{top:12px;gap:12px;padding:7px 7px 7px 16px}
+  .nav a.lk{display:none}
+  .hero{grid-template-columns:1fr;min-height:auto;padding:96px 0 70px;gap:44px}
+  .stage{order:-1;width:min(290px,76vw)}
+  .composer{left:50%;bottom:-24px;transform:translateX(-50%);min-width:240px}
+  .ghost{margin:18px 0 0;display:flex}
+  .marquee{margin:0 -16px 90px}
+  .sec{padding-bottom:96px}
+  .steps{grid-template-columns:1fr 1fr}
+  .grid{grid-template-columns:1fr}
+  .search{margin-left:0;width:100%}
+  .search input{width:100%}
+  .setup>div{grid-template-columns:1fr;padding:28px 20px;gap:10px}
+  .panel>div{grid-template-columns:1fr;padding:12px;gap:16px}
+  .pbody{padding:6px}
+  .sheet{padding:0;place-items:end center}
+  .panel{border-radius:30px 30px 0 0;max-height:94dvh}
+  .x{top:auto;bottom:calc(94dvh - 58px);right:16px}
+}
+@media(max-width:480px){.steps{grid-template-columns:1fr}}
+</style>
+<style>
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 8px}
+.chip{padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);color:#fff;text-decoration:none;font-size:15px}
+.chip:hover{border-color:#FFE500;color:#FFE500}
+.lib{columns:3;column-gap:10px;margin:0 0 18px}
+.lib img{width:100%;display:block;margin:0 0 10px;border-radius:14px;break-inside:avoid;background:#111}
+@media(max-width:600px){.lib{columns:2}}
+.pair{display:grid;grid-template-columns:1fr;gap:18px;align-items:start}
+.pair .shell{padding:6px;border-radius:30px}
+.pair .compare{border-radius:24px;aspect-ratio:2/3}
+.pair .compare img{width:100%;height:100%;object-fit:cover}
+.promptcard pre{max-height:none;font-size:14px;white-space:pre-wrap;margin:0 0 18px}
+.style{scroll-margin-top:90px}
+@media(max-width:900px){.pair{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="mesh"></div><div class="grain"></div>
+<nav class="nav">
+  <span class="logo">marcel<i>grau</i></span>
+  <a class="lk" href="#synthwave">Prompts</a>
+  <span class="kw">Design style prompts</span>
+</nav>
+<main class="wrap">
+  <section class="hero">
+    <div class="reveal">
+      <span class="eyebrow"><b></b>7 design styles</span>
+      <h1>Pick a style, <i>copy the prompt.</i></h1>
+      <p class="lede">Every style from the reel with its real prompt. Attach one photo of yourself in ChatGPT, paste the prompt and send it.</p>
+      <div class="chips"><a class="chip" href="#synthwave">Synthwave</a><a class="chip" href="#neon">Neon Sign</a><a class="chip" href="#win95">Windows 95</a><a class="chip" href="#teletext">Teletext</a><a class="chip" href="#pointcloud">Point Cloud</a><a class="chip" href="#voxel">Voxel</a><a class="chip" href="#y2k">Y2K</a></div>
+    </div>
+    <div class="stage reveal" style="--d:150ms">
+      <div class="device"><video src="assets/hero.mp4" poster="assets/poster.jpg" autoplay muted loop playsinline></video></div>
+    </div>
+  </section>
+
+  <section class="sec style" id="synthwave">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>01 / 07</span><h2>Synthwave</h2></div></div>
+    <div class="lib reveal"><img src="assets/synthwave-1.jpg" alt="Synthwave reference 1" loading="lazy" decoding="async"><img src="assets/synthwave-2.jpg" alt="Synthwave reference 2" loading="lazy" decoding="async"><img src="assets/synthwave-3.jpg" alt="Synthwave reference 3" loading="lazy" decoding="async"><img src="assets/synthwave-4.jpg" alt="Synthwave reference 4" loading="lazy" decoding="async"><img src="assets/synthwave-5.jpg" alt="Synthwave reference 5" loading="lazy" decoding="async"><img src="assets/synthwave-6.jpg" alt="Synthwave reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-synthwave">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a 1980s retro futuristic synthwave poster: a neon sunset over a digital landscape.
+
+COLOUR: deep indigo and violet night sky with tiny stars, a huge sun graded from yellow to orange to hot pink, magenta and purple neon grid lines, hot pink and cyan highlights. Skin lit pink and violet on one side with a cyan rim light on the other.
+
+GRAPHICS: a big setting sun cut by horizontal stripes on its lower half (or a glowing wireframe sphere), a neon perspective grid floor running to the horizon, wireframe mountains or a dark city skyline with lit windows, palm tree silhouettes, a glowing road vanishing into the distance.
+
+TEXTURE AND LIGHT: soft neon bloom, faint video scanlines and colour fringing on the edges, smooth airbrushed gradients, a light haze over the horizon.
+
+TYPE: one title in glossy chrome lettering with a reflective horizon line through it: [YOUR WORD]. No other text.
+
+COMPOSITION: subject standing in the foreground, centred, the grid floor below, the horizon about one third from the bottom, the sun directly behind the head like a halo.
+
+AVOID: daylight, realistic grass or sky, modern flat design, car logos, brand logos, extra text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-synthwave').innerText)">Copy the Synthwave prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="neon">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>02 / 07</span><h2>Neon Sign</h2></div></div>
+    <div class="lib reveal"><img src="assets/neon-1.jpg" alt="Neon Sign reference 1" loading="lazy" decoding="async"><img src="assets/neon-2.jpg" alt="Neon Sign reference 2" loading="lazy" decoding="async"><img src="assets/neon-3.jpg" alt="Neon Sign reference 3" loading="lazy" decoding="async"><img src="assets/neon-4.jpg" alt="Neon Sign reference 4" loading="lazy" decoding="async"><img src="assets/neon-5.jpg" alt="Neon Sign reference 5" loading="lazy" decoding="async"><img src="assets/neon-6.jpg" alt="Neon Sign reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-neon">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a real neon sign: the subject's portrait drawn with bent glass neon tubes, mounted on a wall and switched on at night.
+
+COLOUR: glowing tubes in hot pink, red, warm orange, electric blue and warm white, a dark wall behind, the colours reflecting on the wall and on nearby plants.
+
+TEXTURE AND LIGHT: a continuous line drawing of the face, hair and outfit made of tubes of even thickness, each tube with a bright white hot core and a soft coloured halo, strong glow spilling onto the surroundings. Real details: small clear mounts holding the tubes, blacked out sections where a tube jumps between lines, thin cables hanging down, a clear acrylic backing panel.
+
+TYPE: optional, a handwritten cursive neon phrase beside the portrait: [your phrase here].
+
+SETTING: a dark exposed brick wall, a deep red painted wall, or a dark room with tropical plants silhouetted in the foreground, lit only by the neon.
+
+COMPOSITION: the neon portrait centred on the wall, head and shoulders, some empty dark wall around it, photographed straight on.
+
+AVOID: a filled illustration, LED strip look, daylight, brand logos, any other text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-neon').innerText)">Copy the Neon Sign prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="win95">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>03 / 07</span><h2>Windows 95</h2></div></div>
+    <div class="lib reveal"><img src="assets/win95-1.jpg" alt="Windows 95 reference 1" loading="lazy" decoding="async"><img src="assets/win95-2.jpg" alt="Windows 95 reference 2" loading="lazy" decoding="async"><img src="assets/win95-3.jpg" alt="Windows 95 reference 3" loading="lazy" decoding="async"><img src="assets/win95-4.jpg" alt="Windows 95 reference 4" loading="lazy" decoding="async"><img src="assets/win95-5.jpg" alt="Windows 95 reference 5" loading="lazy" decoding="async"><img src="assets/win95-6.jpg" alt="Windows 95 reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-win95">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a mid 1990s desktop computer screenshot: the subject's photo open in a grey window of an old operating system, pixel perfect and nostalgic.
+
+COLOUR: teal desktop background, light grey windows with white and dark grey bevelled 3D edges, a navy to blue gradient title bar with white bold pixel text. The photo itself in a reduced 256 colour palette with visible dithering.
+
+INTERFACE: a main window titled [me.bmp] with minimise, maximise and close buttons, a menu bar (File, Edit, View, Image, Options, Help) and a status bar with tiny text: [For Help, click Help Topics]. Around it: a paint program toolbox with tiny tool icons and a colour palette strip, a small dialog box with a yellow warning triangle, the line [Are you sure?] and an OK button, a few desktop icons (folder, computer, trash bin, text file) with labels like [My Pictures], and a grey taskbar at the bottom with a start button and a clock [12:00 PM].
+
+TEXTURE: crisp pixels, no anti aliasing, one pixel bevel lines, bitmap fonts, a slight screen glow.
+
+COMPOSITION: the photo window in the centre, slightly offset, other windows cascading behind it, desktop icons in a column on the left, the full screen visible.
+
+AVOID: modern flat interface, real company logos or app icons, operating system names, smooth gradients on the photo, brand logos.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-win95').innerText)">Copy the Windows 95 prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="teletext">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>04 / 07</span><h2>Teletext</h2></div></div>
+    <div class="lib reveal"><img src="assets/teletext-1.jpg" alt="Teletext reference 1" loading="lazy" decoding="async"><img src="assets/teletext-2.jpg" alt="Teletext reference 2" loading="lazy" decoding="async"><img src="assets/teletext-3.jpg" alt="Teletext reference 3" loading="lazy" decoding="async"><img src="assets/teletext-4.jpg" alt="Teletext reference 4" loading="lazy" decoding="async"><img src="assets/teletext-5.jpg" alt="Teletext reference 5" loading="lazy" decoding="async"><img src="assets/teletext-6.jpg" alt="Teletext reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-teletext">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a teletext page from an old TV text service: the subject rebuilt from chunky block mosaic graphics on a black screen.
+
+COLOUR: only the 8 teletext colours: black, white, red, green, yellow, blue, magenta and cyan, all flat and fully saturated. No shading, no gradients.
+
+TEXTURE: everything made of chunky block mosaic cells on a coarse character grid, hard pixel edges, jagged stepped diagonals, a slight screen glow, faint scanlines and a little colour bleed.
+
+SUBJECT: face, hair and clothes reduced to big blocks of the 8 colours: skin in white, yellow or red, shadows in black or blue, features drawn by the contrast between blocks, still recognisable from a distance.
+
+INTERFACE: a header line in small blocky pixel text: [P888 TELETEXT SAT 10 JUN 11:29:53]. A big double height title in chunky block letters on a coloured bar: [YOUR WORD]. A side panel of coloured index rows: [CATEGORIES], [What is this? 151], [Submit 153]. A bottom ticker line: [everything in 1024 bytes].
+
+COMPOSITION: the teletext screen fills the frame, the portrait on one side and the text panels on the other, everything boxy and aligned to the character grid.
+
+AVOID: smooth pixel art, more than 8 colours, modern fonts, real websites or names, brand logos.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-teletext').innerText)">Copy the Teletext prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="pointcloud">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>05 / 07</span><h2>Point Cloud</h2></div></div>
+    <div class="lib reveal"><img src="assets/pointcloud-1.jpg" alt="Point Cloud reference 1" loading="lazy" decoding="async"><img src="assets/pointcloud-2.jpg" alt="Point Cloud reference 2" loading="lazy" decoding="async"><img src="assets/pointcloud-3.jpg" alt="Point Cloud reference 3" loading="lazy" decoding="async"><img src="assets/pointcloud-4.jpg" alt="Point Cloud reference 4" loading="lazy" decoding="async"><img src="assets/pointcloud-5.jpg" alt="Point Cloud reference 5" loading="lazy" decoding="async"><img src="assets/pointcloud-6.jpg" alt="Point Cloud reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-pointcloud">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a 3D laser scan point cloud: the subject and the space around them made of millions of tiny points floating in black, like a lidar scan render.
+
+COLOUR: either white and pale grey points on pure black, or a depth colour map from deep blue (far) through cyan and green to yellow, orange and red (near). Optionally some points keep the real colours of the photo (skin, clothes) like a coloured scan.
+
+TEXTURE AND LIGHT: points dense on surfaces facing the camera and sparse on the edges, so shapes read through density, gaps where the scanner could not see, stray points floating like dust, thin horizontal scan bands, a slight glow on the brightest points. The scan cut off sharply at the edges like a cross section.
+
+SETTING: the subject scanned together with their surroundings: a room shown as an isometric cutaway with furniture, a street, a row of bare trees, or a building interior, all made of points.
+
+COMPOSITION: subject centred and frontal, face clearly recognisable through the point density, the scanned surroundings fading into black at the edges, optionally seen from slightly above as a cutaway.
+
+AVOID: solid polygons, wireframe mesh, smooth surfaces, glitter look, interface overlays, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-pointcloud').innerText)">Copy the Point Cloud prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="voxel">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>06 / 07</span><h2>Voxel</h2></div></div>
+    <div class="lib reveal"><img src="assets/voxel-1.jpg" alt="Voxel reference 1" loading="lazy" decoding="async"><img src="assets/voxel-2.jpg" alt="Voxel reference 2" loading="lazy" decoding="async"><img src="assets/voxel-3.jpg" alt="Voxel reference 3" loading="lazy" decoding="async"><img src="assets/voxel-4.jpg" alt="Voxel reference 4" loading="lazy" decoding="async"><img src="assets/voxel-5.jpg" alt="Voxel reference 5" loading="lazy" decoding="async"><img src="assets/voxel-6.jpg" alt="Voxel reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-voxel">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a voxel art diorama: the subject and their surroundings built from small 3D cubes, rendered like a miniature isometric scene.
+
+COLOUR: soft, slightly muted colours taken from the photo: warm wood, cream, sage and moss green, terracotta, stone grey, with warm glowing window light at dusk. Skin and clothes in simple cube colours with a few tonal steps.
+
+TEXTURE AND LIGHT: every surface made of visible cubes with clean edges, soft shadows in the corners, gentle global illumination, tiny bevels catching the light, shallow tilt shift depth of field like a miniature. Small glowing lights (lanterns, windows, string lights) if the scene is at dusk.
+
+SUBJECT: the subject as a small chunky voxel figure with blocky face features (eyes, nose and hair shape built from cubes), keeping their outfit colours, standing in the scene.
+
+SETTING: a small floating diorama block: a corner shop with plants on the roof, an awning and a striped pole, a narrow street with a tram, a stone archway alley covered in ivy, or a rocky island with a small boat, on a plain background (soft lilac, cream, or a green cutting mat). A shop sign can read [YOUR NAME].
+
+COMPOSITION: isometric view from about 30 degrees above, the diorama centred with empty space around it, subject at the front.
+
+AVOID: smooth 3D, realistic textures, flat pixel art, known block game characters, brand logos, any other readable text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-voxel').innerText)">Copy the Voxel prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="y2k">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>07 / 07</span><h2>Y2K</h2></div></div>
+    <div class="lib reveal"><img src="assets/y2k-1.jpg" alt="Y2K reference 1" loading="lazy" decoding="async"><img src="assets/y2k-2.jpg" alt="Y2K reference 2" loading="lazy" decoding="async"><img src="assets/y2k-3.jpg" alt="Y2K reference 3" loading="lazy" decoding="async"><img src="assets/y2k-4.jpg" alt="Y2K reference 4" loading="lazy" decoding="async"><img src="assets/y2k-5.jpg" alt="Y2K reference 5" loading="lazy" decoding="async"><img src="assets/y2k-6.jpg" alt="Y2K reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-y2k">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a Y2K graphic poster with the early 2000s digital optimism look: glossy chrome, bubbly 3D type and old gadgets, like a millennium party flyer or a page from a teen magazine.
+
+COLOUR: hot pink, electric blue, baby blue, lilac and acid lime green, with liquid silver chrome and holographic rainbow sheen. Saturated and loud, no muted tones.
+
+TEXTURE AND LIGHT: glossy plastic and mirror chrome with hard white highlights, iridescent rainbow reflections like the back of a CD, a light layer of print grain, a few areas photocopied with rough black toner and faint scan lines.
+
+TYPE: one huge bubbly inflated headline in chrome or glossy pink, with a thick outline and a soft inner glow: [YOUR WORD]. A few tiny lines of pixel or monospace text like a fake interface: a timestamp [2000/07/21 16:42], a file name [track_01.mp3], a version number [0001] and a small barcode. No other words.
+
+GRAPHICS: chunky 3D stars and sparkles in lime and pink, a melted liquid chrome blob, a shiny disc with a rainbow reflection, a pixel butterfly, a thin wireframe grid, small pop up windows with close buttons and a progress bar, fluffy white clouds behind some elements. Retro gadgets floating around the subject: a flip phone, a pocket digital camera with a wrist strap, a candy coloured brick phone.
+
+COMPOSITION: subject cut out from the waist up in the centre, the headline big at the top and slightly overlapping the head, gadgets and stars floating at different sizes, little interface boxes in the corners. Busy but balanced, like a magazine collage.
+
+AVOID: muted or vintage film colours, flat minimal design, real phone or camera brand logos, real band names, extra text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-y2k').innerText)">Copy the Y2K prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="outro reveal">
+    <span class="eyebrow"><b></b>New styles every week</span>
+    <h2>Made one?<br>Tag <i>@marcelgrauu</i></h2>
+    <p>I share new styles and prompts almost every day. Follow so you don't miss the next ones.</p>
+    <a class="cta" href="https://instagram.com/marcelgrauu" target="_blank" rel="noopener">Follow @marcelgrauu <span class="ic"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
+  </section>
+  <footer><span class="logo">marcel<i>grau</i></span><span>Prompts free to use. Results depend on the model and your photo.</span></footer>
+</main>
+<div class="toast" id="toast">Copied</div>
+<script>
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold: .12});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+function copyText(text) {
+  const done = () => { const t = document.getElementById('toast'); t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 1700); };
+  const fallback = () => { const ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); done(); } catch (e) {} document.body.removeChild(ta); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+}
+document.querySelectorAll('.compare.ex').forEach(cmp => {
+  const setP = x => { const r = cmp.getBoundingClientRect(); cmp.style.setProperty('--p', Math.max(0, Math.min(100, (x - r.left) / r.width * 100)) + '%'); };
+  cmp.addEventListener('pointerdown', e => { cmp.setPointerCapture(e.pointerId); setP(e.clientX); });
+  cmp.addEventListener('pointermove', e => { if (cmp.hasPointerCapture(e.pointerId)) setP(e.clientX); });
+});
+</script>
+</body>
+</html>
