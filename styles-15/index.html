@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#070608">
 <title>7 design style prompts | marcelgrau</title>
-<meta name="description" content="The real prompts behind the 7 design styles of the reel, with before and after examples.">
+<meta name="description" content="The 7 design styles of the reel, each with its reference library and a detailed prompt.">
 <meta property="og:title" content="7 design style prompts">
-<meta property="og:image" content="assets/thermal-after.jpg">
+<meta property="og:image" content="assets/poster.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@1&family=Inter+Tight:wght@200;400;500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
@@ -209,7 +209,10 @@ footer{border-top:1px solid var(--hair);padding:30px 0 50px;display:flex;justify
 .chips{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 8px}
 .chip{padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);color:#fff;text-decoration:none;font-size:15px}
 .chip:hover{border-color:#FFE500;color:#FFE500}
-.pair{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1fr);gap:18px;align-items:start}
+.lib{columns:3;column-gap:10px;margin:0 0 18px}
+.lib img{width:100%;display:block;margin:0 0 10px;border-radius:14px;break-inside:avoid;background:#111}
+@media(max-width:600px){.lib{columns:2}}
+.pair{display:grid;grid-template-columns:1fr;gap:18px;align-items:start}
 .pair .shell{padding:6px;border-radius:30px}
 .pair .compare{border-radius:24px;aspect-ratio:2/3}
 .pair .compare img{width:100%;height:100%;object-fit:cover}
@@ -240,98 +243,174 @@ footer{border-top:1px solid var(--hair);padding:30px 0 50px;display:flex;justify
 
   <section class="sec style" id="thermal">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>01 / 07</span><h2>Thermal</h2></div></div>
+    <div class="lib reveal"><img src="assets/thermal-1.jpg" alt="Thermal reference 1" loading="lazy" decoding="async"><img src="assets/thermal-2.jpg" alt="Thermal reference 2" loading="lazy" decoding="async"><img src="assets/thermal-3.jpg" alt="Thermal reference 3" loading="lazy" decoding="async"><img src="assets/thermal-4.jpg" alt="Thermal reference 4" loading="lazy" decoding="async"><img src="assets/thermal-5.jpg" alt="Thermal reference 5" loading="lazy" decoding="async"><img src="assets/thermal-6.jpg" alt="Thermal reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/thermal-after.jpg" alt="Thermal result" loading="lazy" decoding="async"><img class="b" src="assets/thermal-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-thermal">Turn this photo into a thermal camera image: a false colour heat map where my body glows yellow, orange and red and the cold background is deep blue and purple, soft heat gradients and a bit of noise, with a thermal camera interface on top: a temperature scale bar on the right, a crosshair on me and small white mono readings like 36.5°C and REC in the corners. Vertical 2:3. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-thermal">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a real thermal imaging camera capture (FLIR style) turned into a graphic poster.
+
+COLOUR: false colour &quot;ironbow&quot; heat palette. The warmest skin (face, neck, hands) glows white and pale yellow, the body is hot orange and red, clothes cool down into magenta and purple, and the background is cold deep blue, indigo and violet. No natural colours left anywhere in the image.
+
+TEXTURE AND LIGHT: soft heat gradients instead of shadows, a glowing rim where the body meets the air, clothing folds readable only as temperature changes, slight sensor noise and a little softness like a low resolution sensor.
+
+INTERFACE: thin white monospace HUD on top. A vertical temperature scale on the right edge, from blue at the bottom to white at the top, labelled 20.0 to 40.0 °C. A small square target box on the chest with 36.5°C next to it. Top left a red dot and REC 00:00:12. Bottom left tiny lines: Emissivity 0.95, Distance 1.0 m. Thin corner brackets framing the shot.
+
+COMPOSITION: full body or three quarter shot, subject centred, plenty of cold dark space around so the heat pops.
+
+AVOID: normal photo colours, cartoon or painted look, brand logos, any text beyond the HUD.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-thermal').innerText)">Copy the Thermal prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
   </section>
   <section class="sec style" id="datamosh">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>02 / 07</span><h2>Datamosh</h2></div></div>
+    <div class="lib reveal"><img src="assets/datamosh-1.jpg" alt="Datamosh reference 1" loading="lazy" decoding="async"><img src="assets/datamosh-2.jpg" alt="Datamosh reference 2" loading="lazy" decoding="async"><img src="assets/datamosh-3.jpg" alt="Datamosh reference 3" loading="lazy" decoding="async"><img src="assets/datamosh-4.jpg" alt="Datamosh reference 4" loading="lazy" decoding="async"><img src="assets/datamosh-5.jpg" alt="Datamosh reference 5" loading="lazy" decoding="async"><img src="assets/datamosh-6.jpg" alt="Datamosh reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/datamosh-after.jpg" alt="Datamosh result" loading="lazy" decoding="async"><img class="b" src="assets/datamosh-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-datamosh">Turn this photo into a datamosh glitch poster. Keep me recognisable in the centre, but melt parts of the image into smeared, stretched pixel blocks, like a corrupted video frame where the motion went wrong: colours from the background bleeding through my body, big blocky macroblocks, RGB channel tearing and horizontal streaks. Add one small line of white mono text in a corner like a file name and a timestamp. Vertical 2:3, raw digital error look, not a clean filter. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-datamosh">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a datamosh glitch poster, like a frame from a corrupted video file where the compression broke.
+
+GLITCH: parts of the subject melt into smeared, stretched pixel blocks. Big square macroblocks in some areas, long horizontal streaks dragging the colours sideways in others, and the background bleeding through the body. Keep the face mostly readable, the damage goes around it and through the clothes.
+
+COLOUR: saturated video colours: greens, cyans, oranges and blues mixed with the real colours of the photo, slight RGB channel tearing on the edges.
+
+TEXTURE: low bitrate compression artefacts, posterized gradients, a few dropped scanlines and duplicated slices of the image shifted sideways.
+
+TYPE: one big headline in a thin elegant serif, half covered by the glitch: [YOUR WORD]. One small line of white monospace text in a corner like a file name and timestamp: clip_017.mp4 00:00:17.
+
+COMPOSITION: subject in the middle third, glitch strongest at the edges and the lower half, as if the frame broke while playing.
+
+AVOID: a clean filter look, neat symmetric glitch, brand logos, extra text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-datamosh').innerText)">Copy the Datamosh prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
   </section>
   <section class="sec style" id="crt">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>03 / 07</span><h2>CRT</h2></div></div>
+    <div class="lib reveal"><img src="assets/crt-1.jpg" alt="CRT reference 1" loading="lazy" decoding="async"><img src="assets/crt-2.jpg" alt="CRT reference 2" loading="lazy" decoding="async"><img src="assets/crt-3.jpg" alt="CRT reference 3" loading="lazy" decoding="async"><img src="assets/crt-4.jpg" alt="CRT reference 4" loading="lazy" decoding="async"><img src="assets/crt-5.jpg" alt="CRT reference 5" loading="lazy" decoding="async"><img src="assets/crt-6.jpg" alt="CRT reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/crt-after.jpg" alt="CRT result" loading="lazy" decoding="async"><img class="b" src="assets/crt-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-crt">Turn this photo into the image on an old CRT television screen that fills the whole frame: visible RGB scanlines and phosphor dots, slight barrel distortion at the edges, soft glow and bloom around the bright parts, a little colour fringing and a faint reflection on the curved glass. Vertical 2:3. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-crt">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: the subject displayed on an old CRT screen and photographed up close, glowing in the dark.
+
+COLOUR: mostly electric blue and cyan phosphor light on pure black, with a few hot white highlights. Almost monochrome.
+
+TEXTURE: very visible horizontal scanlines across the whole image, the picture built from tiny glowing RGB phosphor dots, soft bloom around every bright area, slight barrel distortion and darker rounded corners like curved glass. Some lines wobble and ripple sideways like a weak signal, and a bit of grain and dust floats in the black.
+
+LIGHT: the image is the only light source, everything outside the face and body falls into deep black.
+
+COMPOSITION: tight crop on the face and shoulders, slightly off centre, lots of black around, like a close up photo of a screen in a dark room.
+
+AVOID: a flat digital overlay of lines, colourful TV, visible TV casing, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-crt').innerText)">Copy the CRT prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
   </section>
   <section class="sec style" id="halftone">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>04 / 07</span><h2>Halftone</h2></div></div>
+    <div class="lib reveal"><img src="assets/halftone-1.jpg" alt="Halftone reference 1" loading="lazy" decoding="async"><img src="assets/halftone-2.jpg" alt="Halftone reference 2" loading="lazy" decoding="async"><img src="assets/halftone-3.jpg" alt="Halftone reference 3" loading="lazy" decoding="async"><img src="assets/halftone-4.jpg" alt="Halftone reference 4" loading="lazy" decoding="async"><img src="assets/halftone-5.jpg" alt="Halftone reference 5" loading="lazy" decoding="async"><img src="assets/halftone-6.jpg" alt="Halftone reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/halftone-after.jpg" alt="Halftone result" loading="lazy" decoding="async"><img class="b" src="assets/halftone-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-halftone">Turn this photo into a halftone poster: me printed in big visible black halftone dots on off-white paper, with one bright spot colour as a flat shape behind me. Strong contrast, rough print texture, a bold condensed title at the top and small text in the corners. Vertical 2:3, editorial magazine look. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-halftone">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a printed halftone poster, like a riso or offset print from an independent design studio.
+
+COLOUR: the subject in black halftone dots only, on warm off white paper. One single accent colour for the shapes and the title: [ORANGE] (or yellow, or navy).
+
+TEXTURE: big visible round halftone dots that get larger in the shadows and disappear in the highlights, slight misregistration, uneven ink, paper grain and a few creases.
+
+TYPE: a huge condensed bold sans serif title behind or across the subject, partly hidden by the head: [YOUR WORD]. A few lines of tiny body text in the corners like a real poster (date, issue number, a short line). Nothing else.
+
+GRAPHICS: one simple bold shape in the accent colour behind the subject (a circle, a star or a block) and two or three thin rules.
+
+COMPOSITION: subject cut out from the chest up, centred and big, overlapping the title, Swiss poster layout with a clear grid.
+
+AVOID: photographic smooth tones, gradients, brand logos, real people's names.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-halftone').innerText)">Copy the Halftone prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
   </section>
   <section class="sec style" id="infrared">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>05 / 07</span><h2>Infrared</h2></div></div>
+    <div class="lib reveal"><img src="assets/infrared-1.jpg" alt="Infrared reference 1" loading="lazy" decoding="async"><img src="assets/infrared-2.jpg" alt="Infrared reference 2" loading="lazy" decoding="async"><img src="assets/infrared-3.jpg" alt="Infrared reference 3" loading="lazy" decoding="async"><img src="assets/infrared-4.jpg" alt="Infrared reference 4" loading="lazy" decoding="async"><img src="assets/infrared-5.jpg" alt="Infrared reference 5" loading="lazy" decoding="async"><img src="assets/infrared-6.jpg" alt="Infrared reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/infrared-after.jpg" alt="Infrared result" loading="lazy" decoding="async"><img class="b" src="assets/infrared-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-infrared">Turn this photo into an infrared photograph: all the trees, plants and grass turn bright pink and red, the sky turns deep teal blue, skin stays natural but a bit pale and glowing, dreamy film grain, Aerochrome look. Vertical 2:3. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-infrared">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a real infrared film photo (Aerochrome style), shot outdoors in daylight.
+
+COLOUR: every plant, tree and patch of grass turns hot pink, magenta and red. The sky becomes a deep clean turquoise or cyan blue. Skin stays fairly natural and pale, clothes keep their tones but slightly shifted, white objects glow.
+
+LIGHT: bright sun, high contrast, crisp shadows, a dreamy glow on the foliage.
+
+TEXTURE: analog film grain, rich saturated colours, a touch of vignetting.
+
+SETTING: place the subject in a scene full of vegetation (a park, a forest, a desert with plants, a greenhouse), so there is a lot of pink and red around them.
+
+COMPOSITION: full body or three quarter shot, subject a bit off centre, foliage framing the edges, sky visible at the top.
+
+AVOID: a simple pink filter over everything, pink skin, neon or digital look, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-infrared').innerText)">Copy the Infrared prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
   </section>
   <section class="sec style" id="riso">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>06 / 07</span><h2>Risograph</h2></div></div>
+    <div class="lib reveal"><img src="assets/riso-1.jpg" alt="Risograph reference 1" loading="lazy" decoding="async"><img src="assets/riso-2.jpg" alt="Risograph reference 2" loading="lazy" decoding="async"><img src="assets/riso-3.jpg" alt="Risograph reference 3" loading="lazy" decoding="async"><img src="assets/riso-4.jpg" alt="Risograph reference 4" loading="lazy" decoding="async"><img src="assets/riso-5.jpg" alt="Risograph reference 5" loading="lazy" decoding="async"><img src="assets/riso-6.jpg" alt="Risograph reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/riso-after.jpg" alt="Risograph result" loading="lazy" decoding="async"><img class="b" src="assets/riso-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-riso">Turn this photo into a risograph print poster: two or three spot ink colours (fluorescent pink, blue and yellow), each layer slightly out of register, grainy uneven ink, visible paper texture and halftone shading. Me in the centre made of the overlapping inks, with a bold playful title and a few small lines of event text. Vertical 2:3. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-riso">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a risograph printed gig poster, printed with two or three spot inks.
+
+COLOUR: only fluorescent pink, blue and yellow (or blue and red), each as a separate ink layer. Where layers overlap they mix into new tones. Paper is warm off white.
+
+TEXTURE: each ink layer slightly out of register so the edges don't line up, grainy uneven ink coverage with small white specks, rough halftone in the photo areas, visible paper fibre.
+
+SUBJECT: the photo of the subject printed in one ink (for example blue) as a coarse halftone, big and expressive.
+
+TYPE: a bold, playful headline in a chunky rounded sans or wobbly display font: [YOUR WORD]. Under it three or four short lines of event text like a real flyer: [Saturday June 14], [Doors 7 PM], [The Paper Room].
+
+COMPOSITION: busy but balanced flyer layout, title big at the top, subject filling the middle, small text blocks in the corners, one or two simple hand drawn shapes in another ink.
+
+AVOID: clean digital colours, perfect alignment, gradients, brand logos, real band names.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-riso').innerText)">Copy the Risograph prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
   </section>
   <section class="sec style" id="anaglyph">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>07 / 07</span><h2>Anaglyph</h2></div></div>
+    <div class="lib reveal"><img src="assets/anaglyph-1.jpg" alt="Anaglyph reference 1" loading="lazy" decoding="async"><img src="assets/anaglyph-2.jpg" alt="Anaglyph reference 2" loading="lazy" decoding="async"><img src="assets/anaglyph-3.jpg" alt="Anaglyph reference 3" loading="lazy" decoding="async"><img src="assets/anaglyph-4.jpg" alt="Anaglyph reference 4" loading="lazy" decoding="async"><img src="assets/anaglyph-5.jpg" alt="Anaglyph reference 5" loading="lazy" decoding="async"><img src="assets/anaglyph-6.jpg" alt="Anaglyph reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/anaglyph-after.jpg" alt="Anaglyph result" loading="lazy" decoding="async"><img class="b" src="assets/anaglyph-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-anaglyph">Turn this photo into a strong anaglyph 3D image: the red channel and the cyan channel are split and shifted clearly sideways (about 2 percent of the width), so every edge of me and the street has a thick red ghost on one side and a cyan ghost on the other, very visible, like an old 3D movie print seen without the glasses, with faded colours and grain. Vertical 2:3. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-anaglyph">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a red and cyan anaglyph 3D photo, the kind you look at with old 3D glasses.
+
+COLOUR AND EFFECT: two copies of the image, one in red and one in cyan, offset sideways by a few millimetres. The offset is strongest on the edges of the subject (hair, shoulders, arms) and on everything close to the camera, and smaller in the background, so it really looks like depth. Natural colours stay underneath but slightly washed out.
+
+TEXTURE: crisp photo, a little film grain, no blur.
+
+COMPOSITION: subject close to the camera, face or upper body filling most of the frame, a simple background (wall, sky or street) so the red and cyan fringes read clearly.
+
+AVOID: a fully red or fully blue image, glitch blocks, double exposure, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-anaglyph').innerText)">Copy the Anaglyph prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
