@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#070608">
 <title>7 design style prompts | marcelgrau</title>
-<meta name="description" content="The real prompts behind the 7 design styles of the reel, with before and after examples.">
+<meta name="description" content="The 7 design styles of the reel, each with its reference library and a detailed prompt.">
 <meta property="og:title" content="7 design style prompts">
-<meta property="og:image" content="assets/tiltshift-after.jpg">
+<meta property="og:image" content="assets/poster.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@1&family=Inter+Tight:wght@200;400;500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
@@ -209,7 +209,10 @@ footer{border-top:1px solid var(--hair);padding:30px 0 50px;display:flex;justify
 .chips{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 8px}
 .chip{padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);color:#fff;text-decoration:none;font-size:15px}
 .chip:hover{border-color:#FFE500;color:#FFE500}
-.pair{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1fr);gap:18px;align-items:start}
+.lib{columns:3;column-gap:10px;margin:0 0 18px}
+.lib img{width:100%;display:block;margin:0 0 10px;border-radius:14px;break-inside:avoid;background:#111}
+@media(max-width:600px){.lib{columns:2}}
+.pair{display:grid;grid-template-columns:1fr;gap:18px;align-items:start}
 .pair .shell{padding:6px;border-radius:30px}
 .pair .compare{border-radius:24px;aspect-ratio:2/3}
 .pair .compare img{width:100%;height:100%;object-fit:cover}
@@ -240,98 +243,192 @@ footer{border-top:1px solid var(--hair);padding:30px 0 50px;display:flex;justify
 
   <section class="sec style" id="tiltshift">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>01 / 07</span><h2>Tilt Shift</h2></div></div>
+    <div class="lib reveal"><img src="assets/tiltshift-1.jpg" alt="Tilt Shift reference 1" loading="lazy" decoding="async"><img src="assets/tiltshift-2.jpg" alt="Tilt Shift reference 2" loading="lazy" decoding="async"><img src="assets/tiltshift-3.jpg" alt="Tilt Shift reference 3" loading="lazy" decoding="async"><img src="assets/tiltshift-4.jpg" alt="Tilt Shift reference 4" loading="lazy" decoding="async"><img src="assets/tiltshift-5.jpg" alt="Tilt Shift reference 5" loading="lazy" decoding="async"><img src="assets/tiltshift-6.jpg" alt="Tilt Shift reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/tiltshift-after.jpg" alt="Tilt Shift result" loading="lazy" decoding="async"><img class="b" src="assets/tiltshift-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-tiltshift">Turn this photo into a tilt shift miniature photo: a strong blur band at the top and bottom of the frame and only a thin sharp strip across me, boosted saturation and contrast, so the street, cars and people around me look like a tiny toy model town seen from slightly above. Vertical 2:3. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-tiltshift">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a tilt shift miniature photo: a real scene shot from high above that looks like a tiny toy model town.
+
+SETTING: place the subject in a busy outdoor scene seen from a raised viewpoint: [a street crossing with painted zebra stripes, parked cars, a bus and small groups of pedestrians] (or a bridge full of traffic, a park path, a harbour with boats). The camera looks down at about 45 degrees, as if from a rooftop or a balcony.
+
+FOCUS AND LIGHT: one thin horizontal band of sharp focus across the subject. Everything above and below melts into a strong, smooth lens blur that gets heavier towards the top and bottom edges. Bright daylight, crisp short shadows, slightly overexposed.
+
+COLOUR: boosted saturation and contrast, candy bright colours: grass and trees in vivid green, water in turquoise, asphalt light grey, cars, umbrellas and clothes like glossy painted plastic. Everything looks clean and freshly painted.
+
+TEXTURE: smooth toy like surfaces, the people and cars around look like little plastic figurines on a model set. The subject keeps a fully recognisable face.
+
+COMPOSITION: subject inside the sharp band in the middle third, standing among the little people and cars, smaller than in a portrait but big enough to read the face, lots of blurred scenery above and below.
+
+AVOID: a normal eye level photo, blur on the subject, a dull grey grade, real landmarks, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-tiltshift').innerText)">Copy the Tilt Shift prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
   </section>
   <section class="sec style" id="fisheye">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>02 / 07</span><h2>Fisheye</h2></div></div>
+    <div class="lib reveal"><img src="assets/fisheye-1.jpg" alt="Fisheye reference 1" loading="lazy" decoding="async"><img src="assets/fisheye-2.jpg" alt="Fisheye reference 2" loading="lazy" decoding="async"><img src="assets/fisheye-3.jpg" alt="Fisheye reference 3" loading="lazy" decoding="async"><img src="assets/fisheye-4.jpg" alt="Fisheye reference 4" loading="lazy" decoding="async"><img src="assets/fisheye-5.jpg" alt="Fisheye reference 5" loading="lazy" decoding="async"><img src="assets/fisheye-6.jpg" alt="Fisheye reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/fisheye-after.jpg" alt="Fisheye result" loading="lazy" decoding="async"><img class="b" src="assets/fisheye-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-fisheye">Turn this photo into an extreme fisheye lens photo: a round 180 degree view with the edges of the frame bending hard, me close to the lens so my head and hands look big and my shoes small, the buildings curving around me, black vignette corners, like a 2000s skate video still. Vertical 2:3. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-fisheye">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: an extreme fisheye lens photo, like a still from a street skate video shot with a 180 degree lens held at arm's length.
+
+LENS: a circular fisheye: the picture is a round image floating in a black frame, or it fills the vertical format with hard bent edges and black corners. Every straight line bends: buildings, walls, railings and lamp posts curve around the subject and lean in towards the centre like a dome.
+
+PERSPECTIVE: the camera very close to the subject, slightly below or slightly above. Whatever is nearest the lens looks huge (face, hands, a held object), the feet and the background shrink. The subject looks into or past the lens with attitude.
+
+COLOUR: bold and punchy, choose one: [deep blue sky and warm sunlit skin], [one saturated colour light like red or green flooding the whole room], or [high contrast black and white]. Strong saturation, deep blacks.
+
+TEXTURE AND LIGHT: on camera flash or hard sun, crisp detail in the centre that gets softer and slightly smeared towards the curved edges, light film grain, a thin colour fringe on the rim of the circle.
+
+SETTING: [a city street with tall towers curving overhead] (or a narrow tiled corridor, a sunny boardwalk with palm trees, a cobbled square).
+
+COMPOSITION: subject centred in the circle, head and shoulders big, the environment wrapping around in a bubble.
+
+AVOID: a mild wide angle, straight lines, deforming the face beyond recognition, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-fisheye').innerText)">Copy the Fisheye prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
   </section>
   <section class="sec style" id="nightvision">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>03 / 07</span><h2>Night Vision</h2></div></div>
+    <div class="lib reveal"><img src="assets/nightvision-1.jpg" alt="Night Vision reference 1" loading="lazy" decoding="async"><img src="assets/nightvision-2.jpg" alt="Night Vision reference 2" loading="lazy" decoding="async"><img src="assets/nightvision-3.jpg" alt="Night Vision reference 3" loading="lazy" decoding="async"><img src="assets/nightvision-4.jpg" alt="Night Vision reference 4" loading="lazy" decoding="async"><img src="assets/nightvision-5.jpg" alt="Night Vision reference 5" loading="lazy" decoding="async"><img src="assets/nightvision-6.jpg" alt="Night Vision reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/nightvision-after.jpg" alt="Night Vision result" loading="lazy" decoding="async"><img class="b" src="assets/nightvision-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-nightvision">Turn this photo into a night vision camera image: everything in glowing phosphor green and black, heavy noise and grain, bright eyes and highlights, a soft round vignette like looking through night vision goggles, and a small green interface with REC, a battery icon and a timestamp in the corners. Vertical 2:3. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-nightvision">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a frame from a night vision camera, like footage seen through night vision goggles or a camcorder in infrared night mode.
+
+COLOUR: monochrome phosphor green only: deep black shadows, mid tones in dark olive green, highlights in pale glowing mint that almost turns white. No other colours anywhere.
+
+LIGHT: lit by a single infrared lamp next to the lens: the face and the front of the body glow bright, the background falls off fast into black. The eyes reflect the light and shine. Any lamp or street light in the scene becomes a big blooming white flare.
+
+TEXTURE: heavy video noise and grain everywhere, soft low resolution detail, slight smearing on movement, faint horizontal scanlines, a soft dark round vignette at the edges like looking through a goggle tube.
+
+INTERFACE: small thin monospace overlay in pale green: a dot and REC top left, a battery icon top right, a timestamp bottom left like 02:47:13, a small crosshair in the centre. Optionally a thin red rectangle tracking box around the subject with a tiny label TARGET 01.
+
+SETTING: outdoors at night: [a car park with parked vans] (or a dark field, a back street, a garden), everything beyond a few metres fading into black.
+
+COMPOSITION: candid and close, slightly tilted, like a flash selfie at night or a surveillance shot, subject filling the middle of the frame.
+
+AVOID: a daylight look, natural colours, a clean sharp image, brand logos, any text beyond the HUD.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-nightvision').innerText)">Copy the Night Vision prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
   </section>
   <section class="sec style" id="cctv">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>04 / 07</span><h2>CCTV</h2></div></div>
+    <div class="lib reveal"><img src="assets/cctv-1.jpg" alt="CCTV reference 1" loading="lazy" decoding="async"><img src="assets/cctv-2.jpg" alt="CCTV reference 2" loading="lazy" decoding="async"><img src="assets/cctv-3.jpg" alt="CCTV reference 3" loading="lazy" decoding="async"><img src="assets/cctv-4.jpg" alt="CCTV reference 4" loading="lazy" decoding="async"><img src="assets/cctv-5.jpg" alt="CCTV reference 5" loading="lazy" decoding="async"><img src="assets/cctv-6.jpg" alt="CCTV reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/cctv-after.jpg" alt="CCTV result" loading="lazy" decoding="async"><img class="b" src="assets/cctv-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-cctv">Turn this photo into a security camera still: seen from a high corner angle looking down at me, slightly washed out low quality colours, compression blocks, a little motion smear, and a white mono overlay with CAM 03, the date and a running timestamp in the corners. Vertical 2:3, found footage feel. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-cctv">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a still frame from a security camera, the kind of grainy found footage clip that gets shared online.
+
+ANGLE: a camera mounted high in a corner near the ceiling, looking steeply down at the subject, wide lens with slight barrel distortion so walls, shelves and doors lean.
+
+SETTING: an everyday place: [a corner shop aisle with full shelves and drink fridges] (or a building entrance with glass doors, an empty street at night, a supermarket corridor). Products and signs blurred into anonymous colour blocks.
+
+COLOUR: washed out low quality video colours with a cold green or blue cast under fluorescent light, or black and white infrared at night. Flat contrast, blown out light sources.
+
+TEXTURE: low resolution, heavy compression blocks, smeared motion on hands and feet, noise in the shadows, slight interlacing lines.
+
+INTERFACE: white monospace overlay: top left the date and a running time like 23.02 FRI 22:05:43, top right CAM 03, bottom left a red dot and REC. A thin green rectangle detection box around the subject with a small label person 0.89. Optionally a zoomed inset box of the face in a corner, linked to the subject with thin lines.
+
+COMPOSITION: full body, subject in the lower middle of the frame with lots of floor around, caught mid action, either looking up at the camera or unaware of it.
+
+AVOID: cinematic lighting, sharp detail, an eye level angle, readable product names, brand logos.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-cctv').innerText)">Copy the CCTV prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
   </section>
   <section class="sec style" id="lightleak">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>05 / 07</span><h2>Light Leak</h2></div></div>
+    <div class="lib reveal"><img src="assets/lightleak-1.jpg" alt="Light Leak reference 1" loading="lazy" decoding="async"><img src="assets/lightleak-2.jpg" alt="Light Leak reference 2" loading="lazy" decoding="async"><img src="assets/lightleak-3.jpg" alt="Light Leak reference 3" loading="lazy" decoding="async"><img src="assets/lightleak-4.jpg" alt="Light Leak reference 4" loading="lazy" decoding="async"><img src="assets/lightleak-5.jpg" alt="Light Leak reference 5" loading="lazy" decoding="async"><img src="assets/lightleak-6.jpg" alt="Light Leak reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/lightleak-after.jpg" alt="Light Leak result" loading="lazy" decoding="async"><img class="b" src="assets/lightleak-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-lightleak">Turn this photo into an analog film photo with strong light leaks: warm orange, red and yellow streaks of light burning in from one side of the frame and washing over me, faded film colours, soft halation around the highlights and grain. Vertical 2:3, 35mm film look. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-lightleak">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: an analog 35mm film photo with strong light leaks, like the first frames of a roll that got exposed to light by accident.
+
+LIGHT LEAKS: wide bands of warm light burning into the frame from one side or from the top: vertical stripes and soft blobs of red, hot orange and golden yellow, sometimes a pink or magenta band. Where the leak is strongest the image washes out almost to white, where it fades the scene shows through.
+
+COLOUR: warm faded film colours: creamy highlights, lifted blacks, sky in pale teal or cyan, skin glowing peach and orange.
+
+TEXTURE AND LIGHT: golden hour sun or a bright window behind the subject, soft backlight and rim light, visible film grain, red halation glowing around bright edges, slight softness, a hint of lens flare.
+
+SETTING: [a field of dry grass at sunset] (or a sunny living room by a window, a wooden pier by the sea, a hillside under a blue sky).
+
+COMPOSITION: casual snapshot framing, subject a bit off centre, partly lost in the light, the leak crossing the frame next to or over the body without hiding the face.
+
+AVOID: digital lens flare effects, a clean sharp digital look, cold colours, date stamps, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-lightleak').innerText)">Copy the Light Leak prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
   </section>
   <section class="sec style" id="polaroid">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>06 / 07</span><h2>Polaroid</h2></div></div>
+    <div class="lib reveal"><img src="assets/polaroid-1.jpg" alt="Polaroid reference 1" loading="lazy" decoding="async"><img src="assets/polaroid-2.jpg" alt="Polaroid reference 2" loading="lazy" decoding="async"><img src="assets/polaroid-3.jpg" alt="Polaroid reference 3" loading="lazy" decoding="async"><img src="assets/polaroid-4.jpg" alt="Polaroid reference 4" loading="lazy" decoding="async"><img src="assets/polaroid-5.jpg" alt="Polaroid reference 5" loading="lazy" decoding="async"><img src="assets/polaroid-6.jpg" alt="Polaroid reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/polaroid-after.jpg" alt="Polaroid result" loading="lazy" decoding="async"><img class="b" src="assets/polaroid-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-polaroid">Turn this photo into a real Polaroid instant photo: the image inside the classic white frame with the thick bottom border, soft faded colours, slightly blown highlights and a gentle colour cast, lying on a wooden table with a hand written date on the bottom border in marker. Vertical 2:3. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-polaroid">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a real instant film photo: the square print with its classic white frame and thicker bottom border, photographed as a physical object.
+
+PRINT: the subject inside the square image area. Soft, slightly faded instant film colours with a gentle cool blue or warm yellow cast, highlights a little blown, shadows lifted and murky, low sharpness, flash falloff, tiny chemical marks along the edges of the image.
+
+SCENE INSIDE THE PRINT: [outdoors on a sunny day next to an old pickup truck with pine trees and mountains behind] (or a dark room lit by on camera flash).
+
+PRESENTATION: choose one: [a hand holding the print between thumb and fingers over a dark wooden table], [the print held up in front of the real scene so the scene continues around it], [the print alone on a plain light grey background], [a loose pile of several overlapping prints of the same person in different poses].
+
+TYPE: a short handwritten caption in black marker on the bottom border: [YOUR CAPTION], [day 1]. Nothing else written.
+
+TEXTURE: matte white frame with a faint texture, a soft shadow under the print, a touch of grain and dust.
+
+COMPOSITION: print centred and straight or slightly rotated, subject clearly visible inside the square, real surroundings around the frame.
+
+AVOID: a digital white border, rounded phone corners, perfectly sharp vivid colours, brand names or logos on the frame, printed text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-polaroid').innerText)">Copy the Polaroid prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
   </section>
   <section class="sec style" id="solar">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>07 / 07</span><h2>Solarized</h2></div></div>
+    <div class="lib reveal"><img src="assets/solar-1.jpg" alt="Solarized reference 1" loading="lazy" decoding="async"><img src="assets/solar-2.jpg" alt="Solarized reference 2" loading="lazy" decoding="async"><img src="assets/solar-3.jpg" alt="Solarized reference 3" loading="lazy" decoding="async"><img src="assets/solar-4.jpg" alt="Solarized reference 4" loading="lazy" decoding="async"><img src="assets/solar-5.jpg" alt="Solarized reference 5" loading="lazy" decoding="async"><img src="assets/solar-6.jpg" alt="Solarized reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/solar-after.jpg" alt="Solarized result" loading="lazy" decoding="async"><img class="b" src="assets/solar-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-solar">Turn this photo into a solarized darkroom print: partly reversed tones so the sky and highlights flip into dark silver and the shadows glow, with a thin bright halo line around my silhouette (the Sabattier effect), black and white with a slight blue tint and grain, like a Man Ray print. Vertical 2:3. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-solar">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a solarized black and white darkroom print, made by flashing light on the paper halfway through developing.
+
+TONES: partly reversed tones: some highlights turn dark grey and silver, some shadows turn light, so skin looks metallic and hair can glow white like a negative. Positive and negative mixed in the same image.
+
+EDGES: a thin bright or dark halo line around the silhouette and along strong edges like the profile, lips, eyelids, fingers and strands of hair. This line is the key of the effect.
+
+COLOUR: monochrome silver gelatin print: black, greys and white, with a faint cool blue or warm sepia tint.
+
+LIGHT: studio portrait lighting with strong side light so the profile, cheekbones, neck and shoulders become sculptural shapes.
+
+TEXTURE: fine film grain, smooth glossy paper, slight tonal unevenness from hand development, a small dust spot or two.
+
+COMPOSITION: close portrait, head and shoulders or a clean profile, plain studio background (it may flip to dark grey), elegant and surreal.
+
+AVOID: colour, a flat digital invert applied evenly, neon glow, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-solar').innerText)">Copy the Solarized prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
