@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#070608">
 <title>7 design style prompts | marcelgrau</title>
-<meta name="description" content="The real prompts behind the 7 design styles of the reel, with before and after examples.">
+<meta name="description" content="The 7 design styles of the reel, each with its reference library and a detailed prompt.">
 <meta property="og:title" content="7 design style prompts">
-<meta property="og:image" content="assets/linocut-after.jpg">
+<meta property="og:image" content="assets/poster.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@1&family=Inter+Tight:wght@200;400;500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
@@ -209,7 +209,10 @@ footer{border-top:1px solid var(--hair);padding:30px 0 50px;display:flex;justify
 .chips{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 8px}
 .chip{padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);color:#fff;text-decoration:none;font-size:15px}
 .chip:hover{border-color:#FFE500;color:#FFE500}
-.pair{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1fr);gap:18px;align-items:start}
+.lib{columns:3;column-gap:10px;margin:0 0 18px}
+.lib img{width:100%;display:block;margin:0 0 10px;border-radius:14px;break-inside:avoid;background:#111}
+@media(max-width:600px){.lib{columns:2}}
+.pair{display:grid;grid-template-columns:1fr;gap:18px;align-items:start}
 .pair .shell{padding:6px;border-radius:30px}
 .pair .compare{border-radius:24px;aspect-ratio:2/3}
 .pair .compare img{width:100%;height:100%;object-fit:cover}
@@ -240,98 +243,188 @@ footer{border-top:1px solid var(--hair);padding:30px 0 50px;display:flex;justify
 
   <section class="sec style" id="linocut">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>01 / 07</span><h2>Linocut</h2></div></div>
+    <div class="lib reveal"><img src="assets/linocut-1.jpg" alt="Linocut reference 1" loading="lazy" decoding="async"><img src="assets/linocut-2.jpg" alt="Linocut reference 2" loading="lazy" decoding="async"><img src="assets/linocut-3.jpg" alt="Linocut reference 3" loading="lazy" decoding="async"><img src="assets/linocut-4.jpg" alt="Linocut reference 4" loading="lazy" decoding="async"><img src="assets/linocut-5.jpg" alt="Linocut reference 5" loading="lazy" decoding="async"><img src="assets/linocut-6.jpg" alt="Linocut reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/linocut-after.jpg" alt="Linocut result" loading="lazy" decoding="async"><img class="b" src="assets/linocut-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-linocut">Turn this photo into a linocut print: me carved in bold black ink on cream paper, with rough gouged lines that follow the shapes of my body and clothes, solid black shadows, white carved highlights, uneven ink texture and a small hand printed signature at the bottom. Vertical 2:3. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-linocut">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a hand carved linocut portrait, printed by hand from a lino block.
+
+COLOUR: one ink only on paper: [black] (or cobalt blue, or deep red) on warm cream white paper. Optionally a second flat block in a bright colour like [lime green] printed under part of the clothes, slightly off register.
+
+CARVING: the face and body built from bold flat shapes of solid ink and carved white areas. Shadows are solid ink, mid tones are rows of parallel gouge lines that follow the form (around the cheeks, along the hair, across the clothes), highlights are bare paper. Small stippled dots for freckles or texture. The background is carved with rough vertical gouge marks or left as a solid ink block.
+
+TEXTURE: uneven ink coverage with small white specks and slightly mottled solids, the carved edges a little rough, a faint embossed edge of the block, visible paper fibre.
+
+TYPE: in pencil under the print, a tiny edition number 1/20 on the left and a small signature [YOUR NAME] on the right. Nothing else.
+
+COMPOSITION: head and shoulders portrait, centred and big, strong expression, the block edge visible with a margin of paper around it.
+
+AVOID: smooth gradients, photographic detail, a clean digital vector look, brand logos, any other text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-linocut').innerText)">Copy the Linocut prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
   </section>
   <section class="sec style" id="screenprint">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>02 / 07</span><h2>Screen Print</h2></div></div>
+    <div class="lib reveal"><img src="assets/screenprint-1.jpg" alt="Screen Print reference 1" loading="lazy" decoding="async"><img src="assets/screenprint-2.jpg" alt="Screen Print reference 2" loading="lazy" decoding="async"><img src="assets/screenprint-3.jpg" alt="Screen Print reference 3" loading="lazy" decoding="async"><img src="assets/screenprint-4.jpg" alt="Screen Print reference 4" loading="lazy" decoding="async"><img src="assets/screenprint-5.jpg" alt="Screen Print reference 5" loading="lazy" decoding="async"><img src="assets/screenprint-6.jpg" alt="Screen Print reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/screenprint-after.jpg" alt="Screen Print result" loading="lazy" decoding="async"><img class="b" src="assets/screenprint-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-screenprint">Turn this photo into a screen print poster: me in three flat ink layers (black, a bright orange and a pale blue) slightly out of register, visible halftone in the shadows, ink texture and the word FRESH as a bold sans serif title at the top, no other text or signs. Vertical 2:3, Warhol studio feel but modern. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-screenprint">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a modern screen printed gig or exhibition poster, two or three flat spot inks pulled by hand.
+
+COLOUR: a limited ink set: [electric blue], [hot pink] and [acid yellow] (or blue and orange, or lime and pink) on white or cream paper. Each ink is flat, and where they overprint they mix into new tones.
+
+SUBJECT: the photo turned into a high contrast single ink layer, either a coarse halftone or a posterized two tone, printed in one ink over a solid block of another. One bold shape in the third ink (a star, a circle or a hand drawn scribble) over part of the figure, slightly misregistered.
+
+TEXTURE: inks slightly out of register so edges show thin gaps and overlaps, grainy halftone, uneven ink density, small specks, visible paper tooth.
+
+TYPE: a huge condensed bold grotesque headline filling the top, tight leading, partly overlapped by the head: [YOUR WORD]. Small text blocks in the corners like a real poster: [SAT 04.07], [10 PM TIL LATE], [THE PRINT ROOM], and a short numbered list of invented lines like [01 FIRST LIGHT], [02 SLOW WAVE].
+
+COMPOSITION: Swiss grid layout, big type and a big subject, colour bleeding to the edges.
+
+AVOID: gradients, photographic smooth tones, real names, brand logos.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-screenprint').innerText)">Copy the Screen Print prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
   </section>
   <section class="sec style" id="xerox">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>03 / 07</span><h2>Xerox</h2></div></div>
+    <div class="lib reveal"><img src="assets/xerox-1.jpg" alt="Xerox reference 1" loading="lazy" decoding="async"><img src="assets/xerox-2.jpg" alt="Xerox reference 2" loading="lazy" decoding="async"><img src="assets/xerox-3.jpg" alt="Xerox reference 3" loading="lazy" decoding="async"><img src="assets/xerox-4.jpg" alt="Xerox reference 4" loading="lazy" decoding="async"><img src="assets/xerox-5.jpg" alt="Xerox reference 5" loading="lazy" decoding="async"><img src="assets/xerox-6.jpg" alt="Xerox reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/xerox-after.jpg" alt="Xerox result" loading="lazy" decoding="async"><img class="b" src="assets/xerox-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-xerox">Turn this photo into a xerox photocopy: high contrast black and white, crushed blacks, toner speckles and streaks, slightly skewed on the page with a dark copy edge, like a copy of a copy used for a punk flyer, with the words NO RULES in cut out ransom note letters taped on top and no other words. Vertical 2:3. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-xerox">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a photocopied punk zine flyer, a copy of a copy of a copy.
+
+COLOUR: black toner only, on plain white paper or on flat coloured stock: [red], [hot pink] or [acid green]. Optionally one word in red ink.
+
+TEXTURE: extreme contrast with the mid tones gone, crushed blacks, the face turned into grainy toner, speckles, dust, streaks and drag lines from the copier glass, a dark copy border on one side, the page slightly skewed, folds, creases and bits of tape.
+
+TYPE: a headline made of cut out ransom note letters glued on, in mixed sizes: [YOUR WORDS]. A few small lines in typewriter or condensed sans letters on strips of paper: [EVERY FRIDAY], [10 PM TIL LATE], [ALL WELCOME]. Neutral invented words only.
+
+GRAPHICS: a jagged starburst cut out framing the face, or the subject cropped inside a black box, small hand drawn daggers, stars or arrows.
+
+COMPOSITION: collaged layout, subject big and close up, staring or shouting at the camera, raw and DIY.
+
+AVOID: clean grey tones, smooth gradients, polished design, real band names, brand logos.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-xerox').innerText)">Copy the Xerox prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
   </section>
   <section class="sec style" id="stencil">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>04 / 07</span><h2>Stencil</h2></div></div>
+    <div class="lib reveal"><img src="assets/stencil-1.jpg" alt="Stencil reference 1" loading="lazy" decoding="async"><img src="assets/stencil-2.jpg" alt="Stencil reference 2" loading="lazy" decoding="async"><img src="assets/stencil-3.jpg" alt="Stencil reference 3" loading="lazy" decoding="async"><img src="assets/stencil-4.jpg" alt="Stencil reference 4" loading="lazy" decoding="async"><img src="assets/stencil-5.jpg" alt="Stencil reference 5" loading="lazy" decoding="async"><img src="assets/stencil-6.jpg" alt="Stencil reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/stencil-after.jpg" alt="Stencil result" loading="lazy" decoding="async"><img class="b" src="assets/stencil-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-stencil">Turn this photo into a stencil graffiti on a concrete wall: me as a two layer spray paint stencil in black and one red accent, sharp stencil edges with a little overspray and drips, the wall texture showing through. Vertical 2:3, street art look. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-stencil">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a spray painted stencil graffiti made with a hand cut stencil on a real surface, photographed in daylight.
+
+STENCIL: the subject turned into two layers: a black layer for the shadows and features, and one accent colour layer in [red] (or hot pink, or yellow) for a background shape or the clothes. Shapes simplified into flat islands with small bridges connecting the cut parts, like a real stencil.
+
+TEXTURE: crisp stencil edges with a soft overspray haze around them, a few drips running down, uneven coverage, the surface showing through the paint: [rough grey concrete wall] (or brick, or a sheet of cardboard on the ground).
+
+PROPS: optionally the cut paper stencil itself lying next to the painting, a hand in a glove lifting it off, or a plain unlabelled spray can standing beside it.
+
+TYPE: optional, one word in bold stencil letters next to the figure: [YOUR WORD]. Nothing else.
+
+COMPOSITION: head and shoulders or full figure centred on the wall, photographed straight on, a bit of the surrounding street at the edges.
+
+AVOID: a clean digital vector look, smooth gradients and shading, logos on the cans, brand logos, other text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-stencil').innerText)">Copy the Stencil prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
   </section>
   <section class="sec style" id="letterpress">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>05 / 07</span><h2>Letterpress</h2></div></div>
+    <div class="lib reveal"><img src="assets/letterpress-1.jpg" alt="Letterpress reference 1" loading="lazy" decoding="async"><img src="assets/letterpress-2.jpg" alt="Letterpress reference 2" loading="lazy" decoding="async"><img src="assets/letterpress-3.jpg" alt="Letterpress reference 3" loading="lazy" decoding="async"><img src="assets/letterpress-4.jpg" alt="Letterpress reference 4" loading="lazy" decoding="async"><img src="assets/letterpress-5.jpg" alt="Letterpress reference 5" loading="lazy" decoding="async"><img src="assets/letterpress-6.jpg" alt="Letterpress reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/letterpress-after.jpg" alt="Letterpress result" loading="lazy" decoding="async"><img class="b" src="assets/letterpress-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-letterpress">Turn this photo into a letterpress poster: me printed in one deep ink on thick cotton paper with the impression pressed into it, uneven ink coverage, and big wood type letters around me spelling GO OUTSIDE in two colours. Vertical 2:3, vintage print shop look. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-letterpress">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a vintage letterpress poster printed with wood type and metal ornaments in an old print shop.
+
+COLOUR: two or three bold inks: [red], [black] and [teal] (or blue and red, or green and red) on heavy off white cotton paper, or the whole sheet flooded in [hot pink]. Overlapping inks darken.
+
+TEXTURE: uneven ink coverage with wood grain showing inside the big letters, worn edges, letters pressed into the paper, slight misregistration, transparent overprints, small specks.
+
+SUBJECT: the person printed as a flat one colour block or a coarse halftone plate in one ink, placed inside the type layout.
+
+TYPE: big mixed wood type in different styles: tall condensed gothic, slab serif and ornate circus letters, stacked on several lines in different sizes and colours: [YOUR WORDS]. Some letters printed in a second colour inside the words. Small lines in metal type: [THURSDAY OCT 9], [9 PM SHOWTIME].
+
+GRAPHICS: star ornaments, thick and thin rules, decorative borders, maybe a sunburst of rays behind the subject.
+
+COMPOSITION: centred stacked layout like an old show poster, the subject in the middle with type above and below, filling the sheet edge to edge.
+
+AVOID: digital fonts with perfect edges, gradients, real names and places, brand logos.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-letterpress').innerText)">Copy the Letterpress prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
   </section>
   <section class="sec style" id="blueprint">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>06 / 07</span><h2>Blueprint</h2></div></div>
+    <div class="lib reveal"><img src="assets/blueprint-1.jpg" alt="Blueprint reference 1" loading="lazy" decoding="async"><img src="assets/blueprint-2.jpg" alt="Blueprint reference 2" loading="lazy" decoding="async"><img src="assets/blueprint-3.jpg" alt="Blueprint reference 3" loading="lazy" decoding="async"><img src="assets/blueprint-4.jpg" alt="Blueprint reference 4" loading="lazy" decoding="async"><img src="assets/blueprint-5.jpg" alt="Blueprint reference 5" loading="lazy" decoding="async"><img src="assets/blueprint-6.jpg" alt="Blueprint reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/blueprint-after.jpg" alt="Blueprint result" loading="lazy" decoding="async"><img class="b" src="assets/blueprint-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-blueprint">Turn this photo into an architectural blueprint: white technical line drawing of me on deep blueprint blue paper, construction lines, measurements with arrows, small annotations of my outfit in mono text, a grid and a title block in the bottom corner. Vertical 2:3. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-blueprint">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a technical blueprint of the subject, like an engineering plan or a patent drawing.
+
+COLOUR: deep cobalt blueprint blue paper with fine white and pale blue lines. No other colours.
+
+DRAWING: the subject as a clean white technical line drawing that follows the photo exactly: outlines, centre lines, construction lines and dashed hidden lines. Small detail views of [the shoes, the jacket, the glasses] in the margins, labelled FRONT VIEW, SIDE VIEW, TOP VIEW.
+
+ANNOTATIONS: dimension lines with arrows and measurements like 182 cm and 42 cm, angle marks, and leader lines pointing to parts with small monospace labels: [JACKET: COTTON], [SHOES: SIZE 43], [HAIR].
+
+GRID: a faint square grid over the whole sheet, a thin border frame and a title block in the bottom right corner: [PROJECT NAME], [DRAWING NO 01], [SCALE 1:10], [DATE].
+
+TEXTURE: slightly worn paper, faint creases, lines a little chalky, a soft vignette.
+
+COMPOSITION: full body front view centred and large, detail views and notes arranged around it in a neat grid.
+
+AVOID: shading, colour, photo textures, brand logos.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-blueprint').innerText)">Copy the Blueprint prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
   </section>
   <section class="sec style" id="etching">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>07 / 07</span><h2>Etching</h2></div></div>
+    <div class="lib reveal"><img src="assets/etching-1.jpg" alt="Etching reference 1" loading="lazy" decoding="async"><img src="assets/etching-2.jpg" alt="Etching reference 2" loading="lazy" decoding="async"><img src="assets/etching-3.jpg" alt="Etching reference 3" loading="lazy" decoding="async"><img src="assets/etching-4.jpg" alt="Etching reference 4" loading="lazy" decoding="async"><img src="assets/etching-5.jpg" alt="Etching reference 5" loading="lazy" decoding="async"><img src="assets/etching-6.jpg" alt="Etching reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/etching-after.jpg" alt="Etching result" loading="lazy" decoding="async"><img class="b" src="assets/etching-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-etching">Turn this photo into an old copperplate etching: me drawn with fine black crosshatching and engraved lines on aged cream paper, like a 19th century book illustration, the background engraved with the same line work, a thin plate mark border. Vertical 2:3. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-etching">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a copperplate etching or steel engraving, like a portrait plate from a 19th century book.
+
+LINES: the whole image built only from fine black lines: parallel hatching that curves to follow the form of the face, crosshatching in the shadows, tiny dots and flicks in the softest tones, lines that swell thicker in the darks and thin out in the light. The eyes engraved in great detail with the catchlight left as bare paper.
+
+COLOUR: black ink on warm aged cream paper (or a cool silvery grey sheet). No other colours.
+
+TEXTURE: crisp engraved lines with slight ink spread, a faint plate tone, a sunken plate mark rectangle around the image with a paper margin, small foxing spots.
+
+BACKGROUND: engraved with the same line work: dense horizontal lines, a darker oval vignette, or simple drapery.
+
+TYPE: optional, a small engraved serif caption under the image: [YOUR NAME]. Nothing else.
+
+COMPOSITION: choose one: [a classic bust portrait, slightly turned], or [a tight crop on the eyes and nose so the line work fills the frame].
+
+AVOID: pencil drawing, grey wash, smooth gradients, digital lines, brand logos.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-etching').innerText)">Copy the Etching prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
