@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#070608">
 <title>7 design style prompts | marcelgrau</title>
-<meta name="description" content="The real prompts behind the 7 design styles of the reel, with before and after examples.">
+<meta name="description" content="The 7 design styles of the reel, each with its reference library and a detailed prompt.">
 <meta property="og:title" content="7 design style prompts">
-<meta property="og:image" content="assets/ascii-after.jpg">
+<meta property="og:image" content="assets/poster.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@1&family=Inter+Tight:wght@200;400;500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
@@ -209,7 +209,10 @@ footer{border-top:1px solid var(--hair);padding:30px 0 50px;display:flex;justify
 .chips{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 8px}
 .chip{padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);color:#fff;text-decoration:none;font-size:15px}
 .chip:hover{border-color:#FFE500;color:#FFE500}
-.pair{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1fr);gap:18px;align-items:start}
+.lib{columns:3;column-gap:10px;margin:0 0 18px}
+.lib img{width:100%;display:block;margin:0 0 10px;border-radius:14px;break-inside:avoid;background:#111}
+@media(max-width:600px){.lib{columns:2}}
+.pair{display:grid;grid-template-columns:1fr;gap:18px;align-items:start}
 .pair .shell{padding:6px;border-radius:30px}
 .pair .compare{border-radius:24px;aspect-ratio:2/3}
 .pair .compare img{width:100%;height:100%;object-fit:cover}
@@ -240,98 +243,196 @@ footer{border-top:1px solid var(--hair);padding:30px 0 50px;display:flex;justify
 
   <section class="sec style" id="ascii">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>01 / 07</span><h2>ASCII Art</h2></div></div>
+    <div class="lib reveal"><img src="assets/ascii-1.jpg" alt="ASCII Art reference 1" loading="lazy" decoding="async"><img src="assets/ascii-2.jpg" alt="ASCII Art reference 2" loading="lazy" decoding="async"><img src="assets/ascii-3.jpg" alt="ASCII Art reference 3" loading="lazy" decoding="async"><img src="assets/ascii-4.jpg" alt="ASCII Art reference 4" loading="lazy" decoding="async"><img src="assets/ascii-5.jpg" alt="ASCII Art reference 5" loading="lazy" decoding="async"><img src="assets/ascii-6.jpg" alt="ASCII Art reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/ascii-after.jpg" alt="ASCII Art result" loading="lazy" decoding="async"><img class="b" src="assets/ascii-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-ascii">Turn this photo into ASCII art: me rebuilt only from monospace text characters (letters, numbers and symbols) in bright green on a black terminal screen, denser characters in the shadows and lighter ones in the highlights, so I stay recognisable. Vertical 2:3. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-ascii">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: an ASCII art portrait, the subject rebuilt entirely from monospace text characters.
+
+CHARACTERS: only letters, numbers and symbols set in a fixed grid of rows: dense heavy characters like @ # M W 8 $ for the darkest areas, medium ones like o x = + for mid tones, light ones like . , : ' for highlights, and empty spaces for pure white. Tone comes only from character density, no lines or shading.
+
+COLOUR: choose one: [black characters on white paper like a printer output], [light grey characters on black like a terminal], or [green characters on black].
+
+TEXTURE: crisp characters readable up close, while from a distance the face appears clearly and recognisably. Slight printer unevenness or a soft screen glow.
+
+TYPE: a small monospace caption under the portrait: [Portrait of YOUR NAME] on the left and a date like 29/10/2026 on the right.
+
+COMPOSITION: head and shoulders portrait centred, background left empty, the edges of the figure dissolving into sparser characters.
+
+AVOID: solid shapes, pixel blocks, smooth gradients, a photo visible underneath, brand logos.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-ascii').innerText)">Copy the ASCII Art prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
   </section>
   <section class="sec style" id="pixel">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>02 / 07</span><h2>Pixel Art</h2></div></div>
+    <div class="lib reveal"><img src="assets/pixel-1.jpg" alt="Pixel Art reference 1" loading="lazy" decoding="async"><img src="assets/pixel-2.jpg" alt="Pixel Art reference 2" loading="lazy" decoding="async"><img src="assets/pixel-3.jpg" alt="Pixel Art reference 3" loading="lazy" decoding="async"><img src="assets/pixel-4.jpg" alt="Pixel Art reference 4" loading="lazy" decoding="async"><img src="assets/pixel-5.jpg" alt="Pixel Art reference 5" loading="lazy" decoding="async"><img src="assets/pixel-6.jpg" alt="Pixel Art reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/pixel-after.jpg" alt="Pixel Art result" loading="lazy" decoding="async"><img class="b" src="assets/pixel-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-pixel">Turn this photo into 16-bit pixel art: me and the street as a video game scene with big visible square pixels, a limited bright palette, clean pixel outlines and simple dithering, like a sprite from a 90s console game. Vertical 2:3. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-pixel">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a detailed 16 bit pixel art scene, like a still from a story driven retro video game.
+
+PIXELS: big clearly visible square pixels, hard pixel edges everywhere, no anti aliasing, dithering patterns for the gradients in the sky and the shadows.
+
+COLOUR: a limited palette of about 32 colours. Night version: deep navy and indigo with warm orange and yellow window lights and a few neon pink and cyan signs. Day version: saturated cobalt sky with cream and peach pixel clouds.
+
+SUBJECT: the subject as a detailed pixel character with readable features, the same hair, clothes and colours as the photo, standing in the scene.
+
+SETTING: [a rooftop at night overlooking a city skyline under a full moon] (or inside a car at night with rain on the windscreen and city lights ahead, a rainy street with a street lamp and tall apartment blocks).
+
+LIGHT: glowing pixel lights, bloom made of dithered pixels, reflections on wet ground in stripes of pixels.
+
+COMPOSITION: cinematic wide framing in vertical, subject in the lower third, sky and skyline above.
+
+AVOID: smooth gradients, blur, a 3D render look, real landmarks, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-pixel').innerText)">Copy the Pixel Art prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
   </section>
   <section class="sec style" id="vapor">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>03 / 07</span><h2>Vaporwave</h2></div></div>
+    <div class="lib reveal"><img src="assets/vapor-1.jpg" alt="Vaporwave reference 1" loading="lazy" decoding="async"><img src="assets/vapor-2.jpg" alt="Vaporwave reference 2" loading="lazy" decoding="async"><img src="assets/vapor-3.jpg" alt="Vaporwave reference 3" loading="lazy" decoding="async"><img src="assets/vapor-4.jpg" alt="Vaporwave reference 4" loading="lazy" decoding="async"><img src="assets/vapor-5.jpg" alt="Vaporwave reference 5" loading="lazy" decoding="async"><img src="assets/vapor-6.jpg" alt="Vaporwave reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/vapor-after.jpg" alt="Vaporwave result" loading="lazy" decoding="async"><img class="b" src="assets/vapor-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-vapor">Turn this photo into a vaporwave artwork: pastel pink and teal sky with a sunset gradient, a marble Greek bust and palm trees next to me, a neon grid floor, a retro Windows window frame, and Japanese katakana text, lo-fi grain. Vertical 2:3. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-vapor">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a vaporwave digital collage, nostalgic for early desktop computers and 80s sunsets.
+
+COLOUR: pastel pink, lavender, purple, cyan and teal, a sunset gradient from orange to pink, a striped retro sun, magenta neon.
+
+ELEMENTS: a classical white marble bust, palm trees, a black and white checkerboard floor running to the horizon or a neon pink perspective grid, a dolphin, a shiny compact disc, a chrome sphere, a beige old desktop computer with a floppy disk, a white convertible sports car, a pool with blue tiles.
+
+INTERFACE: old operating system windows with grey bevelled frames, blue title bars and small close buttons, an error dialog with an OK button and an hourglass cursor, a pixel paint program window. Title bar text: [YOUR NAME.exe].
+
+TYPE: vertical Japanese katakana in white or pink with neutral meaning, and one script phrase: [Virtual Paradise].
+
+SUBJECT: the subject cut out in the centre, lightly tinted pink and cyan, standing on the checkerboard or framed inside a window.
+
+TEXTURE: lo fi grain, slight chromatic shift on the edges, faint scanlines.
+
+COMPOSITION: layered collage, subject centred and big, windows and objects overlapping around.
+
+AVOID: real operating system logos, real brand names, dark gritty tones.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-vapor').innerText)">Copy the Vaporwave prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
   </section>
   <section class="sec style" id="lowpoly">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>04 / 07</span><h2>Low Poly</h2></div></div>
+    <div class="lib reveal"><img src="assets/lowpoly-1.jpg" alt="Low Poly reference 1" loading="lazy" decoding="async"><img src="assets/lowpoly-2.jpg" alt="Low Poly reference 2" loading="lazy" decoding="async"><img src="assets/lowpoly-3.jpg" alt="Low Poly reference 3" loading="lazy" decoding="async"><img src="assets/lowpoly-4.jpg" alt="Low Poly reference 4" loading="lazy" decoding="async"><img src="assets/lowpoly-5.jpg" alt="Low Poly reference 5" loading="lazy" decoding="async"><img src="assets/lowpoly-6.jpg" alt="Low Poly reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/lowpoly-after.jpg" alt="Low Poly result" loading="lazy" decoding="async"><img class="b" src="assets/lowpoly-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-lowpoly">Turn this photo into a low poly 3D render: me and the whole scene rebuilt from big flat shaded triangles, clearly faceted like a 90s game model, about a few hundred polygons for my body with sharp visible edges on the face, clothes and walls, flat colours taken from the photo, no textures, soft studio light. Vertical 2:3. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-lowpoly">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a stylised low poly 3D render, like a modern indie game diorama.
+
+GEOMETRY: the subject and the whole scene rebuilt from flat shaded polygons: clear facets on the face, hair as a few chunky planes, clothes as angular folds, a few hundred triangles for the body. Sharp edges and no smoothing, but the face stays recognisable.
+
+COLOUR: flat colours per facet taken from the photo, in a soft harmony: dusk purples and pinks, deep blue night forest, or warm sunset orange. Each facet a slightly different shade depending on the light.
+
+LIGHT: soft global illumination with one warm key source (a campfire, a glowing window or moonlight), gentle ambient occlusion, light bloom, shallow depth of field blur in the foreground and background like a miniature photographed up close.
+
+SETTING: [a forest clearing with low poly pine trees, rocks and a campfire at dusk] (or a small floating island diorama on a plain gradient background).
+
+TEXTURE: none, clean matte surfaces, a little volumetric fog.
+
+COMPOSITION: subject standing in the middle of a small diorama, three quarter view, the scene readable like a miniature.
+
+AVOID: realistic textures, smooth high poly surfaces, cartoon outlines, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-lowpoly').innerText)">Copy the Low Poly prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
   </section>
   <section class="sec style" id="wireframe">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>05 / 07</span><h2>Wireframe</h2></div></div>
+    <div class="lib reveal"><img src="assets/wireframe-1.jpg" alt="Wireframe reference 1" loading="lazy" decoding="async"><img src="assets/wireframe-2.jpg" alt="Wireframe reference 2" loading="lazy" decoding="async"><img src="assets/wireframe-3.jpg" alt="Wireframe reference 3" loading="lazy" decoding="async"><img src="assets/wireframe-4.jpg" alt="Wireframe reference 4" loading="lazy" decoding="async"><img src="assets/wireframe-5.jpg" alt="Wireframe reference 5" loading="lazy" decoding="async"><img src="assets/wireframe-6.jpg" alt="Wireframe reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/wireframe-after.jpg" alt="Wireframe result" loading="lazy" decoding="async"><img class="b" src="assets/wireframe-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-wireframe">Turn this photo into a 3D wireframe: me as a glowing white mesh of thin polygon lines on black, the room around me as a wire grid, with small axis gizmos and mono labels like a 3D software viewport. Vertical 2:3. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-wireframe">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a 3D wireframe model of the subject, glowing white lines on pure black, like a 3D scan mesh or an engraved acrylic lamp.
+
+MESH: the face, hair, body and clothes rebuilt as a mesh of thin white lines that follow the 3D surface: a clean quad grid curving around the forms, contour loops around the eyes, nose and lips, denser where there is more detail. Back faces faintly visible through the front.
+
+COLOUR: pure black background, white and very pale cool grey lines with a soft glow. No other colours.
+
+LIGHT: lines brighter where the surface faces the camera, a slight bloom where lines are dense.
+
+INTERFACE: small viewport details in white monospace: an XYZ axis gizmo bottom left, tiny labels like Perspective and [MESH 01], and a polygon count like 12480 polys. Nothing else.
+
+SETTING: the floor as a perspective wire grid fading into black.
+
+COMPOSITION: subject centred, three quarter view, head and shoulders or full body, plenty of black around.
+
+AVOID: solid surfaces, textures, colours, any photo visible, brand logos, other text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-wireframe').innerText)">Copy the Wireframe prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
   </section>
   <section class="sec style" id="vhs">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>06 / 07</span><h2>VHS</h2></div></div>
+    <div class="lib reveal"><img src="assets/vhs-1.jpg" alt="VHS reference 1" loading="lazy" decoding="async"><img src="assets/vhs-2.jpg" alt="VHS reference 2" loading="lazy" decoding="async"><img src="assets/vhs-3.jpg" alt="VHS reference 3" loading="lazy" decoding="async"><img src="assets/vhs-4.jpg" alt="VHS reference 4" loading="lazy" decoding="async"><img src="assets/vhs-5.jpg" alt="VHS reference 5" loading="lazy" decoding="async"><img src="assets/vhs-6.jpg" alt="VHS reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/vhs-after.jpg" alt="VHS result" loading="lazy" decoding="async"><img class="b" src="assets/vhs-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-vhs">Turn this photo into a frame of an old VHS tape: soft blurry detail, colour bleeding, horizontal tracking lines and noise at the bottom, washed out colours, and the white PLAY arrow and a date in the corner in the classic camcorder font. Vertical 2:3. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-vhs">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a frame grabbed from an old home video tape filmed with a handheld camcorder, late 90s look.
+
+COLOUR: washed out, slightly over bright colours with a magenta or blue cast, colours bleeding sideways past the edges (reds most of all), dull shadows, blown highlights.
+
+TEXTURE: soft blurry low resolution detail, a band of horizontal tracking noise at the bottom, thin scanlines, slight wobble, ghosting, noise in the dark areas, a bright sharpening halo around edges.
+
+LENS: optionally a wide camcorder lens with bent edges, the subject close to the camera.
+
+INTERFACE: white camcorder font with a thin black outline: top left PLAY with a triangle arrow, top right a running counter like 00:00:46, bottom left a time and date like 13:59 9.5.1999, and a small battery icon. Optionally the frame shown on a small flip out screen with playback buttons around it.
+
+SETTING: casual real life: [a hallway] (or a street at night with shop lights, a sunny park, a car park).
+
+COMPOSITION: candid and handheld, slightly tilted, subject mid action looking at the camera.
+
+AVOID: crisp HD detail, cinematic colour grading, brand logos on clothes or on the camera, other text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-vhs').innerText)">Copy the VHS prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
   </section>
   <section class="sec style" id="dotmatrix">
     <div class="sec-head reveal"><div><span class="eyebrow"><b></b>07 / 07</span><h2>Dot Matrix</h2></div></div>
+    <div class="lib reveal"><img src="assets/dotmatrix-1.jpg" alt="Dot Matrix reference 1" loading="lazy" decoding="async"><img src="assets/dotmatrix-2.jpg" alt="Dot Matrix reference 2" loading="lazy" decoding="async"><img src="assets/dotmatrix-3.jpg" alt="Dot Matrix reference 3" loading="lazy" decoding="async"><img src="assets/dotmatrix-4.jpg" alt="Dot Matrix reference 4" loading="lazy" decoding="async"><img src="assets/dotmatrix-5.jpg" alt="Dot Matrix reference 5" loading="lazy" decoding="async"><img src="assets/dotmatrix-6.jpg" alt="Dot Matrix reference 6" loading="lazy" decoding="async"></div>
     <div class="pair">
-      <div class="shell reveal"><div class="compare ex">
-        <img src="assets/dotmatrix-after.jpg" alt="Dot Matrix result" loading="lazy" decoding="async"><img class="b" src="assets/dotmatrix-before.jpg" alt="Original photo" loading="lazy" decoding="async">
-        <span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
-        <span class="tag tl">Before</span><span class="tag tr">After</span>
-      </div></div>
       <div class="setup reveal promptcard" style="--d:90ms"><div>
-        <pre id="p-dotmatrix">Turn this photo into a dot matrix print: me printed on continuous feed paper with the hole strips on both sides, made of tiny black printer dots in rows with banding, slightly faded ink. Vertical 2:3. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <pre id="p-dotmatrix">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a dot matrix print, the subject built only from round dots on a grid, like output from an old impact printer mixed with a Swiss modernist poster.
+
+DOTS: a strict square grid of round dots. Dot size follows the tone: big filled dots in the shadows, small dots in the mid tones, tiny or missing dots in the highlights. Fine rows of tiny printer dots with faint horizontal banding inside the larger shapes.
+
+COLOUR: choose one: [black dots on off white paper], [white dots on black], or [black dots on flat red].
+
+PAPER: continuous feed printer paper with tractor feed holes running down both sides, faint perforation lines and pale green bars, slightly yellowed.
+
+TYPE: a headline in a dot matrix font where every letter is made of dots: [YOUR WORD], plus a big number like 86%. Small text in a plain grotesque in the corners: [ISSUE 02], [2026], [YOUR NAME].
+
+TEXTURE: slight ink fade, some dots doubled by the print head, faint banding stripes.
+
+COMPOSITION: modernist grid layout, subject large and made of dots, generous empty space.
+
+AVOID: continuous tone, halftone rosettes, gradients, brand logos.
+
+FORMAT: vertical 2:3, high resolution.</pre>
         <button class="cta" onclick="copyText(document.getElementById('p-dotmatrix').innerText)">Copy the Dot Matrix prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
       </div></div>
     </div>
