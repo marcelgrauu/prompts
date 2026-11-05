@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#070608">
+<title>7 design style prompts | marcelgrau</title>
+<meta name="description" content="The 7 design styles of the reel, each with its reference library and a detailed prompt.">
+<meta property="og:title" content="7 design style prompts">
+<meta property="og:image" content="assets/poster.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@1&family=Inter+Tight:wght@200;400;500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#070608;--ink:#f4f2ee;--mute:#8f8b95;--dim:#5d5a63;--y:#FFE500;
+  --hair:rgba(255,255,255,.07);--hair2:rgba(255,255,255,.12);--shell:rgba(255,255,255,.028);
+  --ease:cubic-bezier(.32,.72,0,1);
+  --sans:"Helvetica Neue","Inter Tight",Helvetica,system-ui,sans-serif;
+  --serif:"EB Garamond",Garamond,"Apple Garamond",Georgia,serif;
+}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:500;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:3;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.mesh{position:fixed;inset:-20%;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(38% 30% at 18% 8%,rgba(255,229,0,.13),transparent 70%),
+    radial-gradient(30% 28% at 88% 30%,rgba(122,92,255,.12),transparent 70%),
+    radial-gradient(34% 30% at 50% 100%,rgba(255,120,40,.08),transparent 70%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 28px}
+
+/* nav isla */
+.nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:4;display:flex;align-items:center;gap:18px;
+  padding:8px 8px 8px 20px;border-radius:999px;background:rgba(14,13,16,.62);border:1px solid var(--hair2);
+  backdrop-filter:blur(22px) saturate(140%);-webkit-backdrop-filter:blur(22px) saturate(140%);white-space:nowrap}
+.logo{font-weight:800;letter-spacing:-.035em;font-size:16px}
+.logo i{font-family:var(--serif);font-weight:400;font-style:italic;color:var(--y);letter-spacing:0;font-size:18px}
+.nav a{color:var(--mute);text-decoration:none;font-size:13px;transition:color .5s var(--ease)}
+.nav a:hover{color:var(--ink)}
+.nav .kw{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:999px;background:var(--y);color:#111;font-weight:700;font-size:12px}
+
+/* hero */
+.hero{min-height:100dvh;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:130px 0 90px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;border:1px solid var(--hair2);
+  font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.eyebrow b{width:6px;height:6px;border-radius:50%;background:var(--y);box-shadow:0 0 12px var(--y)}
+h1{font-size:clamp(46px,7.4vw,104px);line-height:.92;letter-spacing:-.055em;font-weight:800;margin:26px 0 26px}
+h1 .thin{font-weight:200;letter-spacing:-.04em}
+h1 i,h2 i{font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:-.02em;color:var(--y)}
+.lede{color:var(--mute);font-size:18px;line-height:1.55;max-width:42ch;margin:0 0 34px;font-weight:400}
+.cta{display:inline-flex;align-items:center;gap:14px;padding:7px 7px 7px 24px;border-radius:999px;background:var(--y);color:#111;
+  font-weight:700;font-size:15px;text-decoration:none;border:0;cursor:pointer;box-shadow:0 14px 50px rgba(255,229,0,.22);
+  transition:transform .6s var(--ease)}
+.cta .ic{width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.1);display:grid;place-items:center;transition:transform .6s var(--ease)}
+.cta:hover .ic{transform:translate(2px,-2px) scale(1.06)}
+.cta:active{transform:scale(.97)}
+.ghost{display:inline-flex;align-items:center;gap:10px;color:var(--mute);text-decoration:none;font-size:14px;margin-left:18px;transition:color .5s var(--ease)}
+.ghost:hover{color:var(--ink)}
+svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+.stage{position:relative;justify-self:center;width:min(330px,80vw)}
+.device{padding:9px;border-radius:46px;background:linear-gradient(160deg,rgba(255,255,255,.14),rgba(255,255,255,.03));
+  border:1px solid var(--hair2);box-shadow:0 60px 120px -30px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.6) inset}
+.device video{width:100%;border-radius:38px;display:block;background:#000}
+.composer{position:absolute;left:-58px;bottom:70px;display:flex;align-items:center;gap:10px;padding:9px 10px 9px 9px;
+  border-radius:999px;background:rgba(22,21,25,.86);border:1px solid var(--hair2);box-shadow:0 30px 60px rgba(0,0,0,.6);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transform:rotate(-3deg);min-width:230px}
+.composer img{width:34px;height:34px;border-radius:10px;object-fit:cover}
+.composer .typed{font-size:15px;font-weight:500;flex:1;white-space:nowrap}
+.composer .caret{display:inline-block;width:2px;height:17px;background:#0a84ff;vertical-align:-3px;margin-left:1px;animation:blink 1s steps(1) infinite}
+.composer .send{width:30px;height:30px;border-radius:50%;background:#0a84ff;display:grid;place-items:center;color:#fff}
+@keyframes blink{50%{opacity:0}}
+
+/* marquee */
+.marquee{border-block:1px solid var(--hair);overflow:hidden;padding:18px 0;margin:0 -28px 120px;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.track{display:flex;gap:44px;width:max-content;animation:slide 38s linear infinite}
+.track span{font-size:clamp(22px,3vw,34px);font-weight:200;letter-spacing:-.03em;color:var(--dim)}
+.track span:nth-child(3n){font-family:var(--serif);font-style:italic;font-weight:400;color:var(--mute)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* seccions */
+.sec{padding:0 0 130px}
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:40px;flex-wrap:wrap}
+h2{font-size:clamp(36px,5vw,64px);line-height:.96;letter-spacing:-.05em;font-weight:800;margin:18px 0 0}
+.sec-head p{color:var(--mute);max-width:36ch;line-height:1.55;margin:0;font-weight:400}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.step{padding:6px;border-radius:28px;background:var(--shell);border:1px solid var(--hair)}
+.step>div{height:100%;border-radius:22px;padding:26px 22px 24px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.step .n{font-family:var(--serif);font-style:italic;font-size:30px;color:var(--y);line-height:1}
+.step h4{margin:30px 0 8px;font-size:17px;letter-spacing:-.025em;font-weight:700}
+.step p{margin:0;color:var(--mute);font-size:14px;line-height:1.55;font-weight:400}
+
+/* biblioteca */
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:26px}
+.chip{padding:10px 17px;border-radius:999px;border:1px solid var(--hair2);background:transparent;color:var(--mute);font-size:13.5px;cursor:pointer;
+  transition:all .5s var(--ease)}
+.chip.on{background:var(--ink);color:#111;border-color:var(--ink)}
+.search{margin-left:auto;display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px solid var(--hair2);color:var(--mute)}
+.search input{background:none;border:0;outline:0;color:var(--ink);font:inherit;font-size:14px;width:150px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{all:unset;cursor:pointer;display:block}
+.card.hide{display:none}
+.shell{display:block;padding:6px;border-radius:30px;background:var(--shell);border:1px solid var(--hair);transition:transform .8s var(--ease),border-color .8s var(--ease)}
+.core{position:relative;display:block;border-radius:24px;overflow:hidden;aspect-ratio:4/5;background:#111;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.core .after{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.core .before{position:absolute;right:12px;top:12px;width:27%;aspect-ratio:2/3;object-fit:cover;border-radius:12px;
+  border:2px solid rgba(255,255,255,.85);box-shadow:0 12px 30px rgba(0,0,0,.5);transform:rotate(3deg);transition:transform .9s var(--ease)}
+.core::after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(180deg,transparent,rgba(5,5,7,.92))}
+.meta{position:absolute;left:18px;right:60px;bottom:16px;z-index:1;display:flex;flex-direction:column;gap:5px}
+.meta .cat{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--y)}
+.meta .name{font-size:23px;font-weight:700;letter-spacing:-.035em;word-break:break-word}
+.meta .note{font-size:13px;color:#bdb9c2;line-height:1.4;font-weight:400}
+.open{position:absolute;right:14px;bottom:16px;z-index:1;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;transition:all .7s var(--ease)}
+.card:hover .shell{transform:translateY(-4px);border-color:var(--hair2)}
+.card:hover .after{transform:scale(1.04)}
+.card:hover .before{transform:rotate(0deg) scale(1.04)}
+.card:hover .open{background:var(--y);color:#111;transform:translate(2px,-2px)}
+
+/* setup */
+.setup{padding:8px;border-radius:40px;background:linear-gradient(140deg,rgba(255,229,0,.2),rgba(255,255,255,.04) 40%,rgba(122,92,255,.14));}
+.setup>div{border-radius:32px;background:#0c0b0e;padding:56px;display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
+.setup ol{margin:26px 0 30px;padding:0;list-style:none;counter-reset:s;display:grid;gap:14px}
+.setup li{counter-increment:s;display:flex;gap:14px;color:var(--mute);line-height:1.5;font-weight:400}
+.setup li::before{content:counter(s);flex:none;width:26px;height:26px;border-radius:50%;border:1px solid var(--hair2);display:grid;place-items:center;
+  font-size:12px;color:var(--ink)}
+pre{margin:0;white-space:pre-wrap;word-wrap:break-word;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;
+  line-height:1.65;color:#cfcbd4;background:rgba(255,255,255,.025);border:1px solid var(--hair);border-radius:20px;padding:20px;overflow:auto}
+.setup pre{max-height:420px}
+
+.fall{margin-top:18px;border-top:1px solid var(--hair);padding-top:14px}
+.fall summary{cursor:pointer;color:var(--mute);font-size:14px;list-style:none}
+.fall summary::before{content:'+ ';color:var(--y)}
+.fall[open] summary::before{content:'2  '}
+.fall p{color:var(--dim);font-size:13px;margin:10px 0 8px}
+.fall pre{max-height:220px;margin:0 0 12px}
+
+/* outro */
+.outro{text-align:center;padding:40px 0 150px}
+.outro h2{font-size:clamp(40px,6vw,84px)}
+.outro p{color:var(--mute);margin:22px auto 34px;max-width:46ch;line-height:1.55;font-weight:400}
+footer{border-top:1px solid var(--hair);padding:30px 0 50px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--dim);font-size:13px}
+
+/* modal */
+.sheet{position:fixed;inset:0;z-index:5;display:grid;place-items:center;padding:24px;background:rgba(5,5,7,.72);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);opacity:0;pointer-events:none;transition:opacity .6s var(--ease)}
+.sheet.on{opacity:1;pointer-events:auto}
+.panel{width:min(1000px,100%);max-height:calc(100dvh - 48px);overflow:auto;padding:7px;border-radius:36px;background:rgba(255,255,255,.04);
+  border:1px solid var(--hair2);transform:translateY(40px) scale(.98);transition:transform .8s var(--ease)}
+.sheet.on .panel{transform:none}
+.panel>div{border-radius:30px;background:#0d0c0f;display:grid;grid-template-columns:.95fr 1.05fr;gap:34px;padding:22px;box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
+.compare{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:2/3;background:#111;touch-action:none;cursor:ew-resize;user-select:none}
+.compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.compare .b{clip-path:inset(0 calc(100% - var(--p,50%)) 0 0)}
+.compare .bar{position:absolute;top:0;bottom:0;left:var(--p,50%);width:2px;background:#fff;transform:translateX(-1px)}
+.compare .knob{position:absolute;top:50%;left:var(--p,50%);width:44px;height:44px;border-radius:50%;background:#fff;color:#111;
+  transform:translate(-50%,-50%);display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.compare .tag{position:absolute;bottom:12px;font-size:11px;font-weight:700;padding:5px 10px;border-radius:999px}
+.compare .tl{left:12px;background:rgba(0,0,0,.6)}
+.compare .tr{right:12px;background:var(--y);color:#111}
+.pbody{padding:14px 10px 10px 0;display:flex;flex-direction:column}
+.pbody .cat{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--y)}
+.pbody h3{font-size:clamp(30px,4vw,44px);letter-spacing:-.05em;margin:10px 0 10px;font-weight:800;word-break:break-word}
+.pbody .note{color:var(--mute);line-height:1.55;margin:0 0 8px;font-weight:400}
+.pbody .tip{color:var(--y);font-size:13.5px;margin:0 0 14px}
+
+.prow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.x{position:absolute;top:30px;right:30px;width:44px;height:44px;border-radius:50%;border:1px solid var(--hair2);background:rgba(20,19,23,.8);
+  cursor:pointer;display:grid;place-items:center;z-index:6}
+.toast{position:fixed;left:50%;bottom:28px;z-index:7;transform:translate(-50%,24px);opacity:0;background:var(--y);color:#111;font-weight:700;
+  padding:13px 22px;border-radius:999px;transition:all .6s var(--ease);pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* entrada */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:var(--d,0ms)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.track{animation:none}}
+
+@media(max-width:900px){
+  .wrap{padding:0 16px}
+  .nav{top:12px;gap:12px;padding:7px 7px 7px 16px}
+  .nav a.lk{display:none}
+  .hero{grid-template-columns:1fr;min-height:auto;padding:96px 0 70px;gap:44px}
+  .stage{order:-1;width:min(290px,76vw)}
+  .composer{left:50%;bottom:-24px;transform:translateX(-50%);min-width:240px}
+  .ghost{margin:18px 0 0;display:flex}
+  .marquee{margin:0 -16px 90px}
+  .sec{padding-bottom:96px}
+  .steps{grid-template-columns:1fr 1fr}
+  .grid{grid-template-columns:1fr}
+  .search{margin-left:0;width:100%}
+  .search input{width:100%}
+  .setup>div{grid-template-columns:1fr;padding:28px 20px;gap:10px}
+  .panel>div{grid-template-columns:1fr;padding:12px;gap:16px}
+  .pbody{padding:6px}
+  .sheet{padding:0;place-items:end center}
+  .panel{border-radius:30px 30px 0 0;max-height:94dvh}
+  .x{top:auto;bottom:calc(94dvh - 58px);right:16px}
+}
+@media(max-width:480px){.steps{grid-template-columns:1fr}}
+</style>
+<style>
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 8px}
+.chip{padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);color:#fff;text-decoration:none;font-size:15px}
+.chip:hover{border-color:#FFE500;color:#FFE500}
+.lib{columns:3;column-gap:10px;margin:0 0 18px}
+.lib img{width:100%;display:block;margin:0 0 10px;border-radius:14px;break-inside:avoid;background:#111}
+@media(max-width:600px){.lib{columns:2}}
+.pair{display:grid;grid-template-columns:1fr;gap:18px;align-items:start}
+.pair .shell{padding:6px;border-radius:30px}
+.pair .compare{border-radius:24px;aspect-ratio:2/3}
+.pair .compare img{width:100%;height:100%;object-fit:cover}
+.promptcard pre{max-height:none;font-size:14px;white-space:pre-wrap;margin:0 0 18px}
+.style{scroll-margin-top:90px}
+@media(max-width:900px){.pair{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="mesh"></div><div class="grain"></div>
+<nav class="nav">
+  <span class="logo">marcel<i>grau</i></span>
+  <a class="lk" href="#ukiyo">Prompts</a>
+  <span class="kw">Design style prompts</span>
+</nav>
+<main class="wrap">
+  <section class="hero">
+    <div class="reveal">
+      <span class="eyebrow"><b></b>7 design styles</span>
+      <h1>Pick a style, <i>copy the prompt.</i></h1>
+      <p class="lede">Every style from the reel with its real prompt. Attach one photo of yourself in ChatGPT, paste the prompt and send it.</p>
+      <div class="chips"><a class="chip" href="#ukiyo">Ukiyo-e</a><a class="chip" href="#stained">Stained Glass</a><a class="chip" href="#mosaic">Mosaic</a><a class="chip" href="#papercut">Paper Cut</a><a class="chip" href="#clay">Claymation</a><a class="chip" href="#embroidery">Embroidery</a><a class="chip" href="#popart">Pop Art</a></div>
+    </div>
+    <div class="stage reveal" style="--d:150ms">
+      <div class="device"><video src="assets/hero.mp4" poster="assets/poster.jpg" autoplay muted loop playsinline></video></div>
+    </div>
+  </section>
+
+  <section class="sec style" id="ukiyo">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>01 / 07</span><h2>Ukiyo-e</h2></div></div>
+    <div class="lib reveal"><img src="assets/ukiyo-1.jpg" alt="Ukiyo-e reference 1" loading="lazy" decoding="async"><img src="assets/ukiyo-2.jpg" alt="Ukiyo-e reference 2" loading="lazy" decoding="async"><img src="assets/ukiyo-3.jpg" alt="Ukiyo-e reference 3" loading="lazy" decoding="async"><img src="assets/ukiyo-4.jpg" alt="Ukiyo-e reference 4" loading="lazy" decoding="async"><img src="assets/ukiyo-5.jpg" alt="Ukiyo-e reference 5" loading="lazy" decoding="async"><img src="assets/ukiyo-6.jpg" alt="Ukiyo-e reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-ukiyo">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a classic ukiyo e woodblock print from the 1800s, the subject drawn as a figure inside a landscape print, carved into wooden blocks and printed by hand.
+
+COLOUR: Prussian blue and indigo dominate the water, sky and shadows, with sage and yellow green for hills and pines, pale ochre and cream for the paper areas, and small touches of rust red and vermilion. The sky is a soft printed gradient: deep blue at the top fading to pale peach or warm pink at the horizon.
+
+TEXTURE: aged warm washi paper with visible fibres, slight fading and brown spots, flat areas of colour with the soft grain of the woodblock, firm black keyline outlines of even thickness, patterns on clothes, rocks and water made of repeated carved strokes.
+
+SUBJECT: face, hair and clothes redrawn in the same flat print language: clean outlines, flat pale skin tone with no shading, clothes keep their colours but become simple flat shapes with small repeated patterns.
+
+GRAPHICS: stylised curling waves with white foam tips like claws, layered rounded hills, crooked pine trees, small wooden boats, or a night river with a paper lantern. A narrow vertical title cartouche in the top corner (a red or yellow rectangle with a few columns of brush characters), a small red seal stamp and a short column of signature brush characters near the bottom. Keep these characters decorative and unreadable.
+
+COMPOSITION: tall vertical print, subject in the lower or middle third, the landscape rising behind (waves, a mountain, a waterfall or a calm river), a thin margin of plain paper around the print.
+
+AVOID: 3D shading, photographic skin, anime look, modern objects in the background, brand logos, readable words.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-ukiyo').innerText)">Copy the Ukiyo-e prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="stained">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>02 / 07</span><h2>Stained Glass</h2></div></div>
+    <div class="lib reveal"><img src="assets/stained-1.jpg" alt="Stained Glass reference 1" loading="lazy" decoding="async"><img src="assets/stained-2.jpg" alt="Stained Glass reference 2" loading="lazy" decoding="async"><img src="assets/stained-3.jpg" alt="Stained Glass reference 3" loading="lazy" decoding="async"><img src="assets/stained-4.jpg" alt="Stained Glass reference 4" loading="lazy" decoding="async"><img src="assets/stained-5.jpg" alt="Stained Glass reference 5" loading="lazy" decoding="async"><img src="assets/stained-6.jpg" alt="Stained Glass reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-stained">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a real stained glass window, the subject and the whole scene built from hand cut pieces of coloured glass held together by lead lines.
+
+COLOUR: rich jewel tones lit from behind: cobalt and sapphire blue, turquoise, amber and honey gold, ruby red, emerald and olive green, violet, with a few pale opal and white pieces for highlights. Skin in warm amber, peach and pale gold glass. Clothes keep their real colours, translated into glass.
+
+TEXTURE AND LIGHT: thick dark grey lead lines between every piece, slightly uneven. Each piece has its own glass texture: rippled, streaky, hammered or full of tiny bubbles, with the colour varying inside the piece. Strong light shines through from behind so the colours glow, brightest in the centre. Eyes, nose and mouth painted on the glass with fine dark lines, like old church windows.
+
+GRAPHICS: long tapering shards radiating behind the subject like sun rays, a large circle of gold glass behind the head, simple mountains, pine trees, swirling sky or stars made of curved pieces in the background.
+
+SETTING: a tall pointed gothic arch window set in a pale stone wall, with coloured light spilling across the stone, or a free hanging panel in a thin metal frame in front of a bright window.
+
+COMPOSITION: subject centred and frontal, symmetrical, the whole window visible, ornamental tracery at the top of the arch (small trefoils and rosettes).
+
+AVOID: a flat cartoon with black outlines, smooth digital gradients, mosaic tiles, the subject replaced by a saint or angel, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-stained').innerText)">Copy the Stained Glass prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="mosaic">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>03 / 07</span><h2>Mosaic</h2></div></div>
+    <div class="lib reveal"><img src="assets/mosaic-1.jpg" alt="Mosaic reference 1" loading="lazy" decoding="async"><img src="assets/mosaic-2.jpg" alt="Mosaic reference 2" loading="lazy" decoding="async"><img src="assets/mosaic-3.jpg" alt="Mosaic reference 3" loading="lazy" decoding="async"><img src="assets/mosaic-4.jpg" alt="Mosaic reference 4" loading="lazy" decoding="async"><img src="assets/mosaic-5.jpg" alt="Mosaic reference 5" loading="lazy" decoding="async"><img src="assets/mosaic-6.jpg" alt="Mosaic reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-mosaic">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: an ancient mosaic portrait, like the ones on old villa floors and basilica domes, the subject rebuilt entirely from small hand cut tiles.
+
+COLOUR: earthy stone colours: terracotta, ochre, sienna, umber, cream, marble white and slate grey, plus deep cobalt blue and green glass tiles and gleaming gold glass tiles for the background, rays or crown. Skin made from many shades of warm stone, from pale peach to deep brown.
+
+TEXTURE: irregular square and rectangular tiles about 1 cm wide, each slightly different in size and angle, laid in curved rows that follow the contours of the face, eyes, hair and clothes. Grey or sand coloured grout lines visible between every tile. Some tiles slightly raised, glass tiles catching the light, a few cracked or missing tiles and a worn surface near the edges.
+
+LIGHT: soft raking light from the side so the uneven surface picks up small highlights and the gold tiles shimmer.
+
+GRAPHICS: a background of gold tiles with radiating sun rays on deep blue, or plain cream stone, or a dark field. Optional: a laurel or vine leaf wreath in green and red tiles, a jewelled collar of white pearl tiles, a border band with a simple wave or meander pattern.
+
+COMPOSITION: bust portrait, head and shoulders filling the frame, slight three quarter turn, the outline of the face drawn with a row of darker tiles.
+
+AVOID: a smooth painting, pixel art squares in a perfect grid, glossy modern bathroom tiles, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-mosaic').innerText)">Copy the Mosaic prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="papercut">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>04 / 07</span><h2>Paper Cut</h2></div></div>
+    <div class="lib reveal"><img src="assets/papercut-1.jpg" alt="Paper Cut reference 1" loading="lazy" decoding="async"><img src="assets/papercut-2.jpg" alt="Paper Cut reference 2" loading="lazy" decoding="async"><img src="assets/papercut-3.jpg" alt="Paper Cut reference 3" loading="lazy" decoding="async"><img src="assets/papercut-4.jpg" alt="Paper Cut reference 4" loading="lazy" decoding="async"><img src="assets/papercut-5.jpg" alt="Paper Cut reference 5" loading="lazy" decoding="async"><img src="assets/papercut-6.jpg" alt="Paper Cut reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-papercut">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a handmade layered paper cut artwork, a shadow box diorama made from 8 to 12 sheets of coloured card stacked with real depth.
+
+COLOUR: a limited harmonious palette, for example [teal, mint and sage greens with cream] (or deep navy, dusty purple and sunset orange). Each layer is one flat colour, getting lighter or warmer towards the centre to create a tunnel of depth.
+
+TEXTURE AND LIGHT: matte paper with fine fibre texture, crisp but slightly imperfect hand cut edges, small soft shadows between every layer showing the gaps. Soft diffuse light from above, no shiny highlights. Tiny details cut with a craft knife: stars, leaves, grass blades, little flowers, punched dots.
+
+SUBJECT: the subject cut from paper too: face, hair and clothes made of several flat paper pieces in their real colours, simple shapes, small paper shadows under the hair and chin. Alternative: a solid dark paper silhouette of the subject against the bright inner layers.
+
+SETTING: wavy concentric layers forming a round or oval window (hills, clouds, waves, forest, cave walls), with a landscape vanishing into the centre: a river, mountains, a moon or setting sun, pine trees.
+
+COMPOSITION: the layered frame fills most of the image, subject in the middle, seen straight on, the piece photographed on a plain paper surface or as a framed box.
+
+AVOID: flat vector illustration, glossy plastic, 3D render look, known cartoon characters, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-papercut').innerText)">Copy the Paper Cut prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="clay">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>05 / 07</span><h2>Claymation</h2></div></div>
+    <div class="lib reveal"><img src="assets/clay-1.jpg" alt="Claymation reference 1" loading="lazy" decoding="async"><img src="assets/clay-2.jpg" alt="Claymation reference 2" loading="lazy" decoding="async"><img src="assets/clay-3.jpg" alt="Claymation reference 3" loading="lazy" decoding="async"><img src="assets/clay-4.jpg" alt="Claymation reference 4" loading="lazy" decoding="async"><img src="assets/clay-5.jpg" alt="Claymation reference 5" loading="lazy" decoding="async"><img src="assets/clay-6.jpg" alt="Claymation reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-clay">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a still from a plasticine stop motion film: the subject and everything around them sculpted by hand from modelling clay and photographed on a miniature set.
+
+COLOUR: bright, cheerful, slightly chalky clay colours: warm terracotta, mustard, sky blue, coral pink, mint green and cream. Clothes keep their real colours as solid clay.
+
+TEXTURE: visible fingerprints, small smudges, tool marks and sculpting lines, slightly lumpy surfaces, soft rounded edges, matte with a little sheen on the highlights. Hair as clay strands or one sculpted mass with grooves. Simple clay eyes, a rounded nose and lips, chunky hands with short fingers, but the face still clearly recognisable as the subject.
+
+LIGHT: soft studio light like on a tabletop set, a warm key light and gentle shadows, shallow depth of field so the background props go slightly soft.
+
+SETTING: a handmade miniature set full of clay props: a bed with pillows and slippers, a tiny vintage car, palm trees, a desk lamp, a little TV, or an underwater scene with funny fish. For a bust portrait, a plain solid backdrop in [PINK] or teal.
+
+COMPOSITION: subject centred, full body or bust, seen slightly from above like a tabletop set, everything small and handmade like a toy.
+
+AVOID: smooth CGI, shiny plastic toys, realistic skin, horror look, known cartoon or film characters, real landmarks, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-clay').innerText)">Copy the Claymation prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="embroidery">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>06 / 07</span><h2>Embroidery</h2></div></div>
+    <div class="lib reveal"><img src="assets/embroidery-1.jpg" alt="Embroidery reference 1" loading="lazy" decoding="async"><img src="assets/embroidery-2.jpg" alt="Embroidery reference 2" loading="lazy" decoding="async"><img src="assets/embroidery-3.jpg" alt="Embroidery reference 3" loading="lazy" decoding="async"><img src="assets/embroidery-4.jpg" alt="Embroidery reference 4" loading="lazy" decoding="async"><img src="assets/embroidery-5.jpg" alt="Embroidery reference 5" loading="lazy" decoding="async"><img src="assets/embroidery-6.jpg" alt="Embroidery reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-embroidery">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a hand embroidered portrait stitched with cotton threads on fabric stretched in a round wooden embroidery hoop.
+
+COLOUR: natural cream or light grey linen as the base. Threads in the subject's real colours but slightly richer: skin built from many shades of peach, rose and ochre with small touches of blue and lilac in the shadows, hair in several browns or blondes, clothes in their own colours.
+
+TEXTURE: clearly visible stitches: long and short satin stitches following the direction of the face and hair, loose directional thread strokes like brush strokes, dark backstitch outlines, a few French knots, slight puckering of the fabric around dense areas, tiny loose thread ends. Parts of the background left as bare linen, optionally with a few leaves stitched in a single thin line.
+
+PROPS: the light wooden hoop with its brass screw clamp at the top, a needle with a long thread hanging from the edge, a few skeins of embroidery floss beside it, optionally a hand holding the hoop.
+
+LIGHT: soft natural window light, gentle shadows cast by the raised threads.
+
+COMPOSITION: hoop centred and seen straight on or slightly angled, the portrait filling the hoop (head and shoulders or upper body), a table or soft fabric around it.
+
+AVOID: printed fabric, digital painting, smooth gradients, a cross stitch grid, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-embroidery').innerText)">Copy the Embroidery prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="popart">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>07 / 07</span><h2>Pop Art</h2></div></div>
+    <div class="lib reveal"><img src="assets/popart-1.jpg" alt="Pop Art reference 1" loading="lazy" decoding="async"><img src="assets/popart-2.jpg" alt="Pop Art reference 2" loading="lazy" decoding="async"><img src="assets/popart-3.jpg" alt="Pop Art reference 3" loading="lazy" decoding="async"><img src="assets/popart-4.jpg" alt="Pop Art reference 4" loading="lazy" decoding="async"><img src="assets/popart-5.jpg" alt="Pop Art reference 5" loading="lazy" decoding="async"><img src="assets/popart-6.jpg" alt="Pop Art reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-popart">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a 1960s pop art comic print, bold and graphic, between a vintage comic book panel and a screen printed poster.
+
+COLOUR: flat saturated colours with no gradients: lemon yellow, cyan, magenta pink, primary red and royal blue, plus pure black and white. Skin in pink or peach with a dot pattern, lips glossy red, hair in solid yellow, black or blue with a few black stroke highlights.
+
+TEXTURE: thick confident black outlines, round comic print dots (red dots on pink skin, blue dots in the background), slight misregistration, aged paper grain and a few scuffs like an old printed poster.
+
+TYPE: one speech or thought bubble with a single short word in bold hand lettered comic capitals: [WOW!]. No other text.
+
+GRAPHICS: a background of large halftone dots, bold red and cream sunburst rays, or a flat block of colour. Optional props: big sunglasses, a cocktail glass, a red curtain.
+
+COMPOSITION: close up of the face and shoulders, an expressive comic pose (hand on the cheek, surprised open mouth, lowering the sunglasses), face large and slightly off centre, bubble in the upper corner.
+
+AVOID: soft painterly shading, 3D render, photographic texture, known comic characters, brand logos, any extra text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-popart').innerText)">Copy the Pop Art prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="outro reveal">
+    <span class="eyebrow"><b></b>New styles every week</span>
+    <h2>Made one?<br>Tag <i>@marcelgrauu</i></h2>
+    <p>I share new styles and prompts almost every day. Follow so you don't miss the next ones.</p>
+    <a class="cta" href="https://instagram.com/marcelgrauu" target="_blank" rel="noopener">Follow @marcelgrauu <span class="ic"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
+  </section>
+  <footer><span class="logo">marcel<i>grau</i></span><span>Prompts free to use. Results depend on the model and your photo.</span></footer>
+</main>
+<div class="toast" id="toast">Copied</div>
+<script>
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold: .12});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+function copyText(text) {
+  const done = () => { const t = document.getElementById('toast'); t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 1700); };
+  const fallback = () => { const ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); done(); } catch (e) {} document.body.removeChild(ta); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+}
+document.querySelectorAll('.compare.ex').forEach(cmp => {
+  const setP = x => { const r = cmp.getBoundingClientRect(); cmp.style.setProperty('--p', Math.max(0, Math.min(100, (x - r.left) / r.width * 100)) + '%'); };
+  cmp.addEventListener('pointerdown', e => { cmp.setPointerCapture(e.pointerId); setP(e.clientX); });
+  cmp.addEventListener('pointermove', e => { if (cmp.hasPointerCapture(e.pointerId)) setP(e.clientX); });
+});
+</script>
+</body>
+</html>
