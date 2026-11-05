@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F2F2F0">
+<title>Make an AI character that acts | marcelgrau</title>
+<meta name="description" content="How I made a talking AI character with ElevenLabs and Chimera: the character sheet, the first frame, the voice and the video prompt.">
+<meta property="og:title" content="Make an AI character that acts">
+<meta property="og:image" content="assets/first-frame.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;500;700;900&family=EB+Garamond:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F2F2F0;--ink:#0B0B0C;--grey:#E1E1DE;--mute:#6E6E73;--blue:#0000FF;--hair:rgba(0,0,0,.09);
+--sans:"Helvetica Neue","Inter Tight",Helvetica,Arial,sans-serif;--serif:"Apple Garamond","EB Garamond",Garamond,Georgia,serif;
+--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html,body{overflow-x:hidden;overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:90;opacity:.11;mix-blend-mode:multiply;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+animation:grain .9s steps(4) infinite}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-1%)}100%{transform:translate(0,0)}}
+.glass{background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(18px) saturate(1.6);backdrop-filter:blur(18px) saturate(1.6);
+border:1px solid rgba(255,255,255,.9);box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 10px 30px rgba(0,0,0,.07)}
+i.serif,h1 i,h2 i,.big i{font-family:var(--serif);font-weight:400;font-style:italic;color:var(--blue);letter-spacing:-.01em}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+/* nav */
+.nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:50;display:flex;gap:8px;align-items:center;padding:6px 6px 6px 18px;border-radius:999px;white-space:nowrap}
+.logo{font-weight:900;letter-spacing:-.04em;font-size:17px;text-decoration:none}.logo i{font-size:19px}
+.pill{background:var(--blue);color:#fff;font-weight:700;font-size:13px;padding:9px 14px;border-radius:999px}
+
+/* hero */
+.hero{position:relative;padding:96px 0 40px;overflow:hidden}
+.giant{position:absolute;left:0;top:0;white-space:nowrap;font-weight:900;letter-spacing:-.06em;line-height:.8;color:var(--grey);
+font-size:clamp(150px,30vw,420px);pointer-events:none;z-index:0;will-change:transform}
+.hero .giant{top:70px}
+.hero .wrap{position:relative;z-index:1}
+h1{font-size:clamp(46px,8.4vw,112px);line-height:.92;letter-spacing:-.055em;font-weight:900;margin:34px 0 18px}
+h1 i{font-size:1.08em}
+.lede{font-size:clamp(17px,2vw,21px);line-height:1.5;color:var(--mute);max-width:560px;margin:0 0 26px;font-weight:500}
+.lede b{color:var(--ink)}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 20px;border-radius:999px;font-weight:700;font-size:15px;text-decoration:none;border:0;cursor:pointer;transition:transform .25s cubic-bezier(.2,.9,.3,1.3)}
+.btn:active{transform:scale(.96)}
+.btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.2}
+.b-blue{background:var(--blue);color:#fff;box-shadow:0 10px 30px rgba(0,0,255,.28)}
+.b-ink{background:var(--ink);color:#fff}
+.b-glass{background:rgba(255,255,255,.6);border:1px solid #fff;color:var(--ink)}
+.soon{opacity:.45;pointer-events:none}.soon em{font-style:normal;font-weight:500;font-size:12px;opacity:.8}
+
+/* viewfinder */
+.vf{position:relative;margin:0;border-radius:22px;overflow:hidden;background:#d8d8d4;box-shadow:0 30px 60px -30px rgba(0,0,0,.35)}
+.vf video,.vf img{display:block;width:100%;height:auto}
+.vf .c{position:absolute;width:22px;height:22px;border:2px solid #fff;opacity:.9;z-index:3;pointer-events:none}
+.vf .tl{top:14px;left:14px;border-right:0;border-bottom:0}.vf .tr{top:14px;right:14px;border-left:0;border-bottom:0}
+.vf .bl{bottom:14px;left:14px;border-right:0;border-top:0}.vf .br{bottom:14px;right:14px;border-left:0;border-top:0}
+.rec,.tc,.vf-tag{position:absolute;z-index:3;font:600 11px/1 var(--mono);color:#fff;letter-spacing:.08em;text-shadow:0 1px 4px rgba(0,0,0,.4);pointer-events:none}
+.rec{top:21px;left:46px;display:flex;align-items:center;gap:6px}.rec b{width:8px;height:8px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 2px #fff;animation:blink 1.2s steps(2) infinite}
+.tc{top:21px;right:46px}.vf-tag{bottom:21px;left:46px;opacity:.85}
+@keyframes blink{50%{opacity:.2}}
+.hero .vf{margin-top:8px}
+.hero-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:end}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.chip{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:8px 14px;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.chip b{color:var(--blue);font-weight:900}.chip em{font-style:normal;color:var(--mute);font-weight:600}
+
+/* files */
+.files{position:relative;padding:70px 0 20px}
+.files h2,.slate h2,.tips h2,.outro .big{font-size:clamp(38px,6vw,76px);line-height:.95;letter-spacing:-.05em;font-weight:900;margin:16px 0 14px}
+.files .sub{color:var(--mute);font-size:17px;line-height:1.55;max-width:520px;margin:0 0 30px;font-weight:500}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.card{border-radius:26px;padding:24px;display:flex;flex-direction:column;gap:12px;min-height:250px}
+.card .k{font:700 11px/1 var(--mono);letter-spacing:.12em;color:var(--blue)}
+.card h3{margin:0;font-size:30px;letter-spacing:-.04em;font-weight:900;line-height:1}
+.card p{margin:0;color:var(--mute);font-size:15px;line-height:1.5;flex:1;font-weight:500}
+.card .btn{align-self:flex-start;padding:12px 16px;font-size:14px}
+
+/* scenes */
+.scene,.tips,.files{overflow-x:clip}
+.scene{position:relative;max-width:1120px;margin:0 auto;padding:110px 20px 40px;display:grid;grid-template-columns:1fr 1.15fr;gap:20px 48px;align-items:start}
+.scene .giant{top:40px;left:-2vw}
+.slate{position:relative;z-index:1;grid-column:1;grid-row:1}
+.slate p{color:var(--mute);font-size:17px;line-height:1.6;margin:0;font-weight:500;max-width:480px}
+.smedia{position:relative;z-index:1;grid-column:2;grid-row:1 / span 2;display:grid;gap:14px}
+.sprompts{position:relative;z-index:1;grid-column:1;grid-row:2}
+.sheet{margin:0;border-radius:22px;overflow:hidden;background:#fff;box-shadow:0 30px 60px -34px rgba(0,0,0,.3)}
+.sheet img{width:100%;display:block}
+.refs{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:8px}
+.refs li{display:flex;align-items:center;gap:12px;font-weight:700;font-size:15px}
+.refs li span{width:28px;height:28px;border-radius:9px;background:var(--blue);color:#fff;display:grid;place-items:center;font:700 12px var(--mono);flex-shrink:0}
+.pr{border-radius:20px;margin-bottom:10px;overflow:hidden}
+.pr summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 12px 12px 18px;font-weight:700;font-size:15px;letter-spacing:-.01em}
+.pr summary::-webkit-details-marker{display:none}
+.pl::before{content:"+";display:inline-block;width:18px;color:var(--blue);font-weight:900;transition:transform .3s}
+.pr[open] .pl::before{transform:rotate(45deg)}
+.copy{border:0;border-radius:999px;background:var(--ink);color:#fff;font:700 13px var(--sans);padding:9px 14px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;flex-shrink:0}
+.copy svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2}
+.pr pre{margin:0;padding:4px 18px 18px;white-space:pre-wrap;word-break:break-word;font:13px/1.6 var(--mono);color:#2a2a2e;max-height:400px;overflow:auto}
+
+/* compare */
+.compare{position:relative;touch-action:pan-y;cursor:ew-resize;user-select:none;--p:50%}
+.compare img{display:block;width:100%;pointer-events:none}
+.compare .b{position:absolute;inset:0;height:100%;object-fit:cover;clip-path:inset(0 calc(100% - var(--p)) 0 0)}
+.compare .bar{position:absolute;top:0;bottom:0;left:var(--p);width:2px;background:#fff;transform:translateX(-1px);z-index:2}
+.compare .knob{position:absolute;top:50%;left:var(--p);transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:var(--blue);display:grid;place-items:center;z-index:2;box-shadow:0 6px 20px rgba(0,0,255,.4)}
+.compare .knob svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:2.2}
+
+/* tips */
+.tips{position:relative;padding:110px 0 40px}
+.tips ol{list-style:none;margin:28px 0 0;padding:0;border-top:2px solid var(--ink)}
+.tips li{display:grid;grid-template-columns:90px 1fr;gap:20px;padding:22px 0;border-bottom:1px solid var(--hair);align-items:baseline}
+.tn{font-family:var(--serif);font-style:italic;color:var(--blue);font-size:44px;line-height:1}
+.tips li p{margin:0;font-size:clamp(19px,2.4vw,26px);line-height:1.3;letter-spacing:-.025em;font-weight:700}
+
+/* outro */
+.outro{position:relative;padding:120px 0 150px;text-align:center;overflow:hidden}
+.outro .giant{left:50%;top:60px;transform:translateX(-50%)}
+.outro .wrap{position:relative;z-index:1}
+.outro p{color:var(--mute);font-size:17px;font-weight:500;margin:0 auto 26px;max-width:420px;line-height:1.5}
+.outro .row{justify-content:center}
+footer{padding:0 0 120px;text-align:center;color:var(--mute);font-size:13px;font-weight:500}
+
+/* keyframe timeline */
+.tl-bar{position:fixed;left:50%;bottom:14px;transform:translate(-50%,140%);z-index:60;border-radius:999px;padding:10px 16px;display:flex;align-items:center;gap:0;transition:transform .5s cubic-bezier(.2,.9,.3,1)}
+.tl-bar.on{transform:translate(-50%,0)}
+.track{position:relative;display:flex;align-items:center;gap:clamp(22px,6vw,46px)}
+.track::before,.track .fill{content:"";position:absolute;left:7px;right:7px;top:7px;height:2px;background:rgba(0,0,0,.12);border-radius:2px}
+.track .fill{right:auto;width:0;background:var(--blue);transition:width .2s linear}
+.key{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none}
+.key i{width:14px;height:14px;transform:rotate(45deg);border-radius:3px;background:#fff;border:2px solid rgba(0,0,0,.25);transition:all .3s}
+.key span{font:700 9px/1 var(--mono);letter-spacing:.1em;color:var(--mute)}
+.key.done i{background:var(--blue);border-color:var(--blue)}
+.key.now i{box-shadow:0 0 0 5px rgba(0,0,255,.18)}.key.now span{color:var(--blue)}
+
+.toast{position:fixed;left:50%;bottom:90px;transform:translate(-50%,20px);opacity:0;background:var(--ink);color:#fff;padding:12px 18px;border-radius:999px;font-weight:700;font-size:14px;z-index:99;transition:all .35s;pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.rv{opacity:0;transform:translateY(28px);filter:blur(8px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1),filter .9s}
+.rv.in{opacity:1;transform:none;filter:none}
+@media(max-width:900px){
+.hero{padding-top:84px}
+.hero-grid{grid-template-columns:1fr;gap:6px}
+.cards{grid-template-columns:1fr}.card{min-height:0}
+.scene{grid-template-columns:1fr;padding:84px 20px 20px;gap:22px}
+.slate,.smedia,.sprompts{grid-column:1;grid-row:auto}
+.tips li{grid-template-columns:54px 1fr;gap:12px}.tn{font-size:34px}
+}
+@media(prefers-reduced-motion:reduce){body::after{animation:none}.rv{opacity:1;transform:none;filter:none}}
+</style>
+<style>.kw{min-height:0;gap:6px}.kwl{margin:0;font-size:clamp(26px,3.6vw,40px);font-weight:900;letter-spacing:-.04em;line-height:1.05;color:var(--ink)}.kwl s{color:var(--mute);text-decoration-thickness:3px}.kwl:not(:has(s)){color:var(--blue)}</style>
+</head>
+<body>
+<nav class="nav glass"><a class="logo" href="#top">marcel<i>grau</i></a><span class="pill">You commented LABS</span></nav>
+
+<header class="hero" id="top">
+  <div class="giant" data-par="-0.25" aria-hidden="true">LABS</div>
+  <div class="wrap">
+    <figure class="vf"><video src="assets/hook.mp4" poster="assets/poster.jpg" autoplay muted loop playsinline></video><i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i><span class="rec"><b></b>REC</span><span class="tc">00:00:00:00</span><span class="vf-tag">chimera / take 1</span></figure>
+    <div class="hero-grid">
+      <div><h1 class="rv">An AI voice that <i>actually acts.</i></h1></div>
+      <div class="rv">
+        <p class="lede">My character, his voice and every prompt. <b>Copy them and make yours.</b></p>
+        <div class="row"><span class="btn b-blue soon">Try Chimera <em>soon</em></span><a class="btn b-glass" href="#s1">How I made it</a></div>
+      </div>
+    </div>
+    <div class="meta rv"><span class="chip glass"><b>01</b><em>Character</em></span><span class="chip glass"><b>02</b><em>First frame</em></span><span class="chip glass"><b>03</b><em>Voice</em></span><span class="chip glass"><b>04</b><em>Video</em></span><span class="chip glass"><b>&#9679;</b><em>all inside ElevenLabs</em></span></div>
+  </div>
+</header>
+
+  <section class="scene" id="s1" data-i="0">
+    <div class="giant" aria-hidden="true">CAST</div>
+    <header class="slate">
+      <span class="chip glass"><b>STEP 01</b><em>GPT Image 2</em></span>
+      <h2>Character sheet <i>first.</i></h2>
+      <p>One sheet with his face, hair and tattoos. It decides how the whole video looks.</p>
+    </header>
+    <div class="smedia"><figure class="sheet"><img src="assets/sheet.jpg" alt="Character sheet" loading="lazy" decoding="async"></figure></div>
+    <div class="sprompts"><ol class="refs"><li><span>1</span>a reference image of the style you want</li></ol></div>
+  </section>
+  <section class="scene" id="s2" data-i="1">
+    <div class="giant" aria-hidden="true">FRAME</div>
+    <header class="slate">
+      <span class="chip glass"><b>STEP 02</b><em>GPT Image 2</em></span>
+      <h2>Then the <i>first frame.</i></h2>
+      <p>The shot where he starts talking. Face clearly visible.</p>
+    </header>
+    <div class="smedia"><figure class="sheet"><img src="assets/first-frame.jpg" alt="First frame" loading="lazy" decoding="async"></figure></div>
+    <div class="sprompts"><ol class="refs"><li><span>1</span>the character sheet</li><li><span>2</span>the style reference</li><li><span>3</span>a photo of the place you like</li></ol><details class="pr glass"><summary><span class="pl">The first frame</span><button class="copy" onclick="event.preventDefault();copyText(document.getElementById('p3').innerText)">Copy <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></button></summary><pre id="p3">16:9 horizontal. The man from Image 1, the face exactly like the close up in the left panel, same hair, white t-shirt, work trousers and arm tattoos, in the exact same illustration style as Image 2, flat gouache and risograph feel, dry brush paper grain, warm color palette, cool relaxed mood. He is a grown man in his late 30s, masculine and solid like the man in Image 2: broad shoulders, strong muscular arms and big hands, a thick neck, a wide strong jaw, light stubble on the jaw and upper lip, a few faint lines around the eyes. Not young, not a teenager, not skinny, not delicate, not androgynous.
+Paint the face like a normal, realistic adult face with natural proportions: brown eyes, natural size, no reflections in the eyes. Matte skin with fine grain and small imperfections, not smooth. Thin loose brown and red pencil-like correction lines on the eyelid crease, under the eye, on the nose and nostril and on the edge of the lips, and red hatched strokes on the cheek. Nothing shines: no gloss on the skin, eyes or hair. Not anime.
+Use Image 3 only for the place and the idea: a quiet city street in the daytime, an old dark sedan from the late 60s parked in front of a red brick building with a metal walkway above and a chain link fence, side sunlight with long shadows on the street. The car, the building and the street are not realistic: simplified into big flat color shapes with few details, chalky dry brush texture and the same grain, painted exactly like the kitchen background in Image 2. No text anywhere, no signs with words, no logos, no license plate text.
+He leans back against the front fender of the car, both hands free near his face: an unlit cigarette in the corner of his mouth and a small metal lighter in one hand, the other hand cupped near the cigarette, about to light it. Framed from the knees up, the car filling the frame behind him, subject in the center. His face turned toward the camera in a three quarter view, looking toward the lens with a calm, half amused look, the whole face clearly visible. No outlines, flat color shapes, hard shadow edges.</pre></details></div>
+  </section>
+  <section class="scene" id="s3" data-i="2">
+    <div class="giant" aria-hidden="true">VOICE</div>
+    <header class="slate">
+      <span class="chip glass"><b>STEP 03</b><em>ElevenLabs Voice Design</em></span>
+      <h2>Design <i>his voice.</i></h2>
+      <p>Deep voice is fine, but it is not enough. Add how he talks and where he is.</p>
+    </header>
+    <div class="smedia"><div class="card glass kw"><span class="k">THE KEYWORDS</span><p class="kwl">deep voice</p><p class="kwl">relaxed</p><p class="kwl">a little raspy</p><p class="kwl">casual and calm</p><p class="kwl">talking on the street</p></div></div>
+    <div class="sprompts"><details class="pr glass"><summary><span class="pl">The voice description</span><button class="copy" onclick="event.preventDefault();copyText(document.getElementById('p4').innerText)">Copy <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></button></summary><pre id="p4">A relaxed man in his late 30s with a New York accent and a normal, medium low voice with a little rasp, not too deep. He talks casually and naturally, like he is chatting with a friend on the street, easygoing, confident and a bit amused, with natural pauses. Recorded outdoors on a camera microphone at a normal speaking distance, with a little open air and faint street ambience. Not a studio recording, not a podcast, not a narrator, not ASMR, not a movie trailer voice.</pre></details><details class="pr glass"><summary><span class="pl">His line with the audio tags</span><button class="copy" onclick="event.preventDefault();copyText(document.getElementById('p5').innerText)">Copy <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></button></summary><pre id="p5">[relaxed] [low voice] Do you want to know why most AI voices sound so fake? [exhales] They can&#x27;t do this. [quietly] [low voice] Come closer... [whispers] I&#x27;ll show you how to make one in three simple steps.</pre></details></div>
+  </section>
+  <section class="scene" id="s4" data-i="3">
+    <div class="giant" aria-hidden="true">ROLL</div>
+    <header class="slate">
+      <span class="chip glass"><b>STEP 04</b><em>Chimera in ElevenLabs</em></span>
+      <h2>Then the <i>video.</i></h2>
+      <p>Picture, voice and a detailed prompt: how he moves, the camera, the place.</p>
+    </header>
+    <div class="smedia"><figure class="vf"><video src="assets/hook.mp4" poster="assets/poster.jpg" autoplay muted loop playsinline preload="metadata"></video><i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i><span class="rec"><b></b>REC</span><span class="tc">00:00:00:00</span><span class="vf-tag">the first clip</span></figure></div>
+    <div class="sprompts"><ol class="refs"><li><span>1</span>the character sheet</li><li><span>2</span>the first frame</li></ol><details class="pr glass"><summary><span class="pl">The prompt of the first video</span><button class="copy" onclick="event.preventDefault();copyText(document.getElementById('p6').innerText)">Copy <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></button></summary><pre id="p6">=== SETTINGS ===
+Model: Seedance 2.5. Mode: Reference. Duration: 11 seconds. Aspect ratio: 4:3 horizontal. Resolution: 720p.
+Takes: 1, generate only ONE video.
+Attached references, in this order:
+@Image 1 = the character sheet of the man (identity, face, hair, tattoos, clothes).
+@Image 2 = the start frame and the place: the man leaning on the old dark car in the street, and the exact illustration style of the whole clip.
+Use this whole prompt as written, do not rewrite, shorten or translate it.
+Do exactly ONE video generation. Do NOT generate separate voiceover, TTS, audio files, images or anything else. The speech is generated inside the video by Seedance, with his lips in sync. Do not plan, split or rewrite the task.
+NO MUSIC. The audio is only his voice and the natural sound of the street and the lighter. Music is added later in the edit.
+
+=== DIALOGUE (MANDATORY) ===
+1. 0.4 to 3.0 s: &quot;Do you want to know why most AI voices sound so fake?&quot;
+   3.0 to 4.2 s: silence. No words. He lights the cigarette.
+   4.2 to 5.0 s: a slow exhale, no words.
+2. 5.1 to 6.1 s: &quot;They can&#x27;t do this.&quot;
+3. 6.6 to 7.3 s: &quot;Come closer...&quot;
+4. 7.8 to 10.6 s, whispered: &quot;I&#x27;ll show you how to make one in three simple steps.&quot;
+All 4 lines are spoken in full, in this order, word for word. A version that skips, cuts, changes, repeats or adds any line is wrong. &quot;Come closer&quot; is said only once.
+The cigarette touches his lips only on the very last word &quot;fake&quot;, and stays in his mouth only during the silent lighting, 3.0 to 4.2 s. He never says any other word with the cigarette in his mouth.
+
+=== REFERENCE MAP ===
+@Image 1 gives: his exact face (from the close up on the left), curly chestnut brown hair, light stubble, brown eyes, white t-shirt, dark navy work trousers, black boots, every arm tattoo and its place. Ignore: the plain cream background, the panel layout, and the missing heads of the full body views.
+@Image 2 gives: the first frame, the place (old dark sedan from the late 60s, red brick building, metal walkway above, chain link fence, daytime side sunlight from the left with long shadows), the framing from the knees up, and the exact painted look of the clip. Ignore: the cigarette already in his mouth and the lit lighter; at the start of this clip the cigarette is in his hand, not in his mouth.
+
+=== CHARACTER LOCK ===
+The same man in every frame: late 30s, solid and masculine, broad shoulders, strong arms of NORMAL size that never grow during the clip, curly chestnut brown hair, light stubble on the jaw and upper lip, a wide jaw, brown eyes of natural size, matte skin with small imperfections, thin pencil-like brown and red correction lines on the eyelid crease, under the eye, on the nose and on the edge of the lips, red hatched blush on the cheek.
+White t-shirt, dark navy work trousers, the same tattoos in the same places as @Image 1 on every frame.
+Nothing on him shines, ever: no gloss on the skin, no light reflections in the eyes, no shiny hair.
+Two hands, five fingers each, natural size.
+Props, exactly two: one cigarette and one small metal flip lighter. No other objects in his hands.
+His mouth opens naturally when he talks, like a relaxed man chatting, never wide open, never exaggerated.
+Behaviour: calm, unhurried, a little amused, the confidence of someone who knows something you don&#x27;t. Small, economical gestures, but the lighting is quick and practiced, like a habit.
+The face stays identical from the first to the last frame. A face that changes, gets glossier, younger, prettier or more realistic is wrong.
+
+=== VOICE LOCK ===
+One speaker, him. A relaxed man in his late 30s with a New York accent and a normal, medium low voice with a little rasp, not too deep. He talks casually and naturally, like he is chatting with a friend on the street: easygoing, confident, a bit amused, with natural pauses.
+It sounds recorded outdoors by the camera filming him, at a normal speaking distance, with a little open air. Not a studio recording, not a podcast, not a narrator, not ASMR, not a movie trailer voice.
+The same voice for every line, including the whisper.
+
+=== LOOK LOCK ===
+The whole clip stays a hand painted editorial illustration exactly like @Image 2: flat gouache and risograph feel, big flat color shapes, hard edged flat shadows, no outlines, rough dry brush edges, fine speckled paper grain on every frame, warm tan skin with terracotta shadows, red brick, slate blue and navy palette.
+It moves like a hand painted 2D animated film: flat shapes move as flat shapes, shadows stay flat and hard edged when he moves. It is never a video filter over a painting.
+The paper grain and the brush texture never smooth out.
+Never photorealistic, never 3D, never glossy, never anime, never a cartoon with outlines.
+Light: the same daytime side sunlight from the left as @Image 2, the whole clip. The only light change is the small flat orange glow of the lighter flame on his hands and chin while it burns.
+
+=== SHOT SETUP ===
+One continuous shot, no cuts.
+The camera is held by a real person standing about 2 meters in front of him at chest height, filming him casually like a friend recording him on the street.
+Handheld baseline from 0.0 to 11.0 s: constant small sway of about 1 degree from the operator&#x27;s breathing, the horizon drifting slowly between 1 and 2 degrees left and right, tiny reframes that arrive a beat late. THE CAMERA NEVER FREEZES, not even when he holds still.
+Framing from the knees up as in @Image 2, his head always fully inside the frame with space above the hair.
+
+=== PART 1: SHOT BREAKDOWN ===
+MOMENT 1, 0.0 to 3.0 s, line 1 &quot;Do you want to know why most AI voices sound so fake?&quot;
+He leans back on the front fender of the car, relaxed. The cigarette is between two fingers of his right hand, held near his chin, NOT in his mouth. The closed lighter is in his left hand at chest height, ready. He says the line looking into the lens, mouth free. On &quot;sound so fake?&quot; his right hand brings the cigarette up, and he places it in the corner of his mouth exactly as he finishes the word &quot;fake&quot;, while the left hand already raises the lighter.
+EFFECT: handheld baseline only, a tiny late reframe as he shifts his weight on the car.
+AMBIENT: quiet street, a faint distant car far away, light wind.
+
+MOMENT 2, 3.0 to 4.2 s, silence, the lighting, quick
+He cups his right hand around the lighter and flicks it with his thumb exactly twice, fast: the first flick only sparks, the second lights a small flat orange flame. He brings the flame to the tip, takes one short drag, the tip glows orange, he snaps the lighter shut. His eyes drop to the flame and come straight back up to the lens. Quick and practiced, no hesitation.
+EFFECT: the camera operator drifts about 5 centimeters closer and tilts down a touch to follow his hands, a beat late, then settles back on his face. A small flat orange glow lights his cupped hands and chin while the flame burns, about 0.6 seconds. This is the ONE density peak of the clip.
+AMBIENT: two quick metallic lighter clicks, a soft flame hiss, the lid snapping shut.
+
+MOMENT 3, 4.2 to 5.0 s, the exhale
+He takes the cigarette out of his mouth with two fingers and lowers it to chest height. He exhales a thin stream of smoke that drifts up and to the right, painted as flat, semi transparent pale grey wisps with dry brush edges, in the same style as the rest of the image. Thin wisps, never round cartoon cloud puffs.
+EFFECT: handheld baseline. Exactly one stream of smoke, fading over about 2 seconds.
+
+MOMENT 4, 5.1 to 6.1 s, line 2 &quot;They can&#x27;t do this.&quot;
+Cigarette in his hand at chest height, mouth free, a thin thread of smoke rising from the tip. He looks straight into the lens through the last of the smoke, a slow half smile at the end of the line.
+EFFECT: handheld baseline, a small late reframe.
+
+MOMENT 5, 6.6 to 7.3 s, line 3 &quot;Come closer...&quot;
+He pushes himself a little off the car and leans toward the camera about 10 centimeters, chin slightly down, eyes locked on the lens, voice dropping. The cigarette stays in his hand near his chest.
+EFFECT: exactly one zoom in this clip: the camera&#x27;s zoom jumps in two quick uneven steps, about 8 percent each, with a small overshoot, starting on &quot;Come closer&quot;. After the zoom he is framed from the waist up, the whole head and hair still inside the frame with space above. Nothing ever appears in front of the lens.
+
+MOMENT 6, 7.8 to 10.6 s, line 4, whispered, &quot;I&#x27;ll show you how to make one in three simple steps.&quot;
+He holds the lean and says the line quietly, lips clearly moving, one eyebrow lifting a little on &quot;three simple steps&quot;. The cigarette near his chest, a thin thread of smoke rising.
+EFFECT: handheld baseline, the horizon drifting about 1 degree.
+
+MOMENT 7, 10.6 to 11.0 s
+He holds the look into the lens with a small knowing smile. The camera keeps its small sway. The clip ends on that look, no fade.
+
+=== PART 2: EFFECTS LIST ===
+Handheld sway and horizon drift: continuous, 0.0 to 11.0 s.
+Late reframes: three, small, at about 1.5 s, 3.3 s and 5.6 s.
+Operator drift closer and tilt to the hands: one, 3.0 to 4.0 s.
+Lighter flicks: exactly two, 3.2 s and 3.5 s.
+Flame glow on hands and chin: one, about 3.5 to 4.1 s.
+Exhale of smoke: exactly one thin stream, 4.2 to about 6.2 s.
+Stepped zoom in: exactly one, two steps, starting at 6.6 s.
+His lean toward the camera: one, 6.6 to 7.3 s, held to the end.
+NOT USED ANYWHERE: cuts, a still or tripod camera, smooth gimbal moves, a second zoom, pans away from him, focus pulls to the background, light changes, music, text, subtitles, signs with words, logos, license plate text, other people, passing cars, a second cigarette, cartoon smoke clouds, glowing eyes, fingers or hands in front of the lens.
+
+=== PART 3: EFFECT DENSITY ===
+0.0 to 3.0 s: LOW, the handheld sway, one reframe and the cigarette rising to his lips at the end.
+3.0 to 4.2 s: HIGH, the quick lighting, the flame glow and the operator&#x27;s drift: the one peak.
+4.2 to 6.1 s: LOW, smoke and sway.
+6.6 to 7.3 s: MEDIUM, the lean and the one stepped zoom.
+7.8 to 11.0 s: LOW, sway only, all attention on his face and the whisper.
+
+=== PART 4: MOTION FLOW ===
+Opening: a relaxed man on a quiet street asks you a question, cigarette ready in his hand, and brings it to his lips right as he finishes.
+Build: a quick, practiced light, the one busy moment, then the smoke and &quot;They can&#x27;t do this&quot; with a half smile, with no dead time in between.
+Resolution: he leans in, the camera jumps closer, and he whispers the promise like a secret. It works because the only fast moment is the lighting; everything else is calm, so the whisper lands.
+
+=== HARD RULES ===
+All 4 lines are spoken in full, word for word, in order; &quot;Come closer&quot; only once.
+
+His lips are in sync with every word.
+
+The cigarette touches his lips only on the last word &quot;fake&quot; and stays in his mouth only during the silent lighting, 3.0 to 4.2 s.
+
+He never says any other word with the cigarette in his mouth.
+
+The lighting is quick: done in about 1.2 seconds.
+
+The face, hair, tattoos and clothes stay identical to @Image 1 and @Image 2 in every frame.
+
+His arms keep their normal size the whole clip.
+
+Nothing on him shines: no gloss on skin, eyes or hair.
+
+His mouth never opens wide or exaggerated.
+
+The illustration style of @Image 2 stays identical in every frame: flat shapes, hard flat shadows, paper grain, no realism, no 3D.
+
+The smoke is thin, flat, painted wisps, never round cartoon clouds.
+
+Exactly two lighter flicks, exactly one exhale.
+
+The camera never freezes: constant small handheld sway from 0.0 to 11.0 s.
+
+Exactly one zoom, stepped, on &quot;Come closer&quot;; after it he is still framed from the waist up with the whole head inside the frame.
+
+Nothing ever appears in front of the lens.
+
+The voice sounds like a man talking on the street, recorded by the camera, never a studio or podcast voice.
+
+No text anywhere in the frame.
+
+No music.
+
+=== AUDIO ===
+Only what a camera on a quiet street would record: his voice at a normal distance with a little open air, light wind, a very faint distant car, two quick metallic lighter clicks at 3.2 s and 3.5 s, a soft flame hiss, the lid snapping shut, a soft breath on the exhale. No music, no other voices.
+
+=== VOICE ===
+Line 1: relaxed, curious, conversational, New York accent.
+Exhale: slow, audible, real.
+Line 2: calm, a small amused weight on &quot;this&quot;.
+Line 3: lower and slower, inviting, a short trailing pause after it.
+Line 4: a calm, low whisper in the same voice, still clearly understood.</pre></details></div>
+  </section>
+
+<section class="tips">
+  <div class="giant" data-par="-0.2" aria-hidden="true">NOTES</div>
+  <div class="wrap" style="position:relative;z-index:1">
+    <span class="chip glass rv"><b>NOTES</b><em>what made the difference</em></span>
+    <ol><li><span class="tn">01</span><p>A good character sheet decides everything after it.</p></li><li><span class="tn">02</span><p>Describe how he talks, not just deep voice.</p></li><li><span class="tn">03</span><p>Small camera moves make it feel real.</p></li></ol>
+  </div>
+</section>
+
+<section class="outro">
+  <div class="giant" aria-hidden="true">ACTION</div>
+  <div class="wrap">
+    <div class="big rv">Your character. <i>Your voice.</i></div>
+    <p class="rv">Made one? Tag me.</p>
+    <div class="row rv"><span class="btn b-blue soon">Try Chimera <em>soon</em></span><a class="btn b-glass" href="https://www.instagram.com/marcelgrauu/" target="_blank" rel="noopener">Follow @marcelgrauu <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+  </div>
+</section>
+<footer>Made with ElevenLabs and Chimera. Paid partnership with ElevenLabs.</footer>
+
+<nav class="tl-bar glass" aria-label="Steps"><div class="track"><span class="fill"></span><a class="key" href="#s1" data-k="0"><i></i><span>CAST</span></a><a class="key" href="#s2" data-k="1"><i></i><span>FRAME</span></a><a class="key" href="#s3" data-k="2"><i></i><span>VOICE</span></a><a class="key" href="#s4" data-k="3"><i></i><span>ROLL</span></a></div></nav>
+<div class="toast" id="toast">Prompt copied</div>
+
+<script>
+function copyText(text) {
+  const done = () => { const t = document.getElementById('toast'); t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 1700); };
+  const fallback = () => { const ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); done(); } catch (e) {} document.body.removeChild(ta); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+}
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold: .15});
+document.querySelectorAll('.rv,.slate,.smedia > *,.sprompts').forEach(el => { el.classList.add('rv'); io.observe(el); });
+
+// running timecode on every viewfinder (24 fps, like a camera)
+const t0 = performance.now();
+const tcs = [...document.querySelectorAll('.tc')];
+(function tick() {
+  const f = Math.floor((performance.now() - t0) / 1000 * 24), p = n => String(n).padStart(2, '0');
+  const s = p(Math.floor(f / 24) % 60), m = p(Math.floor(f / 1440) % 60), fr = p(f % 24);
+  tcs.forEach(t => t.textContent = '00:' + m + ':' + s + ':' + fr);
+  requestAnimationFrame(tick);
+})();
+
+// giant words drift sideways, the keyframe timeline fills with the scroll
+const giants = [...document.querySelectorAll('.giant')];
+const scenes = [...document.querySelectorAll('.scene')];
+const keys = [...document.querySelectorAll('.key')];
+const bar = document.querySelector('.tl-bar'), fill = document.querySelector('.track .fill');
+function onScroll() {
+  const vh = innerHeight;
+  giants.forEach(g => {
+    const r = g.parentElement.getBoundingClientRect();
+    const k = (r.top + r.height / 2 - vh / 2) / vh;
+    const base = g.closest('.outro') ? 'translateX(-50%) ' : '';
+    g.style.transform = base + 'translateX(' + (k * 18) + 'vw)';
+  });
+  let cur = -1, frac = 0;
+  scenes.forEach((s, i) => { const r = s.getBoundingClientRect(); if (r.top < vh * .55) { cur = i; frac = Math.min(1, Math.max(0, (vh * .55 - r.top) / r.height)); } });
+  bar.classList.toggle('on', cur >= 0 && scenes[scenes.length - 1].getBoundingClientRect().bottom > vh * .3);
+  keys.forEach((k, i) => { k.classList.toggle('done', i <= cur); k.classList.toggle('now', i === cur); });
+  if (keys.length > 1 && cur >= 0) {
+    const a = keys[0].offsetLeft + 7, b = keys[keys.length - 1].offsetLeft + 7;
+    const c0 = keys[cur].offsetLeft + 7, c1 = keys[Math.min(cur + 1, keys.length - 1)].offsetLeft + 7;
+    fill.style.width = (c0 + (c1 - c0) * frac - a) + 'px';
+  }
+}
+addEventListener('scroll', onScroll, {passive: true}); addEventListener('resize', onScroll); onScroll();
+
+document.querySelectorAll('.compare').forEach(cmp => {
+  const setP = x => { const r = cmp.getBoundingClientRect(); cmp.style.setProperty('--p', Math.max(0, Math.min(100, (x - r.left) / r.width * 100)) + '%'); };
+  cmp.addEventListener('pointerdown', e => { cmp.setPointerCapture(e.pointerId); setP(e.clientX); });
+  cmp.addEventListener('pointermove', e => { if (cmp.hasPointerCapture(e.pointerId)) setP(e.clientX); });
+});
+</script>
+</body>
+</html>
