@@ -1,0 +1,973 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#070608">
+<title>30 design style prompts | marcelgrau</title>
+<meta name="description" content="The 30 design styles of the reel, each with its reference library and a detailed prompt.">
+<meta property="og:title" content="30 design style prompts">
+<meta property="og:image" content="assets/poster.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@1&family=Inter+Tight:wght@200;400;500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#070608;--ink:#f4f2ee;--mute:#8f8b95;--dim:#5d5a63;--y:#FFE500;
+  --hair:rgba(255,255,255,.07);--hair2:rgba(255,255,255,.12);--shell:rgba(255,255,255,.028);
+  --ease:cubic-bezier(.32,.72,0,1);
+  --sans:"Helvetica Neue","Inter Tight",Helvetica,system-ui,sans-serif;
+  --serif:"EB Garamond",Garamond,"Apple Garamond",Georgia,serif;
+}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:500;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:3;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.mesh{position:fixed;inset:-20%;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(38% 30% at 18% 8%,rgba(255,229,0,.13),transparent 70%),
+    radial-gradient(30% 28% at 88% 30%,rgba(122,92,255,.12),transparent 70%),
+    radial-gradient(34% 30% at 50% 100%,rgba(255,120,40,.08),transparent 70%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 28px}
+
+/* nav isla */
+.nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:4;display:flex;align-items:center;gap:18px;
+  padding:8px 8px 8px 20px;border-radius:999px;background:rgba(14,13,16,.62);border:1px solid var(--hair2);
+  backdrop-filter:blur(22px) saturate(140%);-webkit-backdrop-filter:blur(22px) saturate(140%);white-space:nowrap}
+.logo{font-weight:800;letter-spacing:-.035em;font-size:16px}
+.logo i{font-family:var(--serif);font-weight:400;font-style:italic;color:var(--y);letter-spacing:0;font-size:18px}
+.nav a{color:var(--mute);text-decoration:none;font-size:13px;transition:color .5s var(--ease)}
+.nav a:hover{color:var(--ink)}
+.nav .kw{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:999px;background:var(--y);color:#111;font-weight:700;font-size:12px}
+
+/* hero */
+.hero{min-height:100dvh;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:130px 0 90px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;border:1px solid var(--hair2);
+  font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.eyebrow b{width:6px;height:6px;border-radius:50%;background:var(--y);box-shadow:0 0 12px var(--y)}
+h1{font-size:clamp(46px,7.4vw,104px);line-height:.92;letter-spacing:-.055em;font-weight:800;margin:26px 0 26px}
+h1 .thin{font-weight:200;letter-spacing:-.04em}
+h1 i,h2 i{font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:-.02em;color:var(--y)}
+.lede{color:var(--mute);font-size:18px;line-height:1.55;max-width:42ch;margin:0 0 34px;font-weight:400}
+.cta{display:inline-flex;align-items:center;gap:14px;padding:7px 7px 7px 24px;border-radius:999px;background:var(--y);color:#111;
+  font-weight:700;font-size:15px;text-decoration:none;border:0;cursor:pointer;box-shadow:0 14px 50px rgba(255,229,0,.22);
+  transition:transform .6s var(--ease)}
+.cta .ic{width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.1);display:grid;place-items:center;transition:transform .6s var(--ease)}
+.cta:hover .ic{transform:translate(2px,-2px) scale(1.06)}
+.cta:active{transform:scale(.97)}
+.ghost{display:inline-flex;align-items:center;gap:10px;color:var(--mute);text-decoration:none;font-size:14px;margin-left:18px;transition:color .5s var(--ease)}
+.ghost:hover{color:var(--ink)}
+svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+.stage{position:relative;justify-self:center;width:min(330px,80vw)}
+.device{padding:9px;border-radius:46px;background:linear-gradient(160deg,rgba(255,255,255,.14),rgba(255,255,255,.03));
+  border:1px solid var(--hair2);box-shadow:0 60px 120px -30px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.6) inset}
+.device video{width:100%;border-radius:38px;display:block;background:#000}
+.composer{position:absolute;left:-58px;bottom:70px;display:flex;align-items:center;gap:10px;padding:9px 10px 9px 9px;
+  border-radius:999px;background:rgba(22,21,25,.86);border:1px solid var(--hair2);box-shadow:0 30px 60px rgba(0,0,0,.6);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transform:rotate(-3deg);min-width:230px}
+.composer img{width:34px;height:34px;border-radius:10px;object-fit:cover}
+.composer .typed{font-size:15px;font-weight:500;flex:1;white-space:nowrap}
+.composer .caret{display:inline-block;width:2px;height:17px;background:#0a84ff;vertical-align:-3px;margin-left:1px;animation:blink 1s steps(1) infinite}
+.composer .send{width:30px;height:30px;border-radius:50%;background:#0a84ff;display:grid;place-items:center;color:#fff}
+@keyframes blink{50%{opacity:0}}
+
+/* marquee */
+.marquee{border-block:1px solid var(--hair);overflow:hidden;padding:18px 0;margin:0 -28px 120px;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.track{display:flex;gap:44px;width:max-content;animation:slide 38s linear infinite}
+.track span{font-size:clamp(22px,3vw,34px);font-weight:200;letter-spacing:-.03em;color:var(--dim)}
+.track span:nth-child(3n){font-family:var(--serif);font-style:italic;font-weight:400;color:var(--mute)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* seccions */
+.sec{padding:0 0 130px}
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:40px;flex-wrap:wrap}
+h2{font-size:clamp(36px,5vw,64px);line-height:.96;letter-spacing:-.05em;font-weight:800;margin:18px 0 0}
+.sec-head p{color:var(--mute);max-width:36ch;line-height:1.55;margin:0;font-weight:400}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.step{padding:6px;border-radius:28px;background:var(--shell);border:1px solid var(--hair)}
+.step>div{height:100%;border-radius:22px;padding:26px 22px 24px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.step .n{font-family:var(--serif);font-style:italic;font-size:30px;color:var(--y);line-height:1}
+.step h4{margin:30px 0 8px;font-size:17px;letter-spacing:-.025em;font-weight:700}
+.step p{margin:0;color:var(--mute);font-size:14px;line-height:1.55;font-weight:400}
+
+/* biblioteca */
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:26px}
+.chip{padding:10px 17px;border-radius:999px;border:1px solid var(--hair2);background:transparent;color:var(--mute);font-size:13.5px;cursor:pointer;
+  transition:all .5s var(--ease)}
+.chip.on{background:var(--ink);color:#111;border-color:var(--ink)}
+.search{margin-left:auto;display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px solid var(--hair2);color:var(--mute)}
+.search input{background:none;border:0;outline:0;color:var(--ink);font:inherit;font-size:14px;width:150px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{all:unset;cursor:pointer;display:block}
+.card.hide{display:none}
+.shell{display:block;padding:6px;border-radius:30px;background:var(--shell);border:1px solid var(--hair);transition:transform .8s var(--ease),border-color .8s var(--ease)}
+.core{position:relative;display:block;border-radius:24px;overflow:hidden;aspect-ratio:4/5;background:#111;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.core .after{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.core .before{position:absolute;right:12px;top:12px;width:27%;aspect-ratio:2/3;object-fit:cover;border-radius:12px;
+  border:2px solid rgba(255,255,255,.85);box-shadow:0 12px 30px rgba(0,0,0,.5);transform:rotate(3deg);transition:transform .9s var(--ease)}
+.core::after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(180deg,transparent,rgba(5,5,7,.92))}
+.meta{position:absolute;left:18px;right:60px;bottom:16px;z-index:1;display:flex;flex-direction:column;gap:5px}
+.meta .cat{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--y)}
+.meta .name{font-size:23px;font-weight:700;letter-spacing:-.035em;word-break:break-word}
+.meta .note{font-size:13px;color:#bdb9c2;line-height:1.4;font-weight:400}
+.open{position:absolute;right:14px;bottom:16px;z-index:1;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;transition:all .7s var(--ease)}
+.card:hover .shell{transform:translateY(-4px);border-color:var(--hair2)}
+.card:hover .after{transform:scale(1.04)}
+.card:hover .before{transform:rotate(0deg) scale(1.04)}
+.card:hover .open{background:var(--y);color:#111;transform:translate(2px,-2px)}
+
+/* setup */
+.setup{padding:8px;border-radius:40px;background:linear-gradient(140deg,rgba(255,229,0,.2),rgba(255,255,255,.04) 40%,rgba(122,92,255,.14));}
+.setup>div{border-radius:32px;background:#0c0b0e;padding:56px;display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
+.setup ol{margin:26px 0 30px;padding:0;list-style:none;counter-reset:s;display:grid;gap:14px}
+.setup li{counter-increment:s;display:flex;gap:14px;color:var(--mute);line-height:1.5;font-weight:400}
+.setup li::before{content:counter(s);flex:none;width:26px;height:26px;border-radius:50%;border:1px solid var(--hair2);display:grid;place-items:center;
+  font-size:12px;color:var(--ink)}
+pre{margin:0;white-space:pre-wrap;word-wrap:break-word;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;
+  line-height:1.65;color:#cfcbd4;background:rgba(255,255,255,.025);border:1px solid var(--hair);border-radius:20px;padding:20px;overflow:auto}
+.setup pre{max-height:420px}
+
+.fall{margin-top:18px;border-top:1px solid var(--hair);padding-top:14px}
+.fall summary{cursor:pointer;color:var(--mute);font-size:14px;list-style:none}
+.fall summary::before{content:'+ ';color:var(--y)}
+.fall[open] summary::before{content:'2  '}
+.fall p{color:var(--dim);font-size:13px;margin:10px 0 8px}
+.fall pre{max-height:220px;margin:0 0 12px}
+
+/* outro */
+.outro{text-align:center;padding:40px 0 150px}
+.outro h2{font-size:clamp(40px,6vw,84px)}
+.outro p{color:var(--mute);margin:22px auto 34px;max-width:46ch;line-height:1.55;font-weight:400}
+footer{border-top:1px solid var(--hair);padding:30px 0 50px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--dim);font-size:13px}
+
+/* modal */
+.sheet{position:fixed;inset:0;z-index:5;display:grid;place-items:center;padding:24px;background:rgba(5,5,7,.72);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);opacity:0;pointer-events:none;transition:opacity .6s var(--ease)}
+.sheet.on{opacity:1;pointer-events:auto}
+.panel{width:min(1000px,100%);max-height:calc(100dvh - 48px);overflow:auto;padding:7px;border-radius:36px;background:rgba(255,255,255,.04);
+  border:1px solid var(--hair2);transform:translateY(40px) scale(.98);transition:transform .8s var(--ease)}
+.sheet.on .panel{transform:none}
+.panel>div{border-radius:30px;background:#0d0c0f;display:grid;grid-template-columns:.95fr 1.05fr;gap:34px;padding:22px;box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
+.compare{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:2/3;background:#111;touch-action:none;cursor:ew-resize;user-select:none}
+.compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.compare .b{clip-path:inset(0 calc(100% - var(--p,50%)) 0 0)}
+.compare .bar{position:absolute;top:0;bottom:0;left:var(--p,50%);width:2px;background:#fff;transform:translateX(-1px)}
+.compare .knob{position:absolute;top:50%;left:var(--p,50%);width:44px;height:44px;border-radius:50%;background:#fff;color:#111;
+  transform:translate(-50%,-50%);display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.compare .tag{position:absolute;bottom:12px;font-size:11px;font-weight:700;padding:5px 10px;border-radius:999px}
+.compare .tl{left:12px;background:rgba(0,0,0,.6)}
+.compare .tr{right:12px;background:var(--y);color:#111}
+.pbody{padding:14px 10px 10px 0;display:flex;flex-direction:column}
+.pbody .cat{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--y)}
+.pbody h3{font-size:clamp(30px,4vw,44px);letter-spacing:-.05em;margin:10px 0 10px;font-weight:800;word-break:break-word}
+.pbody .note{color:var(--mute);line-height:1.55;margin:0 0 8px;font-weight:400}
+.pbody .tip{color:var(--y);font-size:13.5px;margin:0 0 14px}
+
+.prow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.x{position:absolute;top:30px;right:30px;width:44px;height:44px;border-radius:50%;border:1px solid var(--hair2);background:rgba(20,19,23,.8);
+  cursor:pointer;display:grid;place-items:center;z-index:6}
+.toast{position:fixed;left:50%;bottom:28px;z-index:7;transform:translate(-50%,24px);opacity:0;background:var(--y);color:#111;font-weight:700;
+  padding:13px 22px;border-radius:999px;transition:all .6s var(--ease);pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* entrada */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:var(--d,0ms)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.track{animation:none}}
+
+@media(max-width:900px){
+  .wrap{padding:0 16px}
+  .nav{top:12px;gap:12px;padding:7px 7px 7px 16px}
+  .nav a.lk{display:none}
+  .hero{grid-template-columns:1fr;min-height:auto;padding:96px 0 70px;gap:44px}
+  .stage{order:-1;width:min(290px,76vw)}
+  .composer{left:50%;bottom:-24px;transform:translateX(-50%);min-width:240px}
+  .ghost{margin:18px 0 0;display:flex}
+  .marquee{margin:0 -16px 90px}
+  .sec{padding-bottom:96px}
+  .steps{grid-template-columns:1fr 1fr}
+  .grid{grid-template-columns:1fr}
+  .search{margin-left:0;width:100%}
+  .search input{width:100%}
+  .setup>div{grid-template-columns:1fr;padding:28px 20px;gap:10px}
+  .panel>div{grid-template-columns:1fr;padding:12px;gap:16px}
+  .pbody{padding:6px}
+  .sheet{padding:0;place-items:end center}
+  .panel{border-radius:30px 30px 0 0;max-height:94dvh}
+  .x{top:auto;bottom:calc(94dvh - 58px);right:16px}
+}
+@media(max-width:480px){.steps{grid-template-columns:1fr}}
+</style>
+<style>
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 8px}
+.chip{padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);color:#fff;text-decoration:none;font-size:15px}
+.chip:hover{border-color:#FFE500;color:#FFE500}
+.lib{columns:3;column-gap:10px;margin:0 0 18px}
+.lib img{width:100%;display:block;margin:0 0 10px;border-radius:14px;break-inside:avoid;background:#111}
+@media(max-width:600px){.lib{columns:2}}
+.pair{display:grid;grid-template-columns:1fr;gap:18px;align-items:start}
+.pair .shell{padding:6px;border-radius:30px}
+.pair .compare{border-radius:24px;aspect-ratio:2/3}
+.pair .compare img{width:100%;height:100%;object-fit:cover}
+.promptcard pre{max-height:none;font-size:14px;white-space:pre-wrap;margin:0 0 18px}
+.style{scroll-margin-top:90px}
+@media(max-width:900px){.pair{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="mesh"></div><div class="grain"></div>
+<nav class="nav">
+  <span class="logo">marcel<i>grau</i></span>
+  <a class="lk" href="#thermal">Prompts</a>
+  <span class="kw">Design style prompts</span>
+</nav>
+<main class="wrap">
+  <section class="hero">
+    <div class="reveal">
+      <span class="eyebrow"><b></b>30 design styles</span>
+      <h1>Pick a style, <i>copy the prompt.</i></h1>
+      <p class="lede">Every style from the reel with its real prompt. Attach one photo of yourself in ChatGPT, paste the prompt and send it.</p>
+      <div class="chips"><a class="chip" href="#thermal">Thermal</a><a class="chip" href="#ascii">ASCII Art</a><a class="chip" href="#kaleido">Kaleidoscope</a><a class="chip" href="#halftone">Halftone</a><a class="chip" href="#anaglyph">Anaglyph</a><a class="chip" href="#neon">Neon Sign</a><a class="chip" href="#popart">Pop Art</a><a class="chip" href="#dither">1-Bit Dither</a><a class="chip" href="#pixelsort">Pixel Sort</a><a class="chip" href="#nightvision">Night Vision</a><a class="chip" href="#celshade">Cel Shaded</a><a class="chip" href="#riso">Risograph</a><a class="chip" href="#noir">Film Noir</a><a class="chip" href="#comic">Comic Book</a><a class="chip" href="#xray">X-Ray</a><a class="chip" href="#pixel">Pixel Art</a><a class="chip" href="#fisheye">Fisheye</a><a class="chip" href="#cyano">Cyanotype</a><a class="chip" href="#crt">CRT</a><a class="chip" href="#mirror">Mirror</a><a class="chip" href="#duotone">Duotone</a><a class="chip" href="#blueprint">Blueprint</a><a class="chip" href="#vhs">VHS</a><a class="chip" href="#longexp">Long Exposure</a><a class="chip" href="#solar">Solarized</a><a class="chip" href="#infrared">Infrared</a><a class="chip" href="#charcoal">Charcoal</a><a class="chip" href="#datamosh">Datamosh</a><a class="chip" href="#droste">Droste</a><a class="chip" href="#cctv">CCTV</a></div>
+    </div>
+    <div class="stage reveal" style="--d:150ms">
+      <div class="device"><video src="assets/hero.mp4" poster="assets/poster.jpg" autoplay muted loop playsinline></video></div>
+    </div>
+  </section>
+
+  <section class="sec style" id="thermal">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>01 / 30</span><h2>Thermal</h2></div></div>
+    <div class="lib reveal"><img src="assets/thermal-1.jpg" alt="Thermal reference 1" loading="lazy" decoding="async"><img src="assets/thermal-2.jpg" alt="Thermal reference 2" loading="lazy" decoding="async"><img src="assets/thermal-3.jpg" alt="Thermal reference 3" loading="lazy" decoding="async"><img src="assets/thermal-4.jpg" alt="Thermal reference 4" loading="lazy" decoding="async"><img src="assets/thermal-5.jpg" alt="Thermal reference 5" loading="lazy" decoding="async"><img src="assets/thermal-6.jpg" alt="Thermal reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-thermal">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a real thermal imaging camera capture (FLIR style) turned into a graphic poster.
+
+COLOUR: false colour &quot;ironbow&quot; heat palette. The warmest skin (face, neck, hands) glows white and pale yellow, the body is hot orange and red, clothes cool down into magenta and purple, and the background is cold deep blue, indigo and violet. No natural colours left anywhere in the image.
+
+TEXTURE AND LIGHT: soft heat gradients instead of shadows, a glowing rim where the body meets the air, clothing folds readable only as temperature changes, slight sensor noise and a little softness like a low resolution sensor.
+
+INTERFACE: thin white monospace HUD on top. A vertical temperature scale on the right edge, from blue at the bottom to white at the top, labelled 20.0 to 40.0 °C. A small square target box on the chest with 36.5°C next to it. Top left a red dot and REC 00:00:12. Bottom left tiny lines: Emissivity 0.95, Distance 1.0 m. Thin corner brackets framing the shot.
+
+COMPOSITION: full body or three quarter shot, subject centred, plenty of cold dark space around so the heat pops.
+
+AVOID: normal photo colours, cartoon or painted look, brand logos, any text beyond the HUD.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-thermal').innerText)">Copy the Thermal prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="ascii">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>02 / 30</span><h2>ASCII Art</h2></div></div>
+    <div class="lib reveal"><img src="assets/ascii-1.jpg" alt="ASCII Art reference 1" loading="lazy" decoding="async"><img src="assets/ascii-2.jpg" alt="ASCII Art reference 2" loading="lazy" decoding="async"><img src="assets/ascii-3.jpg" alt="ASCII Art reference 3" loading="lazy" decoding="async"><img src="assets/ascii-4.jpg" alt="ASCII Art reference 4" loading="lazy" decoding="async"><img src="assets/ascii-5.jpg" alt="ASCII Art reference 5" loading="lazy" decoding="async"><img src="assets/ascii-6.jpg" alt="ASCII Art reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-ascii">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: an ASCII art portrait, the subject rebuilt entirely from monospace text characters.
+
+CHARACTERS: only letters, numbers and symbols set in a fixed grid of rows: dense heavy characters like @ # M W 8 $ for the darkest areas, medium ones like o x = + for mid tones, light ones like . , : ' for highlights, and empty spaces for pure white. Tone comes only from character density, no lines or shading.
+
+COLOUR: choose one: [black characters on white paper like a printer output], [light grey characters on black like a terminal], or [green characters on black].
+
+TEXTURE: crisp characters readable up close, while from a distance the face appears clearly and recognisably. Slight printer unevenness or a soft screen glow.
+
+TYPE: a small monospace caption under the portrait: [Portrait of YOUR NAME] on the left and a date like 29/10/2026 on the right.
+
+COMPOSITION: head and shoulders portrait centred, background left empty, the edges of the figure dissolving into sparser characters.
+
+AVOID: solid shapes, pixel blocks, smooth gradients, a photo visible underneath, brand logos.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-ascii').innerText)">Copy the ASCII Art prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="kaleido">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>03 / 30</span><h2>Kaleidoscope</h2></div></div>
+    <div class="lib reveal"><img src="assets/kaleido-1.jpg" alt="Kaleidoscope reference 1" loading="lazy" decoding="async"><img src="assets/kaleido-2.jpg" alt="Kaleidoscope reference 2" loading="lazy" decoding="async"><img src="assets/kaleido-3.jpg" alt="Kaleidoscope reference 3" loading="lazy" decoding="async"><img src="assets/kaleido-4.jpg" alt="Kaleidoscope reference 4" loading="lazy" decoding="async"><img src="assets/kaleido-5.jpg" alt="Kaleidoscope reference 5" loading="lazy" decoding="async"><img src="assets/kaleido-6.jpg" alt="Kaleidoscope reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-kaleido">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: the view through a real kaleidoscope: the photo mirrored into a perfect symmetrical mandala of 6 to 12 segments around the centre.
+
+COLOUR: the colours of the photo intensified into jewel brights: electric blue, violet, magenta, amber and emerald with sparkling white, or a softer silver and grey mirror version.
+
+TEXTURE AND LIGHT: crisp mirror seams radiating from the centre, faceted crystal shards, rainbow fringes on the edges, glints, star shaped sparkles and lens flares where light hits the glass, a sense of depth like looking down a mirrored tunnel.
+
+SUBJECT: the subject's face clearly visible in the centre, with its reflections repeated in rings around it, getting smaller towards the core or the edges, forming a flower of faces and eyes.
+
+COMPOSITION: radial symmetry centred in the frame, the pattern filling the whole image to the edges, a slight dark vignette.
+
+AVOID: a random collage, blurry mirrors, a flat vector mandala, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-kaleido').innerText)">Copy the Kaleidoscope prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="halftone">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>04 / 30</span><h2>Halftone</h2></div></div>
+    <div class="lib reveal"><img src="assets/halftone-1.jpg" alt="Halftone reference 1" loading="lazy" decoding="async"><img src="assets/halftone-2.jpg" alt="Halftone reference 2" loading="lazy" decoding="async"><img src="assets/halftone-3.jpg" alt="Halftone reference 3" loading="lazy" decoding="async"><img src="assets/halftone-4.jpg" alt="Halftone reference 4" loading="lazy" decoding="async"><img src="assets/halftone-5.jpg" alt="Halftone reference 5" loading="lazy" decoding="async"><img src="assets/halftone-6.jpg" alt="Halftone reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-halftone">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a printed halftone poster, like a riso or offset print from an independent design studio.
+
+COLOUR: the subject in black halftone dots only, on warm off white paper. One single accent colour for the shapes and the title: [ORANGE] (or yellow, or navy).
+
+TEXTURE: big visible round halftone dots that get larger in the shadows and disappear in the highlights, slight misregistration, uneven ink, paper grain and a few creases.
+
+TYPE: a huge condensed bold sans serif title behind or across the subject, partly hidden by the head: [YOUR WORD]. A few lines of tiny body text in the corners like a real poster (date, issue number, a short line). Nothing else.
+
+GRAPHICS: one simple bold shape in the accent colour behind the subject (a circle, a star or a block) and two or three thin rules.
+
+COMPOSITION: subject cut out from the chest up, centred and big, overlapping the title, Swiss poster layout with a clear grid.
+
+AVOID: photographic smooth tones, gradients, brand logos, real people's names.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-halftone').innerText)">Copy the Halftone prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="anaglyph">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>05 / 30</span><h2>Anaglyph</h2></div></div>
+    <div class="lib reveal"><img src="assets/anaglyph-1.jpg" alt="Anaglyph reference 1" loading="lazy" decoding="async"><img src="assets/anaglyph-2.jpg" alt="Anaglyph reference 2" loading="lazy" decoding="async"><img src="assets/anaglyph-3.jpg" alt="Anaglyph reference 3" loading="lazy" decoding="async"><img src="assets/anaglyph-4.jpg" alt="Anaglyph reference 4" loading="lazy" decoding="async"><img src="assets/anaglyph-5.jpg" alt="Anaglyph reference 5" loading="lazy" decoding="async"><img src="assets/anaglyph-6.jpg" alt="Anaglyph reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-anaglyph">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a red and cyan anaglyph 3D photo, the kind you look at with old 3D glasses.
+
+COLOUR AND EFFECT: two copies of the image, one in red and one in cyan, offset sideways by a few millimetres. The offset is strongest on the edges of the subject (hair, shoulders, arms) and on everything close to the camera, and smaller in the background, so it really looks like depth. Natural colours stay underneath but slightly washed out.
+
+TEXTURE: crisp photo, a little film grain, no blur.
+
+COMPOSITION: subject close to the camera, face or upper body filling most of the frame, a simple background (wall, sky or street) so the red and cyan fringes read clearly.
+
+AVOID: a fully red or fully blue image, glitch blocks, double exposure, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-anaglyph').innerText)">Copy the Anaglyph prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="neon">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>06 / 30</span><h2>Neon Sign</h2></div></div>
+    <div class="lib reveal"><img src="assets/neon-1.jpg" alt="Neon Sign reference 1" loading="lazy" decoding="async"><img src="assets/neon-2.jpg" alt="Neon Sign reference 2" loading="lazy" decoding="async"><img src="assets/neon-3.jpg" alt="Neon Sign reference 3" loading="lazy" decoding="async"><img src="assets/neon-4.jpg" alt="Neon Sign reference 4" loading="lazy" decoding="async"><img src="assets/neon-5.jpg" alt="Neon Sign reference 5" loading="lazy" decoding="async"><img src="assets/neon-6.jpg" alt="Neon Sign reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-neon">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a real neon sign: the subject's portrait drawn with bent glass neon tubes, mounted on a wall and switched on at night.
+
+COLOUR: glowing tubes in hot pink, red, warm orange, electric blue and warm white, a dark wall behind, the colours reflecting on the wall and on nearby plants.
+
+TEXTURE AND LIGHT: a continuous line drawing of the face, hair and outfit made of tubes of even thickness, each tube with a bright white hot core and a soft coloured halo, strong glow spilling onto the surroundings. Real details: small clear mounts holding the tubes, blacked out sections where a tube jumps between lines, thin cables hanging down, a clear acrylic backing panel.
+
+TYPE: optional, a handwritten cursive neon phrase beside the portrait: [your phrase here].
+
+SETTING: a dark exposed brick wall, a deep red painted wall, or a dark room with tropical plants silhouetted in the foreground, lit only by the neon.
+
+COMPOSITION: the neon portrait centred on the wall, head and shoulders, some empty dark wall around it, photographed straight on.
+
+AVOID: a filled illustration, LED strip look, daylight, brand logos, any other text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-neon').innerText)">Copy the Neon Sign prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="popart">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>07 / 30</span><h2>Pop Art</h2></div></div>
+    <div class="lib reveal"><img src="assets/popart-1.jpg" alt="Pop Art reference 1" loading="lazy" decoding="async"><img src="assets/popart-2.jpg" alt="Pop Art reference 2" loading="lazy" decoding="async"><img src="assets/popart-3.jpg" alt="Pop Art reference 3" loading="lazy" decoding="async"><img src="assets/popart-4.jpg" alt="Pop Art reference 4" loading="lazy" decoding="async"><img src="assets/popart-5.jpg" alt="Pop Art reference 5" loading="lazy" decoding="async"><img src="assets/popart-6.jpg" alt="Pop Art reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-popart">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a 1960s pop art comic print, bold and graphic, between a vintage comic book panel and a screen printed poster.
+
+COLOUR: flat saturated colours with no gradients: lemon yellow, cyan, magenta pink, primary red and royal blue, plus pure black and white. Skin in pink or peach with a dot pattern, lips glossy red, hair in solid yellow, black or blue with a few black stroke highlights.
+
+TEXTURE: thick confident black outlines, round comic print dots (red dots on pink skin, blue dots in the background), slight misregistration, aged paper grain and a few scuffs like an old printed poster.
+
+TYPE: one speech or thought bubble with a single short word in bold hand lettered comic capitals: [WOW!]. No other text.
+
+GRAPHICS: a background of large halftone dots, bold red and cream sunburst rays, or a flat block of colour. Optional props: big sunglasses, a cocktail glass, a red curtain.
+
+COMPOSITION: close up of the face and shoulders, an expressive comic pose (hand on the cheek, surprised open mouth, lowering the sunglasses), face large and slightly off centre, bubble in the upper corner.
+
+AVOID: soft painterly shading, 3D render, photographic texture, known comic characters, brand logos, any extra text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-popart').innerText)">Copy the Pop Art prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="dither">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>08 / 30</span><h2>1-Bit Dither</h2></div></div>
+    <div class="lib reveal"><img src="assets/dither-1.jpg" alt="1-Bit Dither reference 1" loading="lazy" decoding="async"><img src="assets/dither-2.jpg" alt="1-Bit Dither reference 2" loading="lazy" decoding="async"><img src="assets/dither-3.jpg" alt="1-Bit Dither reference 3" loading="lazy" decoding="async"><img src="assets/dither-4.jpg" alt="1-Bit Dither reference 4" loading="lazy" decoding="async"><img src="assets/dither-5.jpg" alt="1-Bit Dither reference 5" loading="lazy" decoding="async"><img src="assets/dither-6.jpg" alt="1-Bit Dither reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-dither">Turn this photo into a 1-bit dithered poster: only pure black and pure white pixels, no greys, with a visible dither pattern so all the shading is made of dots. Strong contrast so I stay recognisable, a big bold sans serif title at the top and a few lines of tiny text at the bottom like a gig poster. Vertical 2:3, old Macintosh print feel. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-dither').innerText)">Copy the 1-Bit Dither prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="pixelsort">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>09 / 30</span><h2>Pixel Sort</h2></div></div>
+    <div class="lib reveal"><img src="assets/pixelsort-1.jpg" alt="Pixel Sort reference 1" loading="lazy" decoding="async"><img src="assets/pixelsort-2.jpg" alt="Pixel Sort reference 2" loading="lazy" decoding="async"><img src="assets/pixelsort-3.jpg" alt="Pixel Sort reference 3" loading="lazy" decoding="async"><img src="assets/pixelsort-4.jpg" alt="Pixel Sort reference 4" loading="lazy" decoding="async"><img src="assets/pixelsort-5.jpg" alt="Pixel Sort reference 5" loading="lazy" decoding="async"><img src="assets/pixelsort-6.jpg" alt="Pixel Sort reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-pixelsort">Turn this photo into a pixel sorting glitch artwork: long vertical streaks of sorted pixels melting down from the bright parts of the image like dripping light, sharp edges where the sorting starts, my face and upper body still clear, and the streaks taking over the lower half. Vertical 2:3, digital art look. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-pixelsort').innerText)">Copy the Pixel Sort prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="nightvision">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>10 / 30</span><h2>Night Vision</h2></div></div>
+    <div class="lib reveal"><img src="assets/nightvision-1.jpg" alt="Night Vision reference 1" loading="lazy" decoding="async"><img src="assets/nightvision-2.jpg" alt="Night Vision reference 2" loading="lazy" decoding="async"><img src="assets/nightvision-3.jpg" alt="Night Vision reference 3" loading="lazy" decoding="async"><img src="assets/nightvision-4.jpg" alt="Night Vision reference 4" loading="lazy" decoding="async"><img src="assets/nightvision-5.jpg" alt="Night Vision reference 5" loading="lazy" decoding="async"><img src="assets/nightvision-6.jpg" alt="Night Vision reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-nightvision">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a frame from a night vision camera, like footage seen through night vision goggles or a camcorder in infrared night mode.
+
+COLOUR: monochrome phosphor green only: deep black shadows, mid tones in dark olive green, highlights in pale glowing mint that almost turns white. No other colours anywhere.
+
+LIGHT: lit by a single infrared lamp next to the lens: the face and the front of the body glow bright, the background falls off fast into black. The eyes reflect the light and shine. Any lamp or street light in the scene becomes a big blooming white flare.
+
+TEXTURE: heavy video noise and grain everywhere, soft low resolution detail, slight smearing on movement, faint horizontal scanlines, a soft dark round vignette at the edges like looking through a goggle tube.
+
+INTERFACE: small thin monospace overlay in pale green: a dot and REC top left, a battery icon top right, a timestamp bottom left like 02:47:13, a small crosshair in the centre. Optionally a thin red rectangle tracking box around the subject with a tiny label TARGET 01.
+
+SETTING: outdoors at night: [a car park with parked vans] (or a dark field, a back street, a garden), everything beyond a few metres fading into black.
+
+COMPOSITION: candid and close, slightly tilted, like a flash selfie at night or a surveillance shot, subject filling the middle of the frame.
+
+AVOID: a daylight look, natural colours, a clean sharp image, brand logos, any text beyond the HUD.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-nightvision').innerText)">Copy the Night Vision prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="celshade">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>11 / 30</span><h2>Cel Shaded</h2></div></div>
+    <div class="lib reveal"><img src="assets/celshade-1.jpg" alt="Cel Shaded reference 1" loading="lazy" decoding="async"><img src="assets/celshade-2.jpg" alt="Cel Shaded reference 2" loading="lazy" decoding="async"><img src="assets/celshade-3.jpg" alt="Cel Shaded reference 3" loading="lazy" decoding="async"><img src="assets/celshade-4.jpg" alt="Cel Shaded reference 4" loading="lazy" decoding="async"><img src="assets/celshade-5.jpg" alt="Cel Shaded reference 5" loading="lazy" decoding="async"><img src="assets/celshade-6.jpg" alt="Cel Shaded reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-celshade">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a cel shaded 3D character render, like a stylised anime video game: toon shading with flat colours and hard shadow edges.
+
+COLOUR: bold saturated colours taken from the photo, cool blue and purple shadow tones, a warm rim light, subtle iridescent hue shifts.
+
+TEXTURE AND LIGHT: two or three tone shading with crisp edges and no soft gradients, thick dark outlines around the silhouette and thinner inner lines, sharp white highlight shapes on the hair, a bright rim light.
+
+SUBJECT: slightly stylised proportions, big expressive eyes but keeping the person's features, hair as chunky sculpted strands.
+
+SETTING: a plain black or flat colour background, or a simple street rendered in the same toon style.
+
+COMPOSITION: character portrait from the waist up, centred.
+
+AVOID: realistic skin texture, photographic lighting, known characters, logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-celshade').innerText)">Copy the Cel Shaded prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="riso">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>12 / 30</span><h2>Risograph</h2></div></div>
+    <div class="lib reveal"><img src="assets/riso-1.jpg" alt="Risograph reference 1" loading="lazy" decoding="async"><img src="assets/riso-2.jpg" alt="Risograph reference 2" loading="lazy" decoding="async"><img src="assets/riso-3.jpg" alt="Risograph reference 3" loading="lazy" decoding="async"><img src="assets/riso-4.jpg" alt="Risograph reference 4" loading="lazy" decoding="async"><img src="assets/riso-5.jpg" alt="Risograph reference 5" loading="lazy" decoding="async"><img src="assets/riso-6.jpg" alt="Risograph reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-riso">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a risograph printed gig poster, printed with two or three spot inks.
+
+COLOUR: only fluorescent pink, blue and yellow (or blue and red), each as a separate ink layer. Where layers overlap they mix into new tones. Paper is warm off white.
+
+TEXTURE: each ink layer slightly out of register so the edges don't line up, grainy uneven ink coverage with small white specks, rough halftone in the photo areas, visible paper fibre.
+
+SUBJECT: the photo of the subject printed in one ink (for example blue) as a coarse halftone, big and expressive.
+
+TYPE: a bold, playful headline in a chunky rounded sans or wobbly display font: [YOUR WORD]. Under it three or four short lines of event text like a real flyer: [Saturday June 14], [Doors 7 PM], [The Paper Room].
+
+COMPOSITION: busy but balanced flyer layout, title big at the top, subject filling the middle, small text blocks in the corners, one or two simple hand drawn shapes in another ink.
+
+AVOID: clean digital colours, perfect alignment, gradients, brand logos, real band names.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-riso').innerText)">Copy the Risograph prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="noir">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>13 / 30</span><h2>Film Noir</h2></div></div>
+    <div class="lib reveal"><img src="assets/noir-1.jpg" alt="Film Noir reference 1" loading="lazy" decoding="async"><img src="assets/noir-2.jpg" alt="Film Noir reference 2" loading="lazy" decoding="async"><img src="assets/noir-3.jpg" alt="Film Noir reference 3" loading="lazy" decoding="async"><img src="assets/noir-4.jpg" alt="Film Noir reference 4" loading="lazy" decoding="async"><img src="assets/noir-5.jpg" alt="Film Noir reference 5" loading="lazy" decoding="async"><img src="assets/noir-6.jpg" alt="Film Noir reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-noir">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a still from a 1940s film noir, black and white, mysterious and cinematic.
+
+COLOUR: strict black and white with deep inky blacks and bright whites, very few mid greys.
+
+LIGHT: one hard light source. Choose one look: stripes of light through [VENETIAN BLINDS] falling across the face and body; or a single harsh lamp from below or above carving the face out of the dark, with half the face in shadow under the brim of a hat; or a backlit silhouette with a long black shadow stretching across the ground.
+
+STYLING: keep the outfit, but give the mood of the era: a felt fedora or a pinned up hairstyle, a trench coat collar, a hint of smoke drifting in the light.
+
+SETTING: dark and minimal: an empty wall with a big shadow on it, a wet cobblestone alley in fog, a lonely street lamp, a bar counter in the dark.
+
+TEXTURE: fine silver film grain, soft halation around the bright areas, slight vignette.
+
+COMPOSITION: dramatic angles: a tight portrait with a strong shadow pattern, or the subject small in the frame with a huge shadow, lots of negative black space.
+
+AVOID: colour, flat lighting, modern objects, weapons, text, logos.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-noir').innerText)">Copy the Film Noir prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="comic">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>14 / 30</span><h2>Comic Book</h2></div></div>
+    <div class="lib reveal"><img src="assets/comic-1.jpg" alt="Comic Book reference 1" loading="lazy" decoding="async"><img src="assets/comic-2.jpg" alt="Comic Book reference 2" loading="lazy" decoding="async"><img src="assets/comic-3.jpg" alt="Comic Book reference 3" loading="lazy" decoding="async"><img src="assets/comic-4.jpg" alt="Comic Book reference 4" loading="lazy" decoding="async"><img src="assets/comic-5.jpg" alt="Comic Book reference 5" loading="lazy" decoding="async"><img src="assets/comic-6.jpg" alt="Comic Book reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-comic">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a page from a modern American comic book, inked and coloured by hand, with a dramatic panel layout.
+
+COLOUR: flat colours with a limited palette per panel: teal and deep blue for night scenes, warm orange, red and pink for action, all on slightly yellowed paper. Alternative: a black and white ink version with huge areas of solid black.
+
+TEXTURE: bold black ink outlines with varying line weight, heavy spotted blacks in the shadows, cross hatching, printed halftone dots in the skin and backgrounds, slight colour misregistration like old printing, aged newsprint paper.
+
+TYPE: hand lettered comic text only. One rectangular yellow caption box at the top: [MEANWHILE...]. One white speech balloon: [YOUR LINE]. One big sound effect in bold outlined letters on a jagged burst shape: [POW!]. Nothing else.
+
+LAYOUT: the subject in one big hero panel taking most of the page, plus two or three smaller tilted panels with close ups (the eyes, a hand, a detail of the outfit), white gutters between the panels.
+
+COMPOSITION: dynamic low camera angle, motion lines around the subject, strong contrast between light and shadow.
+
+AVOID: superhero costumes or emblems, known characters, manga style, 3D rendering, publisher logos, extra text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-comic').innerText)">Copy the Comic Book prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="xray">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>15 / 30</span><h2>X-Ray</h2></div></div>
+    <div class="lib reveal"><img src="assets/xray-1.jpg" alt="X-Ray reference 1" loading="lazy" decoding="async"><img src="assets/xray-2.jpg" alt="X-Ray reference 2" loading="lazy" decoding="async"><img src="assets/xray-3.jpg" alt="X-Ray reference 3" loading="lazy" decoding="async"><img src="assets/xray-4.jpg" alt="X-Ray reference 4" loading="lazy" decoding="async"><img src="assets/xray-5.jpg" alt="X-Ray reference 5" loading="lazy" decoding="async"><img src="assets/xray-6.jpg" alt="X-Ray reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-xray">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a fine art X ray radiograph: the subject captured with X rays so the inner structure shows through the body.
+
+COLOUR: luminous white, ice blue and pale cyan on pure black. Alternative: dark grey on white like a negative.
+
+TEXTURE AND LIGHT: translucent layered volumes, denser parts brighter (bones, metal, thick fabric), thin parts faint and ghostly. Skull, spine, ribs and hand bones visible through a soft glowing silhouette of skin; clothes as faint folds and seams; zips, buttons, jewellery and objects in pockets as bright solid white shapes. Fine film grain.
+
+GRAPHICS: flowers with translucent veined petals rendered as X ray too, blooming inside the head or around the shoulders.
+
+INTERFACE: the black edge of a film sheet with a small notch, a side marker [R] and tiny white scan labels in the corners: [SCAN 0217], [60 kV].
+
+COMPOSITION: side profile or front view of the head and upper body, centred, plenty of black around.
+
+AVOID: colour, a cartoon skeleton, horror or gore, logos, watermarks, extra text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-xray').innerText)">Copy the X-Ray prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="pixel">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>16 / 30</span><h2>Pixel Art</h2></div></div>
+    <div class="lib reveal"><img src="assets/pixel-1.jpg" alt="Pixel Art reference 1" loading="lazy" decoding="async"><img src="assets/pixel-2.jpg" alt="Pixel Art reference 2" loading="lazy" decoding="async"><img src="assets/pixel-3.jpg" alt="Pixel Art reference 3" loading="lazy" decoding="async"><img src="assets/pixel-4.jpg" alt="Pixel Art reference 4" loading="lazy" decoding="async"><img src="assets/pixel-5.jpg" alt="Pixel Art reference 5" loading="lazy" decoding="async"><img src="assets/pixel-6.jpg" alt="Pixel Art reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-pixel">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a detailed 16 bit pixel art scene, like a still from a story driven retro video game.
+
+PIXELS: big clearly visible square pixels, hard pixel edges everywhere, no anti aliasing, dithering patterns for the gradients in the sky and the shadows.
+
+COLOUR: a limited palette of about 32 colours. Night version: deep navy and indigo with warm orange and yellow window lights and a few neon pink and cyan signs. Day version: saturated cobalt sky with cream and peach pixel clouds.
+
+SUBJECT: the subject as a detailed pixel character with readable features, the same hair, clothes and colours as the photo, standing in the scene.
+
+SETTING: [a rooftop at night overlooking a city skyline under a full moon] (or inside a car at night with rain on the windscreen and city lights ahead, a rainy street with a street lamp and tall apartment blocks).
+
+LIGHT: glowing pixel lights, bloom made of dithered pixels, reflections on wet ground in stripes of pixels.
+
+COMPOSITION: cinematic wide framing in vertical, subject in the lower third, sky and skyline above.
+
+AVOID: smooth gradients, blur, a 3D render look, real landmarks, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-pixel').innerText)">Copy the Pixel Art prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="fisheye">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>17 / 30</span><h2>Fisheye</h2></div></div>
+    <div class="lib reveal"><img src="assets/fisheye-1.jpg" alt="Fisheye reference 1" loading="lazy" decoding="async"><img src="assets/fisheye-2.jpg" alt="Fisheye reference 2" loading="lazy" decoding="async"><img src="assets/fisheye-3.jpg" alt="Fisheye reference 3" loading="lazy" decoding="async"><img src="assets/fisheye-4.jpg" alt="Fisheye reference 4" loading="lazy" decoding="async"><img src="assets/fisheye-5.jpg" alt="Fisheye reference 5" loading="lazy" decoding="async"><img src="assets/fisheye-6.jpg" alt="Fisheye reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-fisheye">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: an extreme fisheye lens photo, like a still from a street skate video shot with a 180 degree lens held at arm's length.
+
+LENS: a circular fisheye: the picture is a round image floating in a black frame, or it fills the vertical format with hard bent edges and black corners. Every straight line bends: buildings, walls, railings and lamp posts curve around the subject and lean in towards the centre like a dome.
+
+PERSPECTIVE: the camera very close to the subject, slightly below or slightly above. Whatever is nearest the lens looks huge (face, hands, a held object), the feet and the background shrink. The subject looks into or past the lens with attitude.
+
+COLOUR: bold and punchy, choose one: [deep blue sky and warm sunlit skin], [one saturated colour light like red or green flooding the whole room], or [high contrast black and white]. Strong saturation, deep blacks.
+
+TEXTURE AND LIGHT: on camera flash or hard sun, crisp detail in the centre that gets softer and slightly smeared towards the curved edges, light film grain, a thin colour fringe on the rim of the circle.
+
+SETTING: [a city street with tall towers curving overhead] (or a narrow tiled corridor, a sunny boardwalk with palm trees, a cobbled square).
+
+COMPOSITION: subject centred in the circle, head and shoulders big, the environment wrapping around in a bubble.
+
+AVOID: a mild wide angle, straight lines, deforming the face beyond recognition, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-fisheye').innerText)">Copy the Fisheye prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="cyano">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>18 / 30</span><h2>Cyanotype</h2></div></div>
+    <div class="lib reveal"><img src="assets/cyano-1.jpg" alt="Cyanotype reference 1" loading="lazy" decoding="async"><img src="assets/cyano-2.jpg" alt="Cyanotype reference 2" loading="lazy" decoding="async"><img src="assets/cyano-3.jpg" alt="Cyanotype reference 3" loading="lazy" decoding="async"><img src="assets/cyano-4.jpg" alt="Cyanotype reference 4" loading="lazy" decoding="async"><img src="assets/cyano-5.jpg" alt="Cyanotype reference 5" loading="lazy" decoding="async"><img src="assets/cyano-6.jpg" alt="Cyanotype reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-cyano">Turn this photo into a cyanotype print: deep Prussian blue and white only, like a sun print on thick watercolour paper, with brushy uneven edges where the chemical was painted on, soft paper texture and a few white specks. Me in the middle as the print. Vertical 2:3, handmade art print look. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-cyano').innerText)">Copy the Cyanotype prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="crt">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>19 / 30</span><h2>CRT</h2></div></div>
+    <div class="lib reveal"><img src="assets/crt-1.jpg" alt="CRT reference 1" loading="lazy" decoding="async"><img src="assets/crt-2.jpg" alt="CRT reference 2" loading="lazy" decoding="async"><img src="assets/crt-3.jpg" alt="CRT reference 3" loading="lazy" decoding="async"><img src="assets/crt-4.jpg" alt="CRT reference 4" loading="lazy" decoding="async"><img src="assets/crt-5.jpg" alt="CRT reference 5" loading="lazy" decoding="async"><img src="assets/crt-6.jpg" alt="CRT reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-crt">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: the subject displayed on an old CRT screen and photographed up close, glowing in the dark.
+
+COLOUR: mostly electric blue and cyan phosphor light on pure black, with a few hot white highlights. Almost monochrome.
+
+TEXTURE: very visible horizontal scanlines across the whole image, the picture built from tiny glowing RGB phosphor dots, soft bloom around every bright area, slight barrel distortion and darker rounded corners like curved glass. Some lines wobble and ripple sideways like a weak signal, and a bit of grain and dust floats in the black.
+
+LIGHT: the image is the only light source, everything outside the face and body falls into deep black.
+
+COMPOSITION: tight crop on the face and shoulders, slightly off centre, lots of black around, like a close up photo of a screen in a dark room.
+
+AVOID: a flat digital overlay of lines, colourful TV, visible TV casing, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-crt').innerText)">Copy the CRT prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="mirror">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>20 / 30</span><h2>Mirror</h2></div></div>
+    <div class="lib reveal"><img src="assets/mirror-1.jpg" alt="Mirror reference 1" loading="lazy" decoding="async"><img src="assets/mirror-2.jpg" alt="Mirror reference 2" loading="lazy" decoding="async"><img src="assets/mirror-3.jpg" alt="Mirror reference 3" loading="lazy" decoding="async"><img src="assets/mirror-4.jpg" alt="Mirror reference 4" loading="lazy" decoding="async"><img src="assets/mirror-5.jpg" alt="Mirror reference 5" loading="lazy" decoding="async"><img src="assets/mirror-6.jpg" alt="Mirror reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-mirror">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a surreal mirror symmetry photo, an editorial fashion image where the subject is reflected perfectly in a mirror or glossy surface.
+
+EFFECT: the frame is split by one clean mirror line, [HORIZONTAL] (the subject above, the upside down reflection below, like resting on a polished mirror table) or vertical (the subject facing their own reflection). The reflection is a perfect copy, same pose and outfit, flipped exactly. The seam is sharp and straight, with only a faint line of light where the mirror edge is.
+
+COLOUR: clean, saturated editorial colours. A soft plain background in [LIGHT GREY] or a vivid clear sky blue, with one strong accent colour taken from the photo (red lips, an orange jacket, red shoes) repeated in the reflection.
+
+LIGHT: soft even studio light or bright daylight, crisp shadows, glossy reflections on the mirror surface.
+
+TEXTURE: sharp high end photography, fine film grain, smooth skin with real pores, no blur on the reflection.
+
+COMPOSITION: centred and balanced so the two halves read as one graphic shape, plenty of empty space around, the mirror line crossing the middle of the frame.
+
+AVOID: a kaleidoscope with many copies, warped or melted reflections, double exposure, text, brand logos.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-mirror').innerText)">Copy the Mirror prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="duotone">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>21 / 30</span><h2>Duotone</h2></div></div>
+    <div class="lib reveal"><img src="assets/duotone-1.jpg" alt="Duotone reference 1" loading="lazy" decoding="async"><img src="assets/duotone-2.jpg" alt="Duotone reference 2" loading="lazy" decoding="async"><img src="assets/duotone-3.jpg" alt="Duotone reference 3" loading="lazy" decoding="async"><img src="assets/duotone-4.jpg" alt="Duotone reference 4" loading="lazy" decoding="async"><img src="assets/duotone-5.jpg" alt="Duotone reference 5" loading="lazy" decoding="async"><img src="assets/duotone-6.jpg" alt="Duotone reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-duotone">Turn this photo into a bold duotone poster: only two colours, deep navy for the shadows and bright coral for the highlights, flat and graphic with strong contrast, the word BOLD in a huge heavy sans serif running vertically on one side, no logos and no other words. Vertical 2:3, music campaign poster look. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-duotone').innerText)">Copy the Duotone prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="blueprint">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>22 / 30</span><h2>Blueprint</h2></div></div>
+    <div class="lib reveal"><img src="assets/blueprint-1.jpg" alt="Blueprint reference 1" loading="lazy" decoding="async"><img src="assets/blueprint-2.jpg" alt="Blueprint reference 2" loading="lazy" decoding="async"><img src="assets/blueprint-3.jpg" alt="Blueprint reference 3" loading="lazy" decoding="async"><img src="assets/blueprint-4.jpg" alt="Blueprint reference 4" loading="lazy" decoding="async"><img src="assets/blueprint-5.jpg" alt="Blueprint reference 5" loading="lazy" decoding="async"><img src="assets/blueprint-6.jpg" alt="Blueprint reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-blueprint">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a technical blueprint of the subject, like an engineering plan or a patent drawing.
+
+COLOUR: deep cobalt blueprint blue paper with fine white and pale blue lines. No other colours.
+
+DRAWING: the subject as a clean white technical line drawing that follows the photo exactly: outlines, centre lines, construction lines and dashed hidden lines. Small detail views of [the shoes, the jacket, the glasses] in the margins, labelled FRONT VIEW, SIDE VIEW, TOP VIEW.
+
+ANNOTATIONS: dimension lines with arrows and measurements like 182 cm and 42 cm, angle marks, and leader lines pointing to parts with small monospace labels: [JACKET: COTTON], [SHOES: SIZE 43], [HAIR].
+
+GRID: a faint square grid over the whole sheet, a thin border frame and a title block in the bottom right corner: [PROJECT NAME], [DRAWING NO 01], [SCALE 1:10], [DATE].
+
+TEXTURE: slightly worn paper, faint creases, lines a little chalky, a soft vignette.
+
+COMPOSITION: full body front view centred and large, detail views and notes arranged around it in a neat grid.
+
+AVOID: shading, colour, photo textures, brand logos.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-blueprint').innerText)">Copy the Blueprint prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="vhs">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>23 / 30</span><h2>VHS</h2></div></div>
+    <div class="lib reveal"><img src="assets/vhs-1.jpg" alt="VHS reference 1" loading="lazy" decoding="async"><img src="assets/vhs-2.jpg" alt="VHS reference 2" loading="lazy" decoding="async"><img src="assets/vhs-3.jpg" alt="VHS reference 3" loading="lazy" decoding="async"><img src="assets/vhs-4.jpg" alt="VHS reference 4" loading="lazy" decoding="async"><img src="assets/vhs-5.jpg" alt="VHS reference 5" loading="lazy" decoding="async"><img src="assets/vhs-6.jpg" alt="VHS reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-vhs">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a frame grabbed from an old home video tape filmed with a handheld camcorder, late 90s look.
+
+COLOUR: washed out, slightly over bright colours with a magenta or blue cast, colours bleeding sideways past the edges (reds most of all), dull shadows, blown highlights.
+
+TEXTURE: soft blurry low resolution detail, a band of horizontal tracking noise at the bottom, thin scanlines, slight wobble, ghosting, noise in the dark areas, a bright sharpening halo around edges.
+
+LENS: optionally a wide camcorder lens with bent edges, the subject close to the camera.
+
+INTERFACE: white camcorder font with a thin black outline: top left PLAY with a triangle arrow, top right a running counter like 00:00:46, bottom left a time and date like 13:59 9.5.1999, and a small battery icon. Optionally the frame shown on a small flip out screen with playback buttons around it.
+
+SETTING: casual real life: [a hallway] (or a street at night with shop lights, a sunny park, a car park).
+
+COMPOSITION: candid and handheld, slightly tilted, subject mid action looking at the camera.
+
+AVOID: crisp HD detail, cinematic colour grading, brand logos on clothes or on the camera, other text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-vhs').innerText)">Copy the VHS prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="longexp">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>24 / 30</span><h2>Long Exposure</h2></div></div>
+    <div class="lib reveal"><img src="assets/longexp-1.jpg" alt="Long Exposure reference 1" loading="lazy" decoding="async"><img src="assets/longexp-2.jpg" alt="Long Exposure reference 2" loading="lazy" decoding="async"><img src="assets/longexp-3.jpg" alt="Long Exposure reference 3" loading="lazy" decoding="async"><img src="assets/longexp-4.jpg" alt="Long Exposure reference 4" loading="lazy" decoding="async"><img src="assets/longexp-5.jpg" alt="Long Exposure reference 5" loading="lazy" decoding="async"><img src="assets/longexp-6.jpg" alt="Long Exposure reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-longexp">Turn this photo into a night long exposure photo: me standing perfectly still and sharp in the middle, while car lights turn into long red and white light trails and the people around me become ghostly transparent blurs, wet street reflections, deep blue night. Vertical 2:3, cinematic street photo. Keep my face, hair, pose and outfit exactly like in the photo.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-longexp').innerText)">Copy the Long Exposure prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="solar">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>25 / 30</span><h2>Solarized</h2></div></div>
+    <div class="lib reveal"><img src="assets/solar-1.jpg" alt="Solarized reference 1" loading="lazy" decoding="async"><img src="assets/solar-2.jpg" alt="Solarized reference 2" loading="lazy" decoding="async"><img src="assets/solar-3.jpg" alt="Solarized reference 3" loading="lazy" decoding="async"><img src="assets/solar-4.jpg" alt="Solarized reference 4" loading="lazy" decoding="async"><img src="assets/solar-5.jpg" alt="Solarized reference 5" loading="lazy" decoding="async"><img src="assets/solar-6.jpg" alt="Solarized reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-solar">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a solarized black and white darkroom print, made by flashing light on the paper halfway through developing.
+
+TONES: partly reversed tones: some highlights turn dark grey and silver, some shadows turn light, so skin looks metallic and hair can glow white like a negative. Positive and negative mixed in the same image.
+
+EDGES: a thin bright or dark halo line around the silhouette and along strong edges like the profile, lips, eyelids, fingers and strands of hair. This line is the key of the effect.
+
+COLOUR: monochrome silver gelatin print: black, greys and white, with a faint cool blue or warm sepia tint.
+
+LIGHT: studio portrait lighting with strong side light so the profile, cheekbones, neck and shoulders become sculptural shapes.
+
+TEXTURE: fine film grain, smooth glossy paper, slight tonal unevenness from hand development, a small dust spot or two.
+
+COMPOSITION: close portrait, head and shoulders or a clean profile, plain studio background (it may flip to dark grey), elegant and surreal.
+
+AVOID: colour, a flat digital invert applied evenly, neon glow, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-solar').innerText)">Copy the Solarized prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="infrared">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>26 / 30</span><h2>Infrared</h2></div></div>
+    <div class="lib reveal"><img src="assets/infrared-1.jpg" alt="Infrared reference 1" loading="lazy" decoding="async"><img src="assets/infrared-2.jpg" alt="Infrared reference 2" loading="lazy" decoding="async"><img src="assets/infrared-3.jpg" alt="Infrared reference 3" loading="lazy" decoding="async"><img src="assets/infrared-4.jpg" alt="Infrared reference 4" loading="lazy" decoding="async"><img src="assets/infrared-5.jpg" alt="Infrared reference 5" loading="lazy" decoding="async"><img src="assets/infrared-6.jpg" alt="Infrared reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-infrared">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a real infrared film photo (Aerochrome style), shot outdoors in daylight.
+
+COLOUR: every plant, tree and patch of grass turns hot pink, magenta and red. The sky becomes a deep clean turquoise or cyan blue. Skin stays fairly natural and pale, clothes keep their tones but slightly shifted, white objects glow.
+
+LIGHT: bright sun, high contrast, crisp shadows, a dreamy glow on the foliage.
+
+TEXTURE: analog film grain, rich saturated colours, a touch of vignetting.
+
+SETTING: place the subject in a scene full of vegetation (a park, a forest, a desert with plants, a greenhouse), so there is a lot of pink and red around them.
+
+COMPOSITION: full body or three quarter shot, subject a bit off centre, foliage framing the edges, sky visible at the top.
+
+AVOID: a simple pink filter over everything, pink skin, neon or digital look, brand logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-infrared').innerText)">Copy the Infrared prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="charcoal">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>27 / 30</span><h2>Charcoal</h2></div></div>
+    <div class="lib reveal"><img src="assets/charcoal-1.jpg" alt="Charcoal reference 1" loading="lazy" decoding="async"><img src="assets/charcoal-2.jpg" alt="Charcoal reference 2" loading="lazy" decoding="async"><img src="assets/charcoal-3.jpg" alt="Charcoal reference 3" loading="lazy" decoding="async"><img src="assets/charcoal-4.jpg" alt="Charcoal reference 4" loading="lazy" decoding="async"><img src="assets/charcoal-5.jpg" alt="Charcoal reference 5" loading="lazy" decoding="async"><img src="assets/charcoal-6.jpg" alt="Charcoal reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-charcoal">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: an expressive charcoal portrait drawing, fast and gestural, like a fine art study finished in one session.
+
+COLOUR: only black, greys and the warm off white of the paper. No colour at all.
+
+TEXTURE AND LIGHT: rough toothy drawing paper, deep velvety blacks of compressed charcoal in the shadows, smudged mid tones rubbed with the fingers, highlights lifted out with an eraser, scratchy loose hatching and energetic scribbles around the hair and the edges, charcoal dust and a few fingerprints on the paper. One strong side light, like a candle or a single lamp, so half the face falls into darkness.
+
+DETAIL: eyes, nose and mouth drawn precisely with the most contrast, hair as wild flowing lines that drift off the head, clothes only suggested with a few quick strokes.
+
+COMPOSITION: close crop on the face and shoulders, the face filling most of the frame, the edges of the drawing dissolving into loose strokes and bare paper.
+
+AVOID: clean digital lines, a thin pencil look, smooth airbrushed shading, colour, signatures, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-charcoal').innerText)">Copy the Charcoal prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="datamosh">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>28 / 30</span><h2>Datamosh</h2></div></div>
+    <div class="lib reveal"><img src="assets/datamosh-1.jpg" alt="Datamosh reference 1" loading="lazy" decoding="async"><img src="assets/datamosh-2.jpg" alt="Datamosh reference 2" loading="lazy" decoding="async"><img src="assets/datamosh-3.jpg" alt="Datamosh reference 3" loading="lazy" decoding="async"><img src="assets/datamosh-4.jpg" alt="Datamosh reference 4" loading="lazy" decoding="async"><img src="assets/datamosh-5.jpg" alt="Datamosh reference 5" loading="lazy" decoding="async"><img src="assets/datamosh-6.jpg" alt="Datamosh reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-datamosh">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a datamosh glitch poster, like a frame from a corrupted video file where the compression broke.
+
+GLITCH: parts of the subject melt into smeared, stretched pixel blocks. Big square macroblocks in some areas, long horizontal streaks dragging the colours sideways in others, and the background bleeding through the body. Keep the face mostly readable, the damage goes around it and through the clothes.
+
+COLOUR: saturated video colours: greens, cyans, oranges and blues mixed with the real colours of the photo, slight RGB channel tearing on the edges.
+
+TEXTURE: low bitrate compression artefacts, posterized gradients, a few dropped scanlines and duplicated slices of the image shifted sideways.
+
+TYPE: one big headline in a thin elegant serif, half covered by the glitch: [YOUR WORD]. One small line of white monospace text in a corner like a file name and timestamp: clip_017.mp4 00:00:17.
+
+COMPOSITION: subject in the middle third, glitch strongest at the edges and the lower half, as if the frame broke while playing.
+
+AVOID: a clean filter look, neat symmetric glitch, brand logos, extra text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-datamosh').innerText)">Copy the Datamosh prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="droste">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>29 / 30</span><h2>Droste</h2></div></div>
+    <div class="lib reveal"><img src="assets/droste-1.jpg" alt="Droste reference 1" loading="lazy" decoding="async"><img src="assets/droste-2.jpg" alt="Droste reference 2" loading="lazy" decoding="async"><img src="assets/droste-3.jpg" alt="Droste reference 3" loading="lazy" decoding="async"><img src="assets/droste-4.jpg" alt="Droste reference 4" loading="lazy" decoding="async"><img src="assets/droste-5.jpg" alt="Droste reference 5" loading="lazy" decoding="async"><img src="assets/droste-6.jpg" alt="Droste reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-droste">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a Droste effect photo: the image repeats inside itself, smaller and smaller, an endless recursive picture.
+
+EFFECT: the subject holds [a large ornate gold picture frame] (or a phone, or a frame made with their fingers). Inside the frame the exact same scene appears again, with the subject holding the frame again, repeating six to ten times towards a vanishing point in the centre. Each copy is perfectly aligned and scaled down. Optional: a slight rotation at each step so the tunnel turns into a spiral.
+
+COLOUR: natural photo colours, or the faded look of a vintage magazine print in black and white or warm 1970s tones.
+
+TEXTURE AND LIGHT: a real photo with the same light in every copy, slight grain.
+
+SETTING: [an art gallery with a parquet floor and grey walls], or a doorway, a window, a staircase.
+
+COMPOSITION: symmetric, a tunnel pulling the eye to the centre, the biggest frame filling most of the image.
+
+AVOID: warping or stretching the face, copies that do not match, logos, any text.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-droste').innerText)">Copy the Droste prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec style" id="cctv">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>30 / 30</span><h2>CCTV</h2></div></div>
+    <div class="lib reveal"><img src="assets/cctv-1.jpg" alt="CCTV reference 1" loading="lazy" decoding="async"><img src="assets/cctv-2.jpg" alt="CCTV reference 2" loading="lazy" decoding="async"><img src="assets/cctv-3.jpg" alt="CCTV reference 3" loading="lazy" decoding="async"><img src="assets/cctv-4.jpg" alt="CCTV reference 4" loading="lazy" decoding="async"><img src="assets/cctv-5.jpg" alt="CCTV reference 5" loading="lazy" decoding="async"><img src="assets/cctv-6.jpg" alt="CCTV reference 6" loading="lazy" decoding="async"></div>
+    <div class="pair">
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="p-cctv">Use the attached photo as the subject. Keep the face, hair, body, pose and outfit exactly as they are, only the style changes.
+
+STYLE: a still frame from a security camera, the kind of grainy found footage clip that gets shared online.
+
+ANGLE: a camera mounted high in a corner near the ceiling, looking steeply down at the subject, wide lens with slight barrel distortion so walls, shelves and doors lean.
+
+SETTING: an everyday place: [a corner shop aisle with full shelves and drink fridges] (or a building entrance with glass doors, an empty street at night, a supermarket corridor). Products and signs blurred into anonymous colour blocks.
+
+COLOUR: washed out low quality video colours with a cold green or blue cast under fluorescent light, or black and white infrared at night. Flat contrast, blown out light sources.
+
+TEXTURE: low resolution, heavy compression blocks, smeared motion on hands and feet, noise in the shadows, slight interlacing lines.
+
+INTERFACE: white monospace overlay: top left the date and a running time like 23.02 FRI 22:05:43, top right CAM 03, bottom left a red dot and REC. A thin green rectangle detection box around the subject with a small label person 0.89. Optionally a zoomed inset box of the face in a corner, linked to the subject with thin lines.
+
+COMPOSITION: full body, subject in the lower middle of the frame with lots of floor around, caught mid action, either looking up at the camera or unaware of it.
+
+AVOID: cinematic lighting, sharp detail, an eye level angle, readable product names, brand logos.
+
+FORMAT: vertical 2:3, high resolution.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('p-cctv').innerText)">Copy the CCTV prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="outro reveal">
+    <span class="eyebrow"><b></b>New styles every week</span>
+    <h2>Made one?<br>Tag <i>@marcelgrauu</i></h2>
+    <p>I share new styles and prompts almost every day. Follow so you don't miss the next ones.</p>
+    <a class="cta" href="https://instagram.com/marcelgrauu" target="_blank" rel="noopener">Follow @marcelgrauu <span class="ic"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
+  </section>
+  <footer><span class="logo">marcel<i>grau</i></span><span>Prompts free to use. Results depend on the model and your photo.</span></footer>
+</main>
+<div class="toast" id="toast">Copied</div>
+<script>
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold: .12});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+function copyText(text) {
+  const done = () => { const t = document.getElementById('toast'); t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 1700); };
+  const fallback = () => { const ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); done(); } catch (e) {} document.body.removeChild(ta); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+}
+document.querySelectorAll('.compare.ex').forEach(cmp => {
+  const setP = x => { const r = cmp.getBoundingClientRect(); cmp.style.setProperty('--p', Math.max(0, Math.min(100, (x - r.left) / r.width * 100)) + '%'); };
+  cmp.addEventListener('pointerdown', e => { cmp.setPointerCapture(e.pointerId); setP(e.clientX); });
+  cmp.addEventListener('pointermove', e => { if (cmp.hasPointerCapture(e.pointerId)) setP(e.clientX); });
+});
+</script>
+</body>
+</html>
