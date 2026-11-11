@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#070608">
+<title>Photo commands | marcelgrau</title>
+<meta name="description" content="Edit any photo in ChatGPT with one word: /sticker, /magazine, /polaroid and 30 more.">
+<meta property="og:image" content="assets/0-after.jpg">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{--bg:#070608;--ink:#f4f2ee;--mute:#8f8b95;--y:#FFE500;--hair:rgba(255,255,255,.1);
+--sans:"Helvetica Neue",Helvetica,system-ui,sans-serif;--serif:Garamond,"Apple Garamond",Georgia,serif}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+.wrap{max-width:980px;margin:0 auto;padding:0 18px 80px}
+header{padding:56px 0 26px}
+.tag{display:inline-block;padding:6px 12px;border:1px solid var(--hair);border-radius:999px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+h1{font-size:clamp(40px,9vw,84px);line-height:.95;letter-spacing:-.05em;margin:18px 0 14px;font-weight:800}
+h1 i,h2 i{font-family:var(--serif);font-weight:400;color:var(--y);letter-spacing:-.02em}
+.lede{color:var(--mute);font-size:17px;line-height:1.5;margin:0;max-width:40ch}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:34px 0}
+.step{border:1px solid var(--hair);border-radius:20px;padding:18px;background:rgba(255,255,255,.03)}
+.step b{display:block;color:var(--y);font-size:13px;margin-bottom:8px}
+.step p{margin:0;font-size:15px;line-height:1.4}
+h2{font-size:clamp(28px,5vw,44px);letter-spacing:-.04em;margin:44px 0 16px}
+.box{border:1px solid var(--hair);border-radius:22px;background:#0f0e12;overflow:hidden}
+.box pre{margin:0;padding:18px;max-height:300px;overflow:auto;white-space:pre-wrap;font:13px/1.55 ui-monospace,Consolas,monospace;color:#d9d6de}
+.copy{display:flex;justify-content:space-between;align-items:center;padding:12px 12px 12px 18px;border-top:1px solid var(--hair)}
+.copy span{color:var(--mute);font-size:13px}
+button{border:0;border-radius:999px;background:var(--y);color:#111;font-weight:700;font-size:15px;padding:12px 22px;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.ex{position:relative;margin:0;border-radius:18px;overflow:hidden;background:#111}
+.ex img{width:100%;display:block}
+.ex .bf{position:absolute;right:8px;top:8px;width:26%;border-radius:10px;border:2px solid #fff}
+.ex figcaption{position:absolute;left:8px;bottom:8px;padding:6px 10px;border-radius:999px;background:rgba(0,0,0,.65);font-size:13px;font-weight:700}
+ul{list-style:none;padding:0;margin:0;columns:2;column-gap:24px}
+li{break-inside:avoid;padding:9px 0;border-bottom:1px solid var(--hair);font-size:14px;display:flex;gap:10px}
+li b{color:var(--y);min-width:120px}
+li span{color:var(--mute)}
+footer{margin-top:50px;color:var(--mute);font-size:13px}
+@media (max-width:700px){.steps{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}ul{columns:1}}
+</style></head><body><div class="wrap">
+<header><span class="tag">Free · ChatGPT</span>
+<h1>Photo <i>commands</i></h1>
+<p class="lede">Type one word and ChatGPT edits your photo. No new prompt every time.</p></header>
+<div class="steps">
+<div class="step"><b>01</b><p>Open a new chat in ChatGPT and paste the setup below.</p></div>
+<div class="step"><b>02</b><p>Pin that chat so it's always there.</p></div>
+<div class="step"><b>03</b><p>Attach a photo and type a command, like /sticker.</p></div>
+</div>
+<div class="box"><pre id="p">You are my Photo Studio, a photo editor for Reels, TikTok, UGC, fashion and product content.
+
+When I send a photo with a command that starts with /, edit that same photo following the command. Don&#x27;t ask me anything when the command is clear, just make the image.
+
+If I join commands with +, apply all of them together in one image.
+
+Rules:
+1. Keep the person (face, hair, body, pose) and the clothes, logos and colours exactly as they are, unless the command changes them.
+2. Never invent brand names, logos or text that isn&#x27;t in my photo.
+3. For stickers and cutouts, give me a clean edge and, if you can, a transparent background.
+4. Don&#x27;t add decoration I didn&#x27;t ask for.
+5. If something can&#x27;t be done exactly, tell me in one short line.
+
+Commands:
+/cutout: cut out the subject cleanly.
+/remove-bg: remove the whole background.
+/transparent: give me the result on a transparent background.
+/outline: add a clean white outline around the subject.
+/sticker: turn the subject into a die cut sticker with a thick white border.
+/shadow: add a soft, realistic shadow under the subject.
+/silhouette: turn the subject into a solid silhouette.
+/doodle: draw small white hand drawn doodles around me (crown, stars, hearts, little sun).
+/scribble: add hand drawn arrows, underlines and short notes in marker.
+/sparkles: add small shiny sparkles around me.
+/glow: add a soft glow around the subject.
+/handwriting: add a short handwritten note on the photo.
+/polaroid: print the photo as a Polaroid on a clean surface, with a handwritten caption.
+/scrapbook: make a scrapbook page: the photo printed, washi tape, a sticker of me and handwritten notes.
+/collage: combine the photos I send into one collage.
+/magazine: make it a fashion magazine cover, big title behind my head, a few cover lines.
+/moodboard: build a moodboard around the outfit.
+/flatlay: lay the outfit pieces flat, shot from above.
+/product-shot: turn the product into a clean commercial photo.
+/mockup: put my design on a real object.
+/recolor: change the colour I say.
+/background-swap: replace the background with the one I describe.
+/cleanup: remove distractions and people in the background.
+/extend: widen the frame and fill it naturally.
+/upscale: make it sharper and more detailed.
+/blur: blur the background like a fast lens.
+/motion-blur: add motion blur to the background.
+/grain: add film grain.
+/film: make it look shot on analog film.
+/vintage: give it a retro colour look.
+/fisheye: make it look shot with a fisheye lens.
+/y2k: give it an early 2000s look.
+/9:16: recompose it vertically for Reels.
+
+If I type /help, show me this list. If I type /reset, forget any style from before.</pre>
+<div class="copy"><span>Setup prompt</span><button id="c">Copy</button></div></div>
+<h2>What it <i>does</i></h2>
+<div class="grid"><figure class="ex"><img src="assets/0-after.jpg" alt="/cutout + /outline + /scribble result" loading="lazy">
+<img class="bf" src="assets/0-before.jpg" alt="original" loading="lazy"><figcaption>/cutout + /outline + /scribble</figcaption></figure><figure class="ex"><img src="assets/1-after.jpg" alt="/sticker result" loading="lazy">
+<img class="bf" src="assets/1-before.jpg" alt="original" loading="lazy"><figcaption>/sticker</figcaption></figure><figure class="ex"><img src="assets/2-after.jpg" alt="/magazine result" loading="lazy">
+<img class="bf" src="assets/2-before.jpg" alt="original" loading="lazy"><figcaption>/magazine</figcaption></figure><figure class="ex"><img src="assets/3-after.jpg" alt="/polaroid result" loading="lazy">
+<img class="bf" src="assets/3-before.jpg" alt="original" loading="lazy"><figcaption>/polaroid</figcaption></figure><figure class="ex"><img src="assets/4-after.jpg" alt="/doodle result" loading="lazy">
+<img class="bf" src="assets/4-before.jpg" alt="original" loading="lazy"><figcaption>/doodle</figcaption></figure><figure class="ex"><img src="assets/5-after.jpg" alt="/scrapbook result" loading="lazy">
+<img class="bf" src="assets/5-before.jpg" alt="original" loading="lazy"><figcaption>/scrapbook</figcaption></figure><figure class="ex"><img src="assets/6-after.jpg" alt="/outline result" loading="lazy">
+<img class="bf" src="assets/6-before.jpg" alt="original" loading="lazy"><figcaption>/outline</figcaption></figure><figure class="ex"><img src="assets/7-after.jpg" alt="/sparkles result" loading="lazy">
+<img class="bf" src="assets/7-before.jpg" alt="original" loading="lazy"><figcaption>/sparkles</figcaption></figure><figure class="ex"><img src="assets/8-after.jpg" alt="/sticker + /doodle result" loading="lazy">
+<img class="bf" src="assets/8-before.jpg" alt="original" loading="lazy"><figcaption>/sticker + /doodle</figcaption></figure></div>
+<h2>All <i>commands</i></h2>
+<ul><li><b>/cutout</b><span>cut out the subject cleanly.</span></li><li><b>/remove-bg</b><span>remove the whole background.</span></li><li><b>/transparent</b><span>give me the result on a transparent background.</span></li><li><b>/outline</b><span>add a clean white outline around the subject.</span></li><li><b>/sticker</b><span>turn the subject into a die cut sticker with a thick white border.</span></li><li><b>/shadow</b><span>add a soft, realistic shadow under the subject.</span></li><li><b>/silhouette</b><span>turn the subject into a solid silhouette.</span></li><li><b>/doodle</b><span>draw small white hand drawn doodles around me (crown, stars, hearts, little sun).</span></li><li><b>/scribble</b><span>add hand drawn arrows, underlines and short notes in marker.</span></li><li><b>/sparkles</b><span>add small shiny sparkles around me.</span></li><li><b>/glow</b><span>add a soft glow around the subject.</span></li><li><b>/handwriting</b><span>add a short handwritten note on the photo.</span></li><li><b>/polaroid</b><span>print the photo as a Polaroid on a clean surface, with a handwritten caption.</span></li><li><b>/scrapbook</b><span>make a scrapbook page: the photo printed, washi tape, a sticker of me and handwritten notes.</span></li><li><b>/collage</b><span>combine the photos I send into one collage.</span></li><li><b>/magazine</b><span>make it a fashion magazine cover, big title behind my head, a few cover lines.</span></li><li><b>/moodboard</b><span>build a moodboard around the outfit.</span></li><li><b>/flatlay</b><span>lay the outfit pieces flat, shot from above.</span></li><li><b>/product-shot</b><span>turn the product into a clean commercial photo.</span></li><li><b>/mockup</b><span>put my design on a real object.</span></li><li><b>/recolor</b><span>change the colour I say.</span></li><li><b>/background-swap</b><span>replace the background with the one I describe.</span></li><li><b>/cleanup</b><span>remove distractions and people in the background.</span></li><li><b>/extend</b><span>widen the frame and fill it naturally.</span></li><li><b>/upscale</b><span>make it sharper and more detailed.</span></li><li><b>/blur</b><span>blur the background like a fast lens.</span></li><li><b>/motion-blur</b><span>add motion blur to the background.</span></li><li><b>/grain</b><span>add film grain.</span></li><li><b>/film</b><span>make it look shot on analog film.</span></li><li><b>/vintage</b><span>give it a retro colour look.</span></li><li><b>/fisheye</b><span>make it look shot with a fisheye lens.</span></li><li><b>/y2k</b><span>give it an early 2000s look.</span></li><li><b>/9</b><span>16: recompose it vertically for Reels.</span></li></ul>
+<p class="lede" style="margin-top:22px">Mix them with +, for example /cutout + /outline + /scribble.</p>
+<footer>@marcelgrauu · comment EDIT on the reel to get this page</footer>
+</div>
+<script>
+document.getElementById('c').onclick=async e=>{try{await navigator.clipboard.writeText(document.getElementById('p').innerText);e.target.textContent='Copied'}catch(_){const r=document.createRange();r.selectNode(document.getElementById('p'));getSelection().removeAllRanges();getSelection().addRange(r);e.target.textContent='Select + copy'}setTimeout(()=>e.target.textContent='Copy',1800)};
+</script></body></html>
