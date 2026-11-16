@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#070608">
+<title>Dreamina Marketing Studio · Seedance 2.5 prompt | marcelgrau</title>
+<meta name="description" content="The exact prompt I used for the OLTA ad: one product photo, this prompt, and Dreamina Marketing Studio with Seedance 2.5 did the rest. Swap in your own product and it's yours.">
+<meta property="og:title" content="Dreamina Marketing Studio · Seedance 2.5">
+<meta property="og:image" content="assets/poster.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@1&family=Inter+Tight:wght@200;400;500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#070608;--ink:#f4f2ee;--mute:#8f8b95;--dim:#5d5a63;--y:#FFE500;
+  --hair:rgba(255,255,255,.07);--hair2:rgba(255,255,255,.12);--shell:rgba(255,255,255,.028);
+  --ease:cubic-bezier(.32,.72,0,1);
+  --sans:"Helvetica Neue","Inter Tight",Helvetica,system-ui,sans-serif;
+  --serif:"EB Garamond",Garamond,"Apple Garamond",Georgia,serif;
+}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:500;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:3;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.mesh{position:fixed;inset:-20%;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(38% 30% at 18% 8%,rgba(255,229,0,.13),transparent 70%),
+    radial-gradient(30% 28% at 88% 30%,rgba(122,92,255,.12),transparent 70%),
+    radial-gradient(34% 30% at 50% 100%,rgba(255,120,40,.08),transparent 70%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 28px}
+
+/* nav isla */
+.nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:4;display:flex;align-items:center;gap:18px;
+  padding:8px 8px 8px 20px;border-radius:999px;background:rgba(14,13,16,.62);border:1px solid var(--hair2);
+  backdrop-filter:blur(22px) saturate(140%);-webkit-backdrop-filter:blur(22px) saturate(140%);white-space:nowrap}
+.logo{font-weight:800;letter-spacing:-.035em;font-size:16px}
+.logo i{font-family:var(--serif);font-weight:400;font-style:italic;color:var(--y);letter-spacing:0;font-size:18px}
+.nav a{color:var(--mute);text-decoration:none;font-size:13px;transition:color .5s var(--ease)}
+.nav a:hover{color:var(--ink)}
+.nav .kw{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:999px;background:var(--y);color:#111;font-weight:700;font-size:12px}
+
+/* hero */
+.hero{min-height:100dvh;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:130px 0 90px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;border:1px solid var(--hair2);
+  font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.eyebrow b{width:6px;height:6px;border-radius:50%;background:var(--y);box-shadow:0 0 12px var(--y)}
+h1{font-size:clamp(46px,7.4vw,104px);line-height:.92;letter-spacing:-.055em;font-weight:800;margin:26px 0 26px}
+h1 .thin{font-weight:200;letter-spacing:-.04em}
+h1 i,h2 i{font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:-.02em;color:var(--y)}
+.lede{color:var(--mute);font-size:18px;line-height:1.55;max-width:42ch;margin:0 0 34px;font-weight:400}
+.cta{display:inline-flex;align-items:center;gap:14px;padding:7px 7px 7px 24px;border-radius:999px;background:var(--y);color:#111;
+  font-weight:700;font-size:15px;text-decoration:none;border:0;cursor:pointer;box-shadow:0 14px 50px rgba(255,229,0,.22);
+  transition:transform .6s var(--ease)}
+.cta .ic{width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.1);display:grid;place-items:center;transition:transform .6s var(--ease)}
+.cta:hover .ic{transform:translate(2px,-2px) scale(1.06)}
+.cta:active{transform:scale(.97)}
+.ghost{display:inline-flex;align-items:center;gap:10px;color:var(--mute);text-decoration:none;font-size:14px;margin-left:18px;transition:color .5s var(--ease)}
+.ghost:hover{color:var(--ink)}
+svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+.stage{position:relative;justify-self:center;width:min(330px,80vw)}
+.device{padding:9px;border-radius:46px;background:linear-gradient(160deg,rgba(255,255,255,.14),rgba(255,255,255,.03));
+  border:1px solid var(--hair2);box-shadow:0 60px 120px -30px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.6) inset}
+.device video{width:100%;border-radius:38px;display:block;background:#000}
+.composer{position:absolute;left:-58px;bottom:70px;display:flex;align-items:center;gap:10px;padding:9px 10px 9px 9px;
+  border-radius:999px;background:rgba(22,21,25,.86);border:1px solid var(--hair2);box-shadow:0 30px 60px rgba(0,0,0,.6);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transform:rotate(-3deg);min-width:230px}
+.composer img{width:34px;height:34px;border-radius:10px;object-fit:cover}
+.composer .typed{font-size:15px;font-weight:500;flex:1;white-space:nowrap}
+.composer .caret{display:inline-block;width:2px;height:17px;background:#0a84ff;vertical-align:-3px;margin-left:1px;animation:blink 1s steps(1) infinite}
+.composer .send{width:30px;height:30px;border-radius:50%;background:#0a84ff;display:grid;place-items:center;color:#fff}
+@keyframes blink{50%{opacity:0}}
+
+/* marquee */
+.marquee{border-block:1px solid var(--hair);overflow:hidden;padding:18px 0;margin:0 -28px 120px;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.track{display:flex;gap:44px;width:max-content;animation:slide 38s linear infinite}
+.track span{font-size:clamp(22px,3vw,34px);font-weight:200;letter-spacing:-.03em;color:var(--dim)}
+.track span:nth-child(3n){font-family:var(--serif);font-style:italic;font-weight:400;color:var(--mute)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* seccions */
+.sec{padding:0 0 130px}
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:40px;flex-wrap:wrap}
+h2{font-size:clamp(36px,5vw,64px);line-height:.96;letter-spacing:-.05em;font-weight:800;margin:18px 0 0}
+.sec-head p{color:var(--mute);max-width:36ch;line-height:1.55;margin:0;font-weight:400}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.step{padding:6px;border-radius:28px;background:var(--shell);border:1px solid var(--hair)}
+.step>div{height:100%;border-radius:22px;padding:26px 22px 24px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.step .n{font-family:var(--serif);font-style:italic;font-size:30px;color:var(--y);line-height:1}
+.step h4{margin:30px 0 8px;font-size:17px;letter-spacing:-.025em;font-weight:700}
+.step p{margin:0;color:var(--mute);font-size:14px;line-height:1.55;font-weight:400}
+
+/* biblioteca */
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:26px}
+.chip{padding:10px 17px;border-radius:999px;border:1px solid var(--hair2);background:transparent;color:var(--mute);font-size:13.5px;cursor:pointer;
+  transition:all .5s var(--ease)}
+.chip.on{background:var(--ink);color:#111;border-color:var(--ink)}
+.search{margin-left:auto;display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px solid var(--hair2);color:var(--mute)}
+.search input{background:none;border:0;outline:0;color:var(--ink);font:inherit;font-size:14px;width:150px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{all:unset;cursor:pointer;display:block}
+.card.hide{display:none}
+.shell{display:block;padding:6px;border-radius:30px;background:var(--shell);border:1px solid var(--hair);transition:transform .8s var(--ease),border-color .8s var(--ease)}
+.core{position:relative;display:block;border-radius:24px;overflow:hidden;aspect-ratio:4/5;background:#111;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.core .after{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.core .before{position:absolute;right:12px;top:12px;width:27%;aspect-ratio:2/3;object-fit:cover;border-radius:12px;
+  border:2px solid rgba(255,255,255,.85);box-shadow:0 12px 30px rgba(0,0,0,.5);transform:rotate(3deg);transition:transform .9s var(--ease)}
+.core::after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(180deg,transparent,rgba(5,5,7,.92))}
+.meta{position:absolute;left:18px;right:60px;bottom:16px;z-index:1;display:flex;flex-direction:column;gap:5px}
+.meta .cat{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--y)}
+.meta .name{font-size:23px;font-weight:700;letter-spacing:-.035em;word-break:break-word}
+.meta .note{font-size:13px;color:#bdb9c2;line-height:1.4;font-weight:400}
+.open{position:absolute;right:14px;bottom:16px;z-index:1;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;transition:all .7s var(--ease)}
+.card:hover .shell{transform:translateY(-4px);border-color:var(--hair2)}
+.card:hover .after{transform:scale(1.04)}
+.card:hover .before{transform:rotate(0deg) scale(1.04)}
+.card:hover .open{background:var(--y);color:#111;transform:translate(2px,-2px)}
+
+/* setup */
+.setup{padding:8px;border-radius:40px;background:linear-gradient(140deg,rgba(255,229,0,.2),rgba(255,255,255,.04) 40%,rgba(122,92,255,.14));}
+.setup>div{border-radius:32px;background:#0c0b0e;padding:56px;display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
+.setup ol{margin:26px 0 30px;padding:0;list-style:none;counter-reset:s;display:grid;gap:14px}
+.setup li{counter-increment:s;display:flex;gap:14px;color:var(--mute);line-height:1.5;font-weight:400}
+.setup li::before{content:counter(s);flex:none;width:26px;height:26px;border-radius:50%;border:1px solid var(--hair2);display:grid;place-items:center;
+  font-size:12px;color:var(--ink)}
+pre{margin:0;white-space:pre-wrap;word-wrap:break-word;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;
+  line-height:1.65;color:#cfcbd4;background:rgba(255,255,255,.025);border:1px solid var(--hair);border-radius:20px;padding:20px;overflow:auto}
+.setup pre{max-height:420px}
+
+.fall{margin-top:18px;border-top:1px solid var(--hair);padding-top:14px}
+.fall summary{cursor:pointer;color:var(--mute);font-size:14px;list-style:none}
+.fall summary::before{content:'+ ';color:var(--y)}
+.fall[open] summary::before{content:'2  '}
+.fall p{color:var(--dim);font-size:13px;margin:10px 0 8px}
+.fall pre{max-height:220px;margin:0 0 12px}
+
+/* outro */
+.outro{text-align:center;padding:40px 0 150px}
+.outro h2{font-size:clamp(40px,6vw,84px)}
+.outro p{color:var(--mute);margin:22px auto 34px;max-width:46ch;line-height:1.55;font-weight:400}
+footer{border-top:1px solid var(--hair);padding:30px 0 50px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--dim);font-size:13px}
+
+/* modal */
+.sheet{position:fixed;inset:0;z-index:5;display:grid;place-items:center;padding:24px;background:rgba(5,5,7,.72);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);opacity:0;pointer-events:none;transition:opacity .6s var(--ease)}
+.sheet.on{opacity:1;pointer-events:auto}
+.panel{width:min(1000px,100%);max-height:calc(100dvh - 48px);overflow:auto;padding:7px;border-radius:36px;background:rgba(255,255,255,.04);
+  border:1px solid var(--hair2);transform:translateY(40px) scale(.98);transition:transform .8s var(--ease)}
+.sheet.on .panel{transform:none}
+.panel>div{border-radius:30px;background:#0d0c0f;display:grid;grid-template-columns:.95fr 1.05fr;gap:34px;padding:22px;box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
+.compare{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:2/3;background:#111;touch-action:none;cursor:ew-resize;user-select:none}
+.compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.compare .b{clip-path:inset(0 calc(100% - var(--p,50%)) 0 0)}
+.compare .bar{position:absolute;top:0;bottom:0;left:var(--p,50%);width:2px;background:#fff;transform:translateX(-1px)}
+.compare .knob{position:absolute;top:50%;left:var(--p,50%);width:44px;height:44px;border-radius:50%;background:#fff;color:#111;
+  transform:translate(-50%,-50%);display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.compare .tag{position:absolute;bottom:12px;font-size:11px;font-weight:700;padding:5px 10px;border-radius:999px}
+.compare .tl{left:12px;background:rgba(0,0,0,.6)}
+.compare .tr{right:12px;background:var(--y);color:#111}
+.pbody{padding:14px 10px 10px 0;display:flex;flex-direction:column}
+.pbody .cat{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--y)}
+.pbody h3{font-size:clamp(30px,4vw,44px);letter-spacing:-.05em;margin:10px 0 10px;font-weight:800;word-break:break-word}
+.pbody .note{color:var(--mute);line-height:1.55;margin:0 0 8px;font-weight:400}
+.pbody .tip{color:var(--y);font-size:13.5px;margin:0 0 14px}
+
+.prow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.x{position:absolute;top:30px;right:30px;width:44px;height:44px;border-radius:50%;border:1px solid var(--hair2);background:rgba(20,19,23,.8);
+  cursor:pointer;display:grid;place-items:center;z-index:6}
+.toast{position:fixed;left:50%;bottom:28px;z-index:7;transform:translate(-50%,24px);opacity:0;background:var(--y);color:#111;font-weight:700;
+  padding:13px 22px;border-radius:999px;transition:all .6s var(--ease);pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* entrada */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:var(--d,0ms)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.track{animation:none}}
+
+@media(max-width:900px){
+  .wrap{padding:0 16px}
+  .nav{top:12px;gap:12px;padding:7px 7px 7px 16px}
+  .nav a.lk{display:none}
+  .hero{grid-template-columns:1fr;min-height:auto;padding:96px 0 70px;gap:44px}
+  .stage{order:-1;width:min(290px,76vw)}
+  .composer{left:50%;bottom:-24px;transform:translateX(-50%);min-width:240px}
+  .ghost{margin:18px 0 0;display:flex}
+  .marquee{margin:0 -16px 90px}
+  .sec{padding-bottom:96px}
+  .steps{grid-template-columns:1fr 1fr}
+  .grid{grid-template-columns:1fr}
+  .search{margin-left:0;width:100%}
+  .search input{width:100%}
+  .setup>div{grid-template-columns:1fr;padding:28px 20px;gap:10px}
+  .panel>div{grid-template-columns:1fr;padding:12px;gap:16px}
+  .pbody{padding:6px}
+  .sheet{padding:0;place-items:end center}
+  .panel{border-radius:30px 30px 0 0;max-height:94dvh}
+  .x{top:auto;bottom:calc(94dvh - 58px);right:16px}
+}
+@media(max-width:480px){.steps{grid-template-columns:1fr}}
+</style>
+<style>
+.exgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.exgrid .shell{padding:6px;border-radius:30px}
+.exgrid .compare{border-radius:24px}
+.promptcard pre{max-height:none;font-size:14px}
+@media(max-width:900px){.exgrid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="mesh"></div><div class="grain"></div>
+<nav class="nav">
+  <span class="logo">marcel<i>grau</i></span>
+  <a class="lk" href="#prompt">Prompt</a>
+  <a class="lk" href="#examples">Examples</a>
+  <span class="kw">You commented DREAMINA</span>
+</nav>
+<main class="wrap">
+  <section class="hero">
+    <div class="reveal">
+      <span class="eyebrow"><b></b>Dreamina Marketing Studio · Seedance 2.5</span>
+      <h1>A Black Friday ad, <i>never filmed.</i></h1>
+      <p class="lede">The exact prompt I used for the OLTA ad: one product photo, this prompt, and Dreamina Marketing Studio with Seedance 2.5 did the rest. Swap in your own product and it's yours.</p>
+      <button class="cta" onclick="copyText(document.getElementById('prompt').innerText)">Copy the prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      <a class="ghost" href="https://dreamina.capcut.com/ai-tool/marketing-studio?utm_medium=social&amp;utm_source=instagram&amp;utm_campaign=mkt_creator_id" target="_blank" rel="noopener">Open Dreamina <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+    </div>
+    <div class="stage reveal" style="--d:150ms">
+      <div class="device"><video src="assets/hero.mp4" poster="assets/poster.jpg" autoplay muted loop playsinline></video></div>
+    </div>
+  </section>
+
+  <section class="sec" id="prompt">
+    <div class="setup reveal promptcard"><div>
+      <div>
+        <span class="eyebrow"><b></b>How to use it</span>
+        <h2>Photo, prompt, <i>generate.</i></h2>
+        <ol><li>Open Dreamina Marketing Studio and go to the AI agent.</li><li>Add one photo of your product with + Reference.</li><li>Copy the prompt, change OLTA and the bottle for your product, and paste it.</li><li>Pick Seedance 2.5, 9:16, and hit Generate.</li></ol>
+        <button class="cta" onclick="copyText(document.getElementById('prompt').innerText)">Copy the prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div>
+      <pre id="prompt">INSTRUCTIONS FOR THE AGENT
+Generate ONE brand new video from scratch with Seedance 2.5. Ignore any previous version, this is a new generation.
+Do not switch to any other model, even if another one seems better or faster.
+Settings: vertical 9:16, 10 seconds, highest quality available.
+Reference: use the attached image (called Image 1 below) ONLY as the reference for the product, the set and the style. It is NOT the first frame and NOT the last frame, and no shot copies its exact framing.
+Use the video prompt below exactly as written. Do not rewrite it, shorten it, translate it or split it into separate clips. It is one continuous edit with 11 shots and hard cuts, generated in one go.
+Audio: dark, elegant luxury fashion music, minimal and confident, deep pulsing bass, crisp percussion hits that land on every cut, a short suspense build before the bottle drops and a satisfying hit when the king falls. Subtle sound effects on top: soft clicks of pieces, the pawn knocked off the board, the thud of the bottle landing, the king falling and rolling, a whoosh on the orbit. No voice, no narration.
+Do not add text, captions, logos or watermarks to the video.
+Do not ask questions, generate directly.
+
+VIDEO PROMPT
+Luxury product commercial, 10 seconds, vertical 9:16, fast and dynamic, 11 short shots.
+
+PRODUCT RULE (most important): the product is the blue frosted glass OLTA bottle from Image 1: short rounded bottle in deep blue frosted glass, a LIGHT PASTEL POWDER BLUE cap, and a white label reading OLTA and TONIC. Keep its shape, size, colours and label EXACTLY as in Image 1 in every shot. The cap is light pastel powder blue in EVERY single shot, wide shots, close ups and macros included. The cap is NEVER pink, red, magenta or purple, even when the burgundy background reflects on it. Never add, change or invent text or logos on the label.
+
+LOOK
+Set: a lacquered black and white chessboard with a mirror gloss finish, on a seamless deep burgundy background.
+Props: classic black and white chess pieces. A woman's hand in a black satin opera glove wearing a diamond tennis bracelet and two large diamond cocktail rings. Only this one hand ever appears, always with five fingers and the same glove and jewellery.
+Camera: mix of macro probe lens, overhead top down, board level low angles and 65mm cinematic. Every shot from a different angle. Ultra sharp textures.
+Light: hard frontal flash key with a soft rim light, crisp shadows, bright specular highlights on the frosted glass, the lacquer and the diamonds. Consistent light and colour in all shots, no flicker.
+Grade: rich burgundy, deep clean blacks, bright whites, the blue bottle and its pastel blue cap as the only cool colours, high contrast, editorial luxury, very subtle film grain.
+No faces, no on screen text, no other brands. Fast rhythm, every cut lands on the beat, motion precise and elegant, realistic physics and weight, no morphing.
+
+00:00 to 00:01.6 · Shot 1: The capture (overhead)
+Top down view of the board in the middle of a game, pieces scattered. A black pawn stands on a square. The gloved hand picks up a white knight, jumps it in a proper L shape and sets it down ON the black pawn's square: at the exact moment of contact the knight knocks the pawn away, the pawn tumbles off the board and out of frame, and the knight stays on that square. The knight never lands next to the pawn first. One continuous fluid move. CUT
+
+00:01.6 to 00:02.4 · Shot 2: Diamonds in passing (candid macro)
+The hand keeps playing: it sweeps across the board to grab another piece. The macro camera is already placed low near the pieces and the hand simply passes through the frame on its way, it does not stop and it does not turn toward the lens. As the rings cross a beam of light, one diamond flares for a split second, with natural motion blur and the focus catching it just in time, like a lucky documentary moment. The hand is in frame for less than a second and exits while still moving. Not a posed product shot of the ring. CUT
+
+00:02.4 to 00:03.1 · Shot 3: Tension (low angle)
+The black king stands alone in the centre of the board, towering in a low hero angle, its mirror reflection below. A beat of stillness, the music holds. CUT
+
+00:03.1 to 00:04.0 · Shot 4: The drop
+Wide: out of nowhere the OLTA bottle with its pastel blue cap drops from above into frame and lands upright on the board with a heavy confident thud, a ripple of light across the lacquer. CUT
+
+00:04.0 to 00:04.7 · Shot 5: Impact (macro)
+Macro at board level: the base of the bottle touching the lacquer, its reflection snapping into place. CUT
+
+00:04.7 to 00:05.6 · Shot 6: Checkmate
+Side angle: the bottle slides one square forward and knocks over the black king, which topples in slow motion. Pastel blue cap clearly visible. CUT
+
+00:05.6 to 00:06.3 · Shot 7: The king rolls (macro)
+Extreme macro: the fallen black king rolls on the glossy board and stops, its crown filling the frame. CUT
+
+00:06.3 to 00:07.0 · Shot 8: Glass (macro)
+Macro on the frosted blue glass, tiny cold condensation beads, a streak of light sliding across the surface. CUT
+
+00:07.0 to 00:07.6 · Shot 9: Cap and label (macro)
+Macro tilt from the light pastel powder blue cap down to the label, OLTA and TONIC sharp and identical to Image 1. CUT
+
+00:07.6 to 00:08.3 · Shot 10: Orbit
+Quick half orbit around the bottle at board level, the white knight and pawn passing in the foreground, the fallen king behind. Pastel blue cap. CUT
+
+00:08.3 to 00:10 · Shot 11: Final wide (in motion)
+Start close: the gloved fingertips lift off the pastel blue cap and the hand withdraws up and out of frame. The camera keeps moving the whole time: a smooth continuous pull back and rise to a wide, slightly high angle of the whole set: the OLTA bottle alone in the centre of the board as the winner, the fallen black king at its feet, the white knight, the white pawn and a few other pieces around, mirror reflections below, deep burgundy background. A slow streak of light slides across the glass. The camera is still gently drifting on the very last frame. It must not look like a still photo and must not copy the framing of Image 1. No fade.
+</pre>
+    </div></div>
+  </section>
+
+  
+
+  <section class="sec">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>Tips</span><h2>Get a <i>better</i> one.</h2></div></div>
+    <div class="setup reveal"><div><ol><li>A clean product photo on a plain background works best, even a phone shot.</li><li>Describe your product's real colours in the PRODUCT RULE so they never change between shots.</li><li>Need other formats? Reframe Video turns it into stories, posts and banners in one click.</li><li>Get started for as little as $0.29/month for a limited time.</li></ol></div></div>
+  </section>
+
+  <section class="outro reveal">
+    <span class="eyebrow"><b></b>New prompts every week</span>
+    <h2>Made one?<br>Tag <i>@marcelgrauu</i></h2>
+    <p>I share a new effect almost every day. Follow so you don't miss the next one.</p>
+    <a class="cta" href="https://instagram.com/marcelgrauu" target="_blank" rel="noopener">Follow @marcelgrauu <span class="ic"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
+  </section>
+  <footer><span class="logo">marcel<i>grau</i></span><span>Prompt free to use. Results depend on the model and your photo.</span></footer>
+</main>
+<div class="toast" id="toast">Copied</div>
+<script>
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold: .12});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+function copyText(text) {
+  const done = () => { const t = document.getElementById('toast'); t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 1700); };
+  const fallback = () => { const ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); done(); } catch (e) {} document.body.removeChild(ta); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+}
+document.querySelectorAll('.compare.ex').forEach(cmp => {
+  const setP = x => { const r = cmp.getBoundingClientRect(); cmp.style.setProperty('--p', Math.max(0, Math.min(100, (x - r.left) / r.width * 100)) + '%'); };
+  cmp.addEventListener('pointerdown', e => { cmp.setPointerCapture(e.pointerId); setP(e.clientX); });
+  cmp.addEventListener('pointermove', e => { if (cmp.hasPointerCapture(e.pointerId)) setP(e.clientX); });
+});
+</script>
+</body>
+</html>
