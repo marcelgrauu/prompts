@@ -210,7 +210,19 @@ footer{border-top:1px solid var(--hair);padding:30px 0 50px;display:flex;justify
 .exgrid .shell{padding:6px;border-radius:30px}
 .exgrid .compare{border-radius:24px}
 .promptcard pre{max-height:none;font-size:14px;white-space:pre-wrap}
-.ptitle{font-size:22px;margin:0 0 14px;color:#FFE500;font-weight:700}
+.stepgrid{display:grid;grid-template-columns:1fr 1.1fr;gap:20px;align-items:start}
+.refs{margin:0 0 16px}
+.refrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+.refrow figure{margin:0;width:140px}
+.refrow img{width:140px;height:100px;object-fit:cover;border-radius:14px;display:block;border:1px solid rgba(255,255,255,.12)}
+.refrow figcaption{font-size:13px;opacity:.7;margin-top:6px;line-height:1.3}
+.result{position:relative;border-radius:24px;overflow:hidden;border:1px solid rgba(255,255,255,.12);background:#111}
+.result img,.result video{width:100%;display:block}
+.rtag{position:absolute;top:12px;left:12px;background:#FFE500;color:#070608;font-weight:700;font-size:13px;padding:6px 12px;border-radius:999px}
+.step .promptcard pre{max-height:520px;overflow:auto;margin:0 0 18px}
+.step .promptcard>div{grid-template-columns:1fr!important}
+.step .promptcard .cta{justify-self:start}
+@media(max-width:900px){.stepgrid{grid-template-columns:1fr}.refrow figure,.refrow img{width:100px}.refrow img{height:72px}}
 @media(max-width:900px){.exgrid{grid-template-columns:1fr}}
 </style>
 </head>
@@ -218,7 +230,7 @@ footer{border-top:1px solid var(--hair);padding:30px 0 50px;display:flex;justify
 <div class="mesh"></div><div class="grain"></div>
 <nav class="nav">
   <span class="logo">marcel<i>grau</i></span>
-  <a class="lk" href="#prompt">Prompt</a>
+  <a class="lk" href="#step1">Prompts</a>
   
   <span class="kw">You commented CAPCUT</span>
 </nav>
@@ -236,26 +248,36 @@ footer{border-top:1px solid var(--hair);padding:30px 0 50px;display:flex;justify
     </div>
   </section>
 
-  <section class="sec" id="prompt">
-    <div class="setup reveal promptcard"><div>
-      <div>
-        <span class="eyebrow"><b></b>How to use it</span>
-        <h2>Face, sheet, <i>video.</i></h2>
-        <ol><li>Get the CapCut plugin for ChatGPT with the button above.</li><li>Type @CapCut and paste the face prompt. Keep the one you like.</li><li>Attach it and paste the character sheet prompt, so her face never changes.</li><li>Attach the sheets and paste the video prompt. Pick Seedance 2.5, 4:3, 12 seconds.</li></ol>
-        <button class="cta" onclick="copyText(document.getElementById('prompt').innerText)">Copy the prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
-      </div>
-      <div><h3 class="ptitle">01 · Her face</h3><pre id="prompt">@CapCut Generate with GPT Image 2 at High quality, vertical 4:5, 2K, 4 options.
-
-A candid holiday photo of a 20 year old girl, wet blonde hair pushed back, light freckles across her nose, sun kissed tanned skin, warm hazel eyes, thick natural brows, a relaxed confident half smile. Strong golden sun, shiny tanned skin with a little sand on it, 2000s flash film look, fine grain, warm saturated colours, people blurred in the background. Real skin with pores, never airbrushed. Shot on 35mm film.</pre></div>
+  <section class="sec" id="how">
+    <div class="setup reveal"><div>
+      <div><span class="eyebrow"><b></b>How it works</span><h2>Face, sheet, <i>video.</i></h2></div>
+      <ol><li>Get the CapCut plugin for ChatGPT with the button above.</li><li>Type @CapCut and paste the face prompt. Keep the one you like.</li><li>Attach it and paste the character sheet prompt, so her face never changes.</li><li>Attach the sheets and paste the video prompt. Pick Seedance 2.5, 4:3, 12 seconds.</li></ol>
     </div></div>
   </section>
+  <section class="sec step" id="step1">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>Step 01</span><h2>Her face</h2></div><p>No references. Type @CapCut and describe her. Make 4 options and keep the one you like.</p></div>
+    <div class="stepgrid">
+      <div class="reveal">
+        <div class="refs"><span class="eyebrow"><b></b>No references, just the prompt</span></div>
+        <div class="result"><span class="rtag">Result</span><img src="assets/s0.jpg" alt="Her face" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="prompt">@CapCut Generate with GPT Image 2 at High quality, vertical 4:5, 2K, 4 options.
 
-  <section class="sec">
-    <div class="setup reveal promptcard"><div>
-      <div><h3 class="ptitle">02 · Her character sheet</h3><button class="cta" onclick="copyText(document.getElementById('pm0').innerText)">Copy this prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button></div>
-      <pre id="pm0">Attach the face you liked, then send:
-
-@CapCut Generate with GPT Image 2 at High quality, 16:9, 2K.
+A candid holiday photo of a 20 year old girl, wet blonde hair pushed back, light freckles across her nose, sun kissed tanned skin, warm hazel eyes, thick natural brows, a relaxed confident half smile. Strong golden sun, shiny tanned skin with a little sand on it, 2000s flash film look, fine grain, warm saturated colours, people blurred in the background. Real skin with pores, never airbrushed. Shot on 35mm film.</pre>
+        <button class="cta" onclick="copyText(document.getElementById('prompt').innerText)">Copy this prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
+  </section>
+  <section class="sec step" id="step2">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>Step 02</span><h2>Her character sheet</h2></div><p>Attach the face you liked as the only reference. The sheet is what keeps her the same in every video.</p></div>
+    <div class="stepgrid">
+      <div class="reveal">
+        <div class="refs"><span class="eyebrow"><b></b>References attached</span><div class="refrow"><figure><img src="assets/s1r0.jpg" alt="Her face" loading="lazy"><figcaption>Her face</figcaption></figure></div></div>
+        <div class="result"><span class="rtag">Result</span><img src="assets/s1.jpg" alt="Her character sheet" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="pm1">@CapCut Generate with GPT Image 2 at High quality, 16:9, 2K.
 
 A character reference sheet of the girl in the attached image, three panels side by side on a clean seamless pure white studio background. Keep her exact face, hair, body type, skin tone and freckles in every panel.
 
@@ -264,14 +286,19 @@ Outfit identical in all three panels: a white ribbed strapless tube top, a long 
 Left panel: tight close up of her face and shoulders, looking straight into the lens with a relaxed, slightly mischievous expression. Middle panel: full body standing relaxed, facing the camera. Right panel: full body from behind, no face visible. Same camera height, distance and lens in the two full body panels.
 
 Soft even studio lighting, real skin with pores, never airbrushed.</pre>
-    </div></div>
+        <button class="cta" onclick="copyText(document.getElementById('pm1').innerText)">Copy this prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
   </section>
-  <section class="sec">
-    <div class="setup reveal promptcard"><div>
-      <div><h3 class="ptitle">03 · Her video (Seedance 2.5)</h3><button class="cta" onclick="copyText(document.getElementById('pm1').innerText)">Copy this prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button></div>
-      <pre id="pm1">Attach her character sheet, the other person's sheet and a photo of the place, then send:
-
-@CapCut SETTINGS: Seedance 2.5, Reference mode, 12 seconds, 4:3 horizontal, one take. No music.
+  <section class="sec step" id="step3">
+    <div class="sec-head reveal"><div><span class="eyebrow"><b></b>Step 03</span><h2>Her video, Seedance 2.5</h2></div><p>Attach the three references in this order, paste the prompt and pick Seedance 2.5, 4:3, 12 seconds.</p></div>
+    <div class="stepgrid">
+      <div class="reveal">
+        <div class="refs"><span class="eyebrow"><b></b>References attached</span><div class="refrow"><figure><img src="assets/s2r0.jpg" alt="@Image 1 · Lia's sheet" loading="lazy"><figcaption>@Image 1 · Lia's sheet</figcaption></figure><figure><img src="assets/s2r1.jpg" alt="@Image 2 · his sheet" loading="lazy"><figcaption>@Image 2 · his sheet</figcaption></figure><figure><img src="assets/s2r2.jpg" alt="@Image 3 · the place" loading="lazy"><figcaption>@Image 3 · the place</figcaption></figure></div></div>
+        <div class="result"><span class="rtag">Result</span><video src="assets/s2.mp4" poster="assets/s2.jpg" autoplay muted loop playsinline></video></div>
+      </div>
+      <div class="setup reveal promptcard" style="--d:90ms"><div>
+        <pre id="pm2">@CapCut SETTINGS: Seedance 2.5, Reference mode, 12 seconds, 4:3 horizontal, one take. No music.
 DIALOGUE: Lia says her line once, walking. He answers the moment the phone lands on him.
 @Image 1: Lia's exact face, wet blonde hair pushed back, white strapless top, pearl chain.
 @Image 2: his face from every angle, freckles, light stubble, curly dark hair, gingham shirt.
@@ -296,7 +323,9 @@ LIGHT: the sun low and to the side, both faces warmly lit, never backlit.
 WARDROBE: nothing added, removed or recoloured; no sunglasses on their faces.
 NEGATIVES: no morphing hands, no extra fingers, no wrong finger count, no logos.
 OUT POINT: she laughs off screen, he smiles, hard out mid step, no fade, no black.</pre>
-    </div></div>
+        <button class="cta" onclick="copyText(document.getElementById('pm2').innerText)">Copy this prompt <span class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span></button>
+      </div></div>
+    </div>
   </section>
 
   
