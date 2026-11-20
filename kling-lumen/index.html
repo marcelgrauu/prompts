@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F2F2F0">
+<title>A perfume campaign with Kling Image 4.0 | marcelgrau</title>
+<meta name="description" content="Six product shots made with Kling Image 4.0: every prompt and the original 8K files.">
+<meta property="og:title" content="A perfume campaign with Kling Image 4.0">
+<meta property="og:image" content="assets/06_model.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;500;700;900&family=EB+Garamond:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F2F2F0;--ink:#0B0B0C;--grey:#E1E1DE;--mute:#6E6E73;--blue:#0000FF;--hair:rgba(0,0,0,.09);
+--sans:"Helvetica Neue","Inter Tight",Helvetica,Arial,sans-serif;--serif:"Apple Garamond","EB Garamond",Garamond,Georgia,serif;
+--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html,body{overflow-x:hidden;overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:90;opacity:.11;mix-blend-mode:multiply;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+animation:grain .9s steps(4) infinite}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-1%)}100%{transform:translate(0,0)}}
+.glass{background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(18px) saturate(1.6);backdrop-filter:blur(18px) saturate(1.6);
+border:1px solid rgba(255,255,255,.9);box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 10px 30px rgba(0,0,0,.07)}
+i.serif,h1 i,h2 i,.big i{font-family:var(--serif);font-weight:400;font-style:italic;color:var(--blue);letter-spacing:-.01em}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+/* nav */
+.nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:50;display:flex;gap:8px;align-items:center;padding:6px 6px 6px 18px;border-radius:999px;white-space:nowrap}
+.logo{font-weight:900;letter-spacing:-.04em;font-size:17px;text-decoration:none}.logo i{font-size:19px}
+.pill{background:var(--blue);color:#fff;font-weight:700;font-size:13px;padding:9px 14px;border-radius:999px}
+
+/* hero */
+.hero{position:relative;padding:96px 0 40px;overflow:hidden}
+.giant{position:absolute;left:0;top:0;white-space:nowrap;font-weight:900;letter-spacing:-.06em;line-height:.8;color:var(--grey);
+font-size:clamp(150px,30vw,420px);pointer-events:none;z-index:0;will-change:transform}
+.hero .giant{top:70px}
+.hero .wrap{position:relative;z-index:1}
+h1{font-size:clamp(46px,8.4vw,112px);line-height:.92;letter-spacing:-.055em;font-weight:900;margin:34px 0 18px}
+h1 i{font-size:1.08em}
+.lede{font-size:clamp(17px,2vw,21px);line-height:1.5;color:var(--mute);max-width:560px;margin:0 0 26px;font-weight:500}
+.lede b{color:var(--ink)}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 20px;border-radius:999px;font-weight:700;font-size:15px;text-decoration:none;border:0;cursor:pointer;transition:transform .25s cubic-bezier(.2,.9,.3,1.3)}
+.btn:active{transform:scale(.96)}
+.btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.2}
+.b-blue{background:var(--blue);color:#fff;box-shadow:0 10px 30px rgba(0,0,255,.28)}
+.b-ink{background:var(--ink);color:#fff}
+.b-glass{background:rgba(255,255,255,.6);border:1px solid #fff;color:var(--ink)}
+.soon{opacity:.45;pointer-events:none}.soon em{font-style:normal;font-weight:500;font-size:12px;opacity:.8}
+
+/* viewfinder */
+.vf{position:relative;margin:0;border-radius:22px;overflow:hidden;background:#d8d8d4;box-shadow:0 30px 60px -30px rgba(0,0,0,.35)}
+.vf video,.vf img{display:block;width:100%;height:auto}
+.vf .c{position:absolute;width:22px;height:22px;border:2px solid #fff;opacity:.9;z-index:3;pointer-events:none}
+.vf .tl{top:14px;left:14px;border-right:0;border-bottom:0}.vf .tr{top:14px;right:14px;border-left:0;border-bottom:0}
+.vf .bl{bottom:14px;left:14px;border-right:0;border-top:0}.vf .br{bottom:14px;right:14px;border-left:0;border-top:0}
+.rec,.tc,.vf-tag{position:absolute;z-index:3;font:600 11px/1 var(--mono);color:#fff;letter-spacing:.08em;text-shadow:0 1px 4px rgba(0,0,0,.4);pointer-events:none}
+.rec{top:21px;left:46px;display:flex;align-items:center;gap:6px}.rec b{width:8px;height:8px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 2px #fff;animation:blink 1.2s steps(2) infinite}
+.tc{top:21px;right:46px}.vf-tag{bottom:21px;left:46px;opacity:.85}
+@keyframes blink{50%{opacity:.2}}
+.hero .vf{margin-top:8px}
+.hero-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:end}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.chip{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:8px 14px;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.chip b{color:var(--blue);font-weight:900}.chip em{font-style:normal;color:var(--mute);font-weight:600}
+
+/* files */
+.files{position:relative;padding:70px 0 20px}
+.files h2,.slate h2,.tips h2,.outro .big{font-size:clamp(38px,6vw,76px);line-height:.95;letter-spacing:-.05em;font-weight:900;margin:16px 0 14px}
+.files .sub{color:var(--mute);font-size:17px;line-height:1.55;max-width:520px;margin:0 0 30px;font-weight:500}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.card{border-radius:26px;padding:24px;display:flex;flex-direction:column;gap:12px;min-height:250px}
+.card .k{font:700 11px/1 var(--mono);letter-spacing:.12em;color:var(--blue)}
+.card h3{margin:0;font-size:30px;letter-spacing:-.04em;font-weight:900;line-height:1}
+.card p{margin:0;color:var(--mute);font-size:15px;line-height:1.5;flex:1;font-weight:500}
+.card .btn{align-self:flex-start;padding:12px 16px;font-size:14px}
+
+/* scenes */
+.scene,.tips,.files{overflow-x:clip}
+.scene{position:relative;max-width:1120px;margin:0 auto;padding:110px 20px 40px;display:grid;grid-template-columns:1fr 1.15fr;gap:20px 48px;align-items:start}
+.scene .giant{top:40px;left:-2vw}
+.slate{position:relative;z-index:1;grid-column:1;grid-row:1}
+.slate p{color:var(--mute);font-size:17px;line-height:1.6;margin:0;font-weight:500;max-width:480px}
+.smedia{position:relative;z-index:1;grid-column:2;grid-row:1 / span 2;display:grid;gap:14px}
+.sprompts{position:relative;z-index:1;grid-column:1;grid-row:2}
+.sheet{margin:0;border-radius:22px;overflow:hidden;background:#fff;box-shadow:0 30px 60px -34px rgba(0,0,0,.3)}
+.sheet img{width:100%;display:block}
+.refs{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:8px}
+.refs li{display:flex;align-items:center;gap:12px;font-weight:700;font-size:15px}
+.refs li span{width:28px;height:28px;border-radius:9px;background:var(--blue);color:#fff;display:grid;place-items:center;font:700 12px var(--mono);flex-shrink:0}
+.pr{border-radius:20px;margin-bottom:10px;overflow:hidden}
+.pr summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 12px 12px 18px;font-weight:700;font-size:15px;letter-spacing:-.01em}
+.pr summary::-webkit-details-marker{display:none}
+.pl::before{content:"+";display:inline-block;width:18px;color:var(--blue);font-weight:900;transition:transform .3s}
+.pr[open] .pl::before{transform:rotate(45deg)}
+.copy{border:0;border-radius:999px;background:var(--ink);color:#fff;font:700 13px var(--sans);padding:9px 14px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;flex-shrink:0}
+.copy svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2}
+.pr pre{margin:0;padding:4px 18px 18px;white-space:pre-wrap;word-break:break-word;font:13px/1.6 var(--mono);color:#2a2a2e;max-height:400px;overflow:auto}
+
+/* compare */
+.compare{position:relative;touch-action:pan-y;cursor:ew-resize;user-select:none;--p:50%}
+.compare img{display:block;width:100%;pointer-events:none}
+.compare .b{position:absolute;inset:0;height:100%;object-fit:cover;clip-path:inset(0 calc(100% - var(--p)) 0 0)}
+.compare .bar{position:absolute;top:0;bottom:0;left:var(--p);width:2px;background:#fff;transform:translateX(-1px);z-index:2}
+.compare .knob{position:absolute;top:50%;left:var(--p);transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:var(--blue);display:grid;place-items:center;z-index:2;box-shadow:0 6px 20px rgba(0,0,255,.4)}
+.compare .knob svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:2.2}
+
+/* tips */
+.tips{position:relative;padding:110px 0 40px}
+.tips ol{list-style:none;margin:28px 0 0;padding:0;border-top:2px solid var(--ink)}
+.tips li{display:grid;grid-template-columns:90px 1fr;gap:20px;padding:22px 0;border-bottom:1px solid var(--hair);align-items:baseline}
+.tn{font-family:var(--serif);font-style:italic;color:var(--blue);font-size:44px;line-height:1}
+.tips li p{margin:0;font-size:clamp(19px,2.4vw,26px);line-height:1.3;letter-spacing:-.025em;font-weight:700}
+
+/* outro */
+.outro{position:relative;padding:120px 0 150px;text-align:center;overflow:hidden}
+.outro .giant{left:50%;top:60px;transform:translateX(-50%)}
+.outro .wrap{position:relative;z-index:1}
+.outro p{color:var(--mute);font-size:17px;font-weight:500;margin:0 auto 26px;max-width:420px;line-height:1.5}
+.outro .row{justify-content:center}
+footer{padding:0 0 120px;text-align:center;color:var(--mute);font-size:13px;font-weight:500}
+
+/* keyframe timeline */
+.tl-bar{position:fixed;left:50%;bottom:14px;transform:translate(-50%,140%);z-index:60;border-radius:999px;padding:10px 16px;display:flex;align-items:center;gap:0;transition:transform .5s cubic-bezier(.2,.9,.3,1)}
+.tl-bar.on{transform:translate(-50%,0)}
+.track{position:relative;display:flex;align-items:center;gap:clamp(22px,6vw,46px)}
+.track::before,.track .fill{content:"";position:absolute;left:7px;right:7px;top:7px;height:2px;background:rgba(0,0,0,.12);border-radius:2px}
+.track .fill{right:auto;width:0;background:var(--blue);transition:width .2s linear}
+.key{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none}
+.key i{width:14px;height:14px;transform:rotate(45deg);border-radius:3px;background:#fff;border:2px solid rgba(0,0,0,.25);transition:all .3s}
+.key span{font:700 9px/1 var(--mono);letter-spacing:.1em;color:var(--mute)}
+.key.done i{background:var(--blue);border-color:var(--blue)}
+.key.now i{box-shadow:0 0 0 5px rgba(0,0,255,.18)}.key.now span{color:var(--blue)}
+
+.toast{position:fixed;left:50%;bottom:90px;transform:translate(-50%,20px);opacity:0;background:var(--ink);color:#fff;padding:12px 18px;border-radius:999px;font-weight:700;font-size:14px;z-index:99;transition:all .35s;pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.rv{opacity:0;transform:translateY(28px);filter:blur(8px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1),filter .9s}
+.rv.in{opacity:1;transform:none;filter:none}
+@media(max-width:900px){
+.hero{padding-top:84px}
+.hero-grid{grid-template-columns:1fr;gap:6px}
+.cards{grid-template-columns:1fr}.card{min-height:0}
+.scene{grid-template-columns:1fr;padding:84px 20px 20px;gap:22px}
+.slate,.smedia,.sprompts{grid-column:1;grid-row:auto}
+.tips li{grid-template-columns:54px 1fr;gap:12px}.tn{font-size:34px}
+}
+@media(prefers-reduced-motion:reduce){body::after{animation:none}.rv{opacity:1;transform:none;filter:none}}
+</style>
+<style>
+.b-yel{background:#FFE500;color:#0B0B0C;box-shadow:0 10px 30px rgba(255,229,0,.35)}
+.b-yel svg{stroke:#0B0B0C}
+.mosaic{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 22px}
+.mosaic img{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:16px;display:block;box-shadow:0 14px 30px rgba(0,0,0,.12)}
+.mosaic img:last-child{object-position:60% 50%}
+.sheet img{width:100%;height:auto;display:block}
+.k8{color:#0B0B0C;background:#FFE500;padding:0 .12em;border-radius:.12em}
+</style>
+</head>
+<body>
+<nav class="nav glass"><a class="logo" href="#top">marcel<i>grau</i></a><span class="pill">You commented PROMPTS</span></nav>
+
+<header class="hero" id="top">
+  <div class="giant" data-par="-0.25" aria-hidden="true">LUMEN</div>
+  <div class="wrap">
+    <div class="mosaic"><img src="assets/01_safata.jpg" alt=""><img src="assets/05_text_ombra.jpg" alt=""><img src="assets/06_model.jpg" alt=""></div>
+    <div class="hero-grid">
+      <div><h1 class="rv">A full perfume campaign. <i>One product photo.</i></h1></div>
+      <div class="rv">
+        <p class="lede">Made with Kling Image 4.0. <b>Every prompt and the original <span class="k8">8K</span> files.</b></p>
+        <div class="row"><a class="btn b-yel" href="https://drive.google.com/drive/folders/1Yl9gDR5wTWMWjkSLTFwu3fwWdYL-7Ngd?usp=sharing" target="_blank" rel="noopener">Download the 8K images <svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></a><a class="btn b-glass" href="https://app.klingai.com/global/" target="_blank" rel="noopener">Try Kling Image 4.0 <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+      </div>
+    </div>
+    <div class="meta rv"><span class="chip glass"><b>6</b><em>shots</em></span><span class="chip glass"><b>8K</b><em>native</em></span><span class="chip glass"><b>&#9679;</b><em>Kling Image 4.0</em></span></div>
+  </div>
+</header>
+
+  <section class="scene" id="s1" data-i="0">
+    <div class="giant" aria-hidden="true">TRAY</div>
+    <header class="slate">
+      <span class="chip glass"><b>01</b><em>Flat lay</em></span>
+      <h2>The silver <i>tray.</i></h2>
+      <p>Just the product photo. Nothing else.</p>
+    </header>
+    <div class="smedia"><figure class="sheet"><img src="assets/01_safata.jpg" alt="Tray" loading="lazy" decoding="async"></figure></div>
+    <div class="sprompts"><ol class="refs"><li><span>1</span>your product photo</li></ol><details class="pr glass" open><summary><span class="pl">The prompt</span><button class="copy" onclick="event.preventDefault();copyText(document.getElementById('p1').innerText)">Copy <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></button></summary><pre id="p1">Use Image 1 as the exact product: keep the frosted milky white pebble shaped glass bottle, the matte black pebble shaped cap and the printed black text &quot;Lumen&quot; in handwritten script and &quot;eau de parfum 50 ml&quot; exactly the same. Overhead flat lay shot from directly above: the Lumen bottle lies diagonally on an oval polished silver tray, next to a natural loofah sponge, a round white soap bar with a massage nub pattern and a loose white silk ribbon curling around the bottle. Plain white seamless background around the tray, soft diffused daylight from the top left, gentle natural shadows, subtle reflections on the silver. Clean minimal editorial beauty still life, neutral colour grade, photorealistic, native 8K detail, crisp readable text, vertical 9:16.</pre></details></div>
+  </section>
+  <section class="scene" id="s2" data-i="1">
+    <div class="giant" aria-hidden="true">SHELF</div>
+    <header class="slate">
+      <span class="chip glass"><b>02</b><em>Reference shot</em></span>
+      <h2>Glass and <i>branches.</i></h2>
+      <p>A photo I liked as the second image.</p>
+    </header>
+    <div class="smedia"><figure class="sheet"><img src="assets/02_branques.jpg" alt="Shelf" loading="lazy" decoding="async"></figure></div>
+    <div class="sprompts"><ol class="refs"><li><span>1</span>your product photo</li><li><span>2</span>a shot you like</li></ol><details class="pr glass" open><summary><span class="pl">The prompt</span><button class="copy" onclick="event.preventDefault();copyText(document.getElementById('p2').innerText)">Copy <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></button></summary><pre id="p2">Image 1 is the exact product: keep the frosted milky white pebble shaped glass bottle, the matte black pebble shaped cap and the printed black text &quot;Lumen&quot; in handwritten script and &quot;eau de parfum 50 ml&quot; exactly the same, spelled correctly. Image 2 is only a reference for composition, camera angle, lighting and props: recreate that scene with a thin clear glass shelf and a few smooth dry wooden branches arranged around the bottle, but use the Lumen bottle from Image 1 instead of the bottle in Image 2. The branches stay behind and beside the bottle and never pass through, cut or overlap the glass shelf. Natural realistic branches, no curly tendrils. Do not copy any text, logo or bottle from Image 2. Plain white to very light grey seamless background, soft diffused daylight, gentle natural shadows, clean minimal editorial still life, photorealistic, native 8K detail, crisp readable text, vertical 9:16.</pre></details></div>
+  </section>
+  <section class="scene" id="s3" data-i="2">
+    <div class="giant" aria-hidden="true">STEEL</div>
+    <header class="slate">
+      <span class="chip glass"><b>03</b><em>Reference shot</em></span>
+      <h2>The steel <i>tray.</i></h2>
+      <p>Same trick, another reference.</p>
+    </header>
+    <div class="smedia"><figure class="sheet"><img src="assets/03_safata_acer.jpg" alt="Steel" loading="lazy" decoding="async"></figure></div>
+    <div class="sprompts"><ol class="refs"><li><span>1</span>your product photo</li><li><span>2</span>a shot you like</li></ol><details class="pr glass" open><summary><span class="pl">The prompt</span><button class="copy" onclick="event.preventDefault();copyText(document.getElementById('p3').innerText)">Copy <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></button></summary><pre id="p3">Image 1 is the exact product: keep the frosted milky white pebble shaped glass bottle, the matte black pebble shaped cap and the printed black text &quot;Lumen&quot; in handwritten script and &quot;eau de parfum 50 ml&quot; exactly the same, spelled correctly. Image 2 is only a reference for composition, camera angle, lighting and props: recreate that scene, the bottle standing on a rectangular brushed stainless steel tray seen from a slightly high three quarter angle, with a mother of pearl shell in the front corner, a small silver key and a small green ribbed fruit at the back, but use the Lumen bottle from Image 1 instead of the bottle in Image 2. Keep the background plain white to very light grey instead of blue. Do not copy any text, logo or bottle from Image 2. Soft diffused daylight, gentle natural shadows, soft reflections on the steel, clean minimal editorial still life, photorealistic, native 8K detail, crisp readable text, vertical 9:16.</pre></details></div>
+  </section>
+  <section class="scene" id="s4" data-i="3">
+    <div class="giant" aria-hidden="true">STACK</div>
+    <header class="slate">
+      <span class="chip glass"><b>04</b><em>Flat prompt</em></span>
+      <h2>The <i>stack.</i></h2>
+      <p>No reference. The prompt does it all.</p>
+    </header>
+    <div class="smedia"><figure class="sheet"><img src="assets/04_pila.jpg" alt="Stack" loading="lazy" decoding="async"></figure></div>
+    <div class="sprompts"><ol class="refs"><li><span>1</span>your product photo</li></ol><details class="pr glass" open><summary><span class="pl">The prompt</span><button class="copy" onclick="event.preventDefault();copyText(document.getElementById('p4').innerText)">Copy <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></button></summary><pre id="p4">Use the reference image as the exact product: keep the frosted milky white pebble shaped glass bottle, the matte black pebble shaped cap and the printed black text &quot;Lumen&quot; in handwritten script and &quot;eau de parfum 50 ml&quot; exactly the same. A playful balanced stack sculpture: at the bottom a whole green pear, on top of it the Lumen bottle tilted at an angle, above the bottle a smooth white egg, then a green olive, and half a fresh purple fig on the very top with a drop of juice running down. Plain white seamless background, soft diffused daylight from the top left, gentle natural shadows. Clean minimal editorial beauty still life, neutral colour grade, photorealistic, native 8K detail, crisp readable text, vertical 9:16.</pre></details></div>
+  </section>
+  <section class="scene" id="s5" data-i="4">
+    <div class="giant" aria-hidden="true">TEXT</div>
+    <header class="slate">
+      <span class="chip glass"><b>05</b><em>Text rendering</em></span>
+      <h2>Text in a <i>shadow.</i></h2>
+      <p>Every word came from the prompt.</p>
+    </header>
+    <div class="smedia"><figure class="sheet"><img src="assets/05_text_ombra.jpg" alt="Text" loading="lazy" decoding="async"></figure></div>
+    <div class="sprompts"><ol class="refs"><li><span>1</span>your product photo</li><li><span>2</span>a shot you like</li></ol><details class="pr glass" open><summary><span class="pl">The prompt</span><button class="copy" onclick="event.preventDefault();copyText(document.getElementById('p5').innerText)">Copy <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></button></summary><pre id="p5">Image 2 is the reference for the whole shot: recreate it exactly in that style. The image shows only a SHADOW projected onto a pale warm grey textured plaster wall by strong low sunlight. The real hand and the real bottle are not in the frame at all; we only see their cast shadow on the wall: the dark silhouette shadow of a hand holding a perfume bottle up, slightly tilted. The bottle shadow must have EXACTLY the geometry of the bottle in Image 1: an egg shaped, slightly asymmetric smooth pebble body, widest in its lower third, about 1.5 times taller than wide, with soft rounded sides that curve gently inward to a very short narrow collar at the top. No shoulders, no straight sides, no long neck, no rectangle. On top of the collar sits the cap, shaped like an irregular rounded river stone, about half as wide as the body and a little taller than wide, roughly a quarter of the total height. Because the bottle is frosted glass, warm sunlight passes through the egg shaped body and projects its printed text onto the wall inside the shadow, as crisp glowing light letters, readable normally left to right: the handwritten wordmark &quot;Lumen&quot; large, and below it a small block: &quot;Directions: Spray onto the wrists and neck from 15 cm. Let it settle, don&#x27;t rub.&quot; &quot;Notes: bergamot, white lily, warm amber.&quot; and two small bold lines &quot;Made by Lumen Studio, Barcelona&quot; &quot;lumen-parfum.com  50 ml&quot;. The cap shadow is fully dark. Soft light flare and caustics at the edge of the glass shadow. Muted warm grey and olive tones, film photo look, minimal and moody. Do not copy any words or logo from Image 2. Every word sharp and spelled correctly, photorealistic, native 8K detail, vertical 9:16.</pre></details></div>
+  </section>
+  <section class="scene" id="s6" data-i="5">
+    <div class="giant" aria-hidden="true">SKIN</div>
+    <header class="slate">
+      <span class="chip glass"><b>06</b><em>Model</em></span>
+      <h2>Real <i>skin.</i></h2>
+      <p>Look at the pores. Zoom in.</p>
+    </header>
+    <div class="smedia"><figure class="sheet"><img src="assets/06_model.jpg" alt="Skin" loading="lazy" decoding="async"></figure></div>
+    <div class="sprompts"><ol class="refs"><li><span>1</span>a model photo</li><li><span>2</span>your product photo</li></ol><details class="pr glass" open><summary><span class="pl">The prompt</span><button class="copy" onclick="event.preventDefault();copyText(document.getElementById('p6').innerText)">Copy <svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></button></summary><pre id="p6">Image 1 is the photo to keep. Image 2 is the product that goes into it.
+Keep from Image 1: the same woman, the same face, the same expression with her lips slightly parted and her eyes looking at the camera, her sleek dark hair pulled back, her bare shoulders, the same gold hoop earring, the same silver ring on her finger, the same nude almond nails, the same plain white background, the same pose, the same framing and crop and the same camera angle. Do not change her face or her pose.
+Change her skin finish: it must NOT be as glossy, oily or shiny as in Image 1. Real, natural, satin to matte skin with only a soft natural sheen on the bridge of the nose, the top of the cheekbones and the collarbones, no wet look, no oil, no glowing highlight patches. The skin texture must be clearly visible everywhere: open pores across the nose, the inner cheeks and the forehead, fine pores on the chin and upper lip, fine vellus hair on the cheeks and jawline catching the light, faint natural redness around the nostrils, a few tiny natural marks and unevenness, fine lines at the corners of the eyes and on the lips, real lip texture with small vertical lines, natural texture on the neck, shoulders and the back of the hand, visible knuckle creases and fine lines on the fingers. No retouching, no smoothing, no airbrushing, no beauty filter, no plastic or waxy skin. The light is the same soft white studio light as Image 1 but coming a little more from the side, so it grazes the skin and makes the pores and texture readable; the shadows stay soft.
+Replace only the bottle in her hand. Remove the green bottle completely, with all its green colour, its black cylinder cap and every letter of its text. In its place she holds the LUMEN perfume bottle from Image 2, copied exactly, with exactly the same shape and proportions as Image 2: a frosted milky white glass body shaped like an egg shaped river pebble, about 1.5 times taller than it is wide, slightly asymmetric, widest in its lower third and gently narrowing toward the top, with NO shoulders and no straight sides, a very short frosted collar, and a matte black cap shaped like an irregular rounded river stone that is about a quarter of the total height of the bottle. Do not make the bottle slimmer, taller, flatter, more rectangular or more square than in Image 2. On the front, the handwritten black wordmark &quot;Lumen&quot; with &quot;eau de parfum&quot; and &quot;50 ml&quot; in small black serif type below it, exactly as in Image 2. The bottle is about 11 cm tall and sits naturally in her hand.
+She holds it the same way as in Image 1, with the same hand in the same place: fingertips around the frosted body, the bottle upright and tilted slightly toward her face, the black stone cap resting lightly against her temple beside the outer end of her eyebrow. The front with &quot;Lumen&quot; faces the camera, sharp and perfectly readable. Her fingers wrap around the curve of the pebble shape naturally, with real contact shadows where the glass touches her skin and her fingertips softly visible through the frosted glass. The frosted glass has a gentle milky glow and one soft highlight along its curve; the matte black cap shows no shine.
+Photorealistic editorial beauty photograph shot on a medium format camera with a sharp macro capable lens, extremely high detail, true to life skin. No green anywhere, no other text, no logos, no watermark, no extra bottles.</pre></details></div>
+  </section>
+
+<section class="tips">
+  <div class="giant" data-par="-0.2" aria-hidden="true">NOTES</div>
+  <div class="wrap" style="position:relative;z-index:1">
+    <span class="chip glass rv"><b>NOTES</b><em>what made the difference</em></span>
+    <ol><li><span class="tn">01</span><p>Image 1 is always your product.</p></li><li><span class="tn">02</span><p>A reference shot gives you the look.</p></li><li><span class="tn">03</span><p>Put any text in quotes.</p></li></ol>
+  </div>
+</section>
+
+<section class="outro">
+  <div class="giant" aria-hidden="true">8K</div>
+  <div class="wrap">
+    <div class="big rv">Zoom in. <i>Check it yourself.</i></div>
+    <div class="row rv"><a class="btn b-yel" href="https://drive.google.com/drive/folders/1Yl9gDR5wTWMWjkSLTFwu3fwWdYL-7Ngd?usp=sharing" target="_blank" rel="noopener">Download the 8K images <svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></a><a class="btn b-glass" href="https://app.klingai.com/global/" target="_blank" rel="noopener">Try Kling Image 4.0 <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+  </div>
+</section>
+<footer>Made with Kling Image 4.0. Paid partnership with Kling AI.</footer>
+
+<nav class="tl-bar glass" aria-label="Shots"><div class="track"><span class="fill"></span><a class="key" href="#s1" data-k="0"><i></i><span>TRAY</span></a><a class="key" href="#s2" data-k="1"><i></i><span>SHELF</span></a><a class="key" href="#s3" data-k="2"><i></i><span>STEEL</span></a><a class="key" href="#s4" data-k="3"><i></i><span>STACK</span></a><a class="key" href="#s5" data-k="4"><i></i><span>TEXT</span></a><a class="key" href="#s6" data-k="5"><i></i><span>SKIN</span></a></div></nav>
+<div class="toast" id="toast">Prompt copied</div>
+
+<script>
+function copyText(text) {
+  const done = () => { const t = document.getElementById('toast'); t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 1700); };
+  const fallback = () => { const ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); done(); } catch (e) {} document.body.removeChild(ta); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+}
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold: .15});
+document.querySelectorAll('.rv,.slate,.smedia > *,.sprompts').forEach(el => { el.classList.add('rv'); io.observe(el); });
+
+// running timecode on every viewfinder (24 fps, like a camera)
+const t0 = performance.now();
+const tcs = [...document.querySelectorAll('.tc')];
+(function tick() {
+  const f = Math.floor((performance.now() - t0) / 1000 * 24), p = n => String(n).padStart(2, '0');
+  const s = p(Math.floor(f / 24) % 60), m = p(Math.floor(f / 1440) % 60), fr = p(f % 24);
+  tcs.forEach(t => t.textContent = '00:' + m + ':' + s + ':' + fr);
+  requestAnimationFrame(tick);
+})();
+
+// giant words drift sideways, the keyframe timeline fills with the scroll
+const giants = [...document.querySelectorAll('.giant')];
+const scenes = [...document.querySelectorAll('.scene')];
+const keys = [...document.querySelectorAll('.key')];
+const bar = document.querySelector('.tl-bar'), fill = document.querySelector('.track .fill');
+function onScroll() {
+  const vh = innerHeight;
+  giants.forEach(g => {
+    const r = g.parentElement.getBoundingClientRect();
+    const k = (r.top + r.height / 2 - vh / 2) / vh;
+    const base = g.closest('.outro') ? 'translateX(-50%) ' : '';
+    g.style.transform = base + 'translateX(' + (k * 18) + 'vw)';
+  });
+  let cur = -1, frac = 0;
+  scenes.forEach((s, i) => { const r = s.getBoundingClientRect(); if (r.top < vh * .55) { cur = i; frac = Math.min(1, Math.max(0, (vh * .55 - r.top) / r.height)); } });
+  bar.classList.toggle('on', cur >= 0 && scenes[scenes.length - 1].getBoundingClientRect().bottom > vh * .3);
+  keys.forEach((k, i) => { k.classList.toggle('done', i <= cur); k.classList.toggle('now', i === cur); });
+  if (keys.length > 1 && cur >= 0) {
+    const a = keys[0].offsetLeft + 7, b = keys[keys.length - 1].offsetLeft + 7;
+    const c0 = keys[cur].offsetLeft + 7, c1 = keys[Math.min(cur + 1, keys.length - 1)].offsetLeft + 7;
+    fill.style.width = (c0 + (c1 - c0) * frac - a) + 'px';
+  }
+}
+addEventListener('scroll', onScroll, {passive: true}); addEventListener('resize', onScroll); onScroll();
+
+document.querySelectorAll('.compare').forEach(cmp => {
+  const setP = x => { const r = cmp.getBoundingClientRect(); cmp.style.setProperty('--p', Math.max(0, Math.min(100, (x - r.left) / r.width * 100)) + '%'); };
+  cmp.addEventListener('pointerdown', e => { cmp.setPointerCapture(e.pointerId); setP(e.clientX); });
+  cmp.addEventListener('pointermove', e => { if (cmp.hasPointerCapture(e.pointerId)) setP(e.clientX); });
+});
+</script>
+</body>
+</html>
